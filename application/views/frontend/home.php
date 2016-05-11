@@ -1,48 +1,20 @@
 <div class="slider-wrap">
 	<div class="slider">
-        <div>
+        <?php foreach($content_headline as $data): ?>
             <div class="slide">
-                <img src="<?php echo base_url(); ?>assets/images/headline-img.jpg" alt="Slider Image 1">
+                <img src="<?php echo base_url() ?>asset_admin/assets/uploads/cover/original/<?php echo $data->filename; ?>" alt="<?php echo $data->title; ?>">
                 
                 <div class="slider-caption">
-                    <h1>Lorem Ipsum Dolor Sit Amet</h1>
+                    <h1><?php echo $data->title; ?></h1>
                     
                     <p>
-                    	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer suscipit orci ac facilisis hendrerit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Praesent dui ex, egestas volutpat nulla in, pellentesque vestibulum justo. Maecenas sed dui et elit semper congue vitae nec massa. Pellentesque interdum ornare volutpat. In euismod tellus a condimentum molestie.
+                    	<?php echo $data->short_desc; ?>
                     </p>
                     
-                    <a href="#">Read More</a>
+                    <a href="<?php echo base_url(); ?>blog/<?php echo $data->permalink; ?>">Read More</a>
                 </div> <!-- SLIDER CAPTION -->
             </div> <!-- SLIDE -->
-        </div>
-        
-        <div class="slide">
-                <img src="<?php echo base_url(); ?>assets/images/headline-img.jpg" alt="Slider Image 1">
-                
-                <div class="slider-caption">
-                    <h1>Lorem Ipsum Dolor Sit Amet</h1>
-                    
-                    <p>
-                    	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer suscipit orci ac facilisis hendrerit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Praesent dui ex, egestas volutpat nulla in, pellentesque vestibulum justo. Maecenas sed dui et elit semper congue vitae nec massa. Pellentesque interdum ornare volutpat. In euismod tellus a condimentum molestie.
-                    </p>
-                    
-                    <a href="#">Read More</a>
-                </div> <!-- SLIDER CAPTION -->
-            </div> <!-- SLIDE -->
-            
-            <div class="slide">
-                <img src="<?php echo base_url(); ?>assets/images/headline-img.jpg" alt="Slider Image 1">
-                
-                <div class="slider-caption">
-                    <h1>Lorem Ipsum Dolor Sit Amet</h1>
-                    
-                    <p>
-                    	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer suscipit orci ac facilisis hendrerit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Praesent dui ex, egestas volutpat nulla in, pellentesque vestibulum justo. Maecenas sed dui et elit semper congue vitae nec massa. Pellentesque interdum ornare volutpat. In euismod tellus a condimentum molestie.
-                    </p>
-                    
-                    <a href="#">Read More</a>
-                </div> <!-- SLIDER CAPTION -->
-            </div> <!-- SLIDE -->
+        <?php endforeach; ?>
     </div> <!-- SLIDER -->
     
     <div class="content-panel-wrap">
