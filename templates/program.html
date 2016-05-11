@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Import Google Icon Font-->
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="css/style.css"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/slick.css"/>
+        <link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        
+    </head>
+    
+    <body>
+    	<header>
+            <div class="container">
+                <nav>
+                    <div class="nav-wrapper">
+                        <a href="#" class="brand-logo"><img src="images/logo.png" alt="Logo"></a>
+                        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                        <ul id="nav-mobile" class="right hide-on-med-and-down">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="blog.html">Blog</a></li>
+                            <li><a href="safetyswim.html">Safety Swim</a></li>
+                            <li><a href="program.html" class="dropdown-button selected" data-activates="dropdown">Program<i class="material-icons right">arrow_drop_down</i></a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="about.html">About</a></li>
+                        </ul>
+                        
+                        <!-- DROPDOWN PROGRAM DESKTOP -->
+                        <ul id="dropdown" class="dropdown-content">
+                        	<li><a href="program.html">Program</a></li>
+                            <li class="divider"></li>
+                            <li><a href="program-detail.html">Basic to Swim</a></li>
+                            <li><a href="program-detail.html">Swimming Fit</a></li>
+                        </ul>
+                        
+                        <!-- MOBILE MENU -->
+                        <ul id="mobile-demo" class="side-nav">
+                            <li><a href="index.html" class="selected">Home</a></li>
+                            <li><a href="blog.html">Blog</a></li>
+                            <li><a href="safetyswim.html">Safety Swim</a></li>
+                            <li><a href="program.html">Program</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="about.html">About</a></li>
+                        </ul>
+                    </div> <!-- NAV WRAPER -->
+                </nav>
+            </div> <!-- CONTAINER -->
+        </header>
+        
+        <div class="section">
+        	<div class="container">
+                <div class="breadcrumb-wrap">
+                    <a href="index.html" class="breadcrumb">Home</a>
+                    <a href="program.html" class="breadcrumb">Program</a>
+                </div>
+            </div>
+        </div> <!-- SECTION -->
+        
+        <div class="section">
+        	<div class="container">
+            	<div class="section-title">
+                	<h2>Program</h2>
+                </div>
+                
+                <div class="program-wrap  valign-wrapper wow fadeInUp" data-wow-duration="1s">
+                    <a href="program-detail.html">
+                        <img class="valign" src="images/program-1.jpg" alt="Program-1">
+                        
+                        <div class="program-caption">
+                            <h3>Basic to Swim</h3>
+                        </div>
+                    </a>
+                </div> <!-- PROGRAM WRAP -->
+                
+                <div class="program-wrap valign-wrapper wow fadeInUp" data-wow-duration="1s">
+                    <a href="program-detail.html">
+                        <img class="valign" src="images/program-2.jpg" alt="Program-2">
+                        
+                        <div class="program-caption">
+                            <h3>Swimming Fit</h3>
+                        </div>
+                    </a>
+                </div> <!-- PROGRAM WRAP -->
+            </div> <!-- CONTAINER -->
+        </div> <!-- SECTION -->
+        
+        <footer class="page-footer">            
+            <div class="footer-copyright">
+                <div class="container">
+                    <p>Copyright &copy; 2016 Bisarenang.com. All Rights Reserved</p>|
+                    <a href="#!">Terms of Use</a>|
+                    <a href="#!">Privacy Policy</a>
+                </div>
+            </div>
+        </footer>
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+        <script src="js/wow.min.js"></script>
+        <script type="text/javascript" src="js/slick.min.js"></script>
+        
+        <script type="text/javascript">
+			$(document).ready(function(){
+				$('.slider').slick({
+					
+				});
+			});
+		</script>
+        
+		<script>
+			new WOW().init();
+        </script>
+        
+        <script type="text/javascript">
+			$(document).ready(function(){
+				$(".dropdown-button").dropdown();
+			});
+		</script>
+        
+        <script type="text/javascript">
+			$(document).ready(function(){
+				$(".button-collapse").sideNav();
+			});
+		</script>
+    </body>
+</html>
