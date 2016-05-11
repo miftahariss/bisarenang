@@ -41,6 +41,9 @@
 $route['default_controller'] = "frontend";
 $route['404_override'] = '';
 
+$route['blog'] = "frontend/blog";
+$route['safetyswim'] = "frontend/safetyswim";
+
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
