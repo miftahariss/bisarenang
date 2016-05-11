@@ -23,26 +23,26 @@
                         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                         <ul id="nav-mobile" class="right hide-on-med-and-down">
                             <li><a href="<?php echo base_url(); ?>" <?php if($base=='Home') echo 'class="selected"'; ?>>Home</a></li>
-                            <li><a href="blog.html" <?php if($base=='Blog') echo 'class="selected"'; ?>>Blog</a></li>
-                            <li><a href="safetyswim.html" <?php if($base=='Safety') echo 'class="selected"'; ?>>Safety Swim</a></li>
-                            <li><a href="program.html" class="dropdown-button" data-activates="dropdown">Program<i class="material-icons right">arrow_drop_down</i></a></li>
-                            <li><a href="contact.html">Contact</a></li>
-                            <li><a href="about.html">About</a></li>
+                            <li><a href="<?php echo base_url(); ?>blog" <?php if($base=='Blog') echo 'class="selected"'; ?>>Blog</a></li>
+                            <li><a href="<?php echo base_url(); ?>safetyswim" <?php if($base=='Safetyswim') echo 'class="selected"'; ?>>Safety Swim</a></li>
+                            <li><a href="<?php echo base_url(); ?>program" class="dropdown-button <?php if($base=='Program') echo 'selected'; ?>" data-activates="dropdown">Program<i class="material-icons right">arrow_drop_down</i></a></li>
+                            <li><a href="<?php echo base_url(); ?>contact" <?php if($base=='Contact') echo 'class="selected"'; ?>>Contact</a></li>
+                            <li><a href="<?php echo base_url(); ?>about" <?php if($base=='About') echo 'class="selected"'; ?>>About</a></li>
                         </ul>
                         
                         <!-- DROPDOWN PROGRAM DESKTOP -->
                         <ul id="dropdown" class="dropdown-content">
-                        	<li><a href="program.html">Program</a></li>
+                        	<li><a href="<?php echo base_url(); ?>program">Program</a></li>
                             <li class="divider"></li>
-                            <li><a href="program-detail.html">Basic to Swim</a></li>
-                            <li><a href="program-detail.html">Swimming Fit</a></li>
+                            <li><a href="<?php echo base_url(); ?>program/basic-to-swim">Basic to Swim</a></li>
+                            <li><a href="<?php echo base_url(); ?>program/swimming-fit">Swimming Fit</a></li>
                         </ul>
                         
                         <!-- MOBILE MENU -->
                         <ul id="mobile-demo" class="side-nav">
-                            <li><a href="index.html" class="selected">Home</a></li>
-                            <li><a href="blog.html">Blog</a></li>
-                            <li><a href="safetyswim.html">Safety Swim</a></li>
+                            <li><a href="<?php echo base_url(); ?>" class="selected">Home</a></li>
+                            <li><a href="<?php echo base_url(); ?>blog">Blog</a></li>
+                            <li><a href="<?php echo base_url(); ?>safetyswim">Safety Swim</a></li>
                             <li><a href="program.html">Program</a></li>
                             <li><a href="contact.html">Contact</a></li>
                             <li><a href="about.html">About</a></li>
