@@ -41,8 +41,15 @@
 $route['default_controller'] = "frontend";
 $route['404_override'] = '';
 
+$route['backend'] = "backend/cmsauth";
 $route['blog'] = "frontend/blog";
+$route['blog/(:any)'] = "frontend/blogdetail";
 $route['safetyswim'] = "frontend/safetyswim";
+$route['program'] = "frontend/program";
+$route['program/basic-to-swim'] = "frontend/basicswim";
+$route['program/swimming-fit'] = "frontend/swimmingfit";
+$route['contact'] = "frontend/contact";
+$route['about'] = "frontend/about";
 
 
 /* End of file routes.php */
