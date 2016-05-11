@@ -2,7 +2,7 @@
 	<div class="slider">
         <div>
             <div class="slide">
-                <img src="images/headline-img.jpg" alt="Slider Image 1">
+                <img src="<?php echo base_url(); ?>assets/images/headline-img.jpg" alt="Slider Image 1">
                 
                 <div class="slider-caption">
                     <h1>Lorem Ipsum Dolor Sit Amet</h1>
@@ -17,7 +17,7 @@
         </div>
         
         <div class="slide">
-                <img src="images/headline-img.jpg" alt="Slider Image 1">
+                <img src="<?php echo base_url(); ?>assets/images/headline-img.jpg" alt="Slider Image 1">
                 
                 <div class="slider-caption">
                     <h1>Lorem Ipsum Dolor Sit Amet</h1>
@@ -31,7 +31,7 @@
             </div> <!-- SLIDE -->
             
             <div class="slide">
-                <img src="images/headline-img.jpg" alt="Slider Image 1">
+                <img src="<?php echo base_url(); ?>assets/images/headline-img.jpg" alt="Slider Image 1">
                 
                 <div class="slider-caption">
                     <h1>Lorem Ipsum Dolor Sit Amet</h1>
@@ -55,7 +55,7 @@
             	We combine the science of behavior change with. unwavering personal support, so you can make changes that actually stick. It’s an approach shown to reduce risk factors for type 2 diabetes and heart disease. What’s more, the average participant loses over 10 pounds along the way.
             </p>
             
-            <a href="#"><img src="images/arrow-content-panel.png" alt="Arrow"></a>
+            <a href="#"><img src="<?php echo base_url(); ?>assets/images/arrow-content-panel.png" alt="Arrow"></a>
         </div> <!-- CONTENT PANEL ABOUT -->
         
         <div class="content-panel content-program wow fadeInUp" data-wow-delay="600ms">
@@ -67,7 +67,7 @@
             	We combine the science of behavior change with. unwavering personal support, so you can make changes that actually stick. It’s an approach shown to reduce risk factors for type 2 diabetes and heart disease. What’s more, the average participant loses over 10 pounds along the way.
             </p>
             
-            <a href="#"><img src="images/arrow-content-panel.png" alt="Arrow"></a>
+            <a href="#"><img src="<?php echo base_url(); ?>assets/images/arrow-content-panel.png" alt="Arrow"></a>
         </div> <!-- CONTENT PANEL ABOUT -->
         
         <div class="content-panel content-basicswim wow fadeInUp" data-wow-delay="1000ms">
@@ -79,7 +79,7 @@
             	We combine the science of behavior change with. unwavering personal support, so you can make changes that actually stick. It’s an approach shown to reduce risk factors for type 2 diabetes and heart disease. What’s more, the average participant loses over 10 pounds along the way.
             </p>
             
-            <a href="#"><img src="images/arrow-content-panel.png" alt="Arrow"></a>
+            <a href="#"><img src="<?php echo base_url(); ?>assets/images/arrow-content-panel.png" alt="Arrow"></a>
         </div> <!-- CONTENT PANEL ABOUT -->
     </div> <!-- CONTENT PANEL WRAP -->
 </div> <!-- SLIDER WRAP -->
@@ -93,7 +93,7 @@
         
         <div class="section-blog">
             <div class="blog-box wow fadeInLeftBig" data-wow-delay="200ms">
-                <div class="blog-box-img" style="background-image: url('images/article_img-1.jpg');">
+                <div class="blog-box-img" style="background-image: url('<?php echo base_url(); ?>assets/images/article_img-1.jpg');">
                 	<!-- AMBIL IMAGE DARI BACKGROUND -->
                 </div>
                 
@@ -111,7 +111,7 @@
             </div> <!-- BLOG BOX -->
             
             <div class="blog-box wow fadeInRightBig" data-wow-delay="200ms">
-                <div class="blog-box-img" style="background-image: url('images/article_img-2.jpg');">
+                <div class="blog-box-img" style="background-image: url('<?php echo base_url(); ?>assets/images/article_img-2.jpg');">
                 	<!-- AMBIL IMAGE DARI BACKGROUND -->
                 </div>
                 
@@ -129,7 +129,7 @@
             </div> <!-- BLOG BOX -->
             
             <div class="blog-box wow fadeInLeftBig" data-wow-delay="200ms">
-                <div class="blog-box-img" style="background-image: url('images/article_img-3.jpg');">
+                <div class="blog-box-img" style="background-image: url('<?php echo base_url(); ?>assets/images/article_img-3.jpg');">
                 	<!-- AMBIL IMAGE DARI BACKGROUND -->
                 </div>
                 
@@ -147,7 +147,7 @@
             </div> <!-- BLOG BOX -->
             
             <div class="blog-box wow fadeInRightBig" data-wow-delay="200ms">
-                <div class="blog-box-img" style="background-image: url('images/article_img-4.jpg');">
+                <div class="blog-box-img" style="background-image: url('<?php echo base_url(); ?>assets/images/article_img-4.jpg');">
                 	<!-- AMBIL IMAGE DARI BACKGROUND -->
                 </div>
                 
