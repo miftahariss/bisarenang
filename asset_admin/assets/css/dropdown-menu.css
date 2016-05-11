@@ -1,0 +1,167 @@
+.wrap_menu{
+	width:980px;
+	height:185px;
+	float:left;
+	margin-bottom:10px;
+}
+
+
+.menu{
+	width:980px;
+	height:50px;
+	float:right;
+	margin-top:20px;
+	margin-right:10px;
+}
+
+
+#navigation {
+	margin:0;
+	padding: 0;
+	clear:both;
+	width:980px;
+	height:auto;
+	letter-spacing:0;
+	
+}
+
+
+ul.nav-main,
+ul.nav-main li {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	
+}
+
+
+ul.nav-main {
+	position: relative;
+	z-index: 597;
+}
+
+ul.nav-main li:hover > ul {
+	visibility: visible;
+}
+
+
+ul.nav-main li.hover,
+ul.nav-main li:hover {
+	position: relative;
+	z-index: 599;
+	cursor: pointer;
+	background: url(images/dropdown-bg-hover.gif) repeat-x left top;
+}
+
+
+
+ul.nav-main li {
+	float:left;
+	display:block;
+	height: 39px;
+	width:auto;
+	color: #87015a;
+	font-family:Arial, "Helvetica", sans-serif
+	letter-spacing:0px;
+	margin-right:19px;
+	
+
+}
+
+ul.nav-main li a {
+	display:block;
+	padding: 9px 8px 0px 8px;
+	height: 30px;
+	color: #464646;
+	font:14px;
+	font-family: 'Carrois Gothic', sans-serif;
+	font-weight:bold;
+	text-decoration:none;
+	font-style:normal;
+	font-weight:lighter;
+
+}
+
+ul.nav-main li a:hover {
+	color:#000;
+	
+	
+	
+	
+}
+
+ul.nav-main li a.current{ 
+	color: #e21978; 
+	height:28px;
+
+	
+	}
+
+
+
+ul.nav-main *.list {
+	padding-right: 0px;
+	
+	
+}
+
+
+
+ul.nav-sub {
+	visibility: hidden;
+	position: absolute;
+	padding:10px;
+	top: 35px;
+	left: 0;
+	z-index: 598;
+	background: #ec8590 url(images/dropdown-list-bg3.gif) repeat-x left top;
+	width:105px;
+	border-radius:5px;
+	border:1px solid #e87985;
+	
+	
+}
+
+
+ul.nav-sub li {
+	list-style:none;
+	display:block;
+	padding: 0;
+	height: 27px;
+	float: none;
+	width:105px;
+	border-bottom: 1px dashed #473f43;
+	background: none;
+}
+
+ul.nav-sub li a {
+	list-style:none;
+	display:block;
+	padding: 6px 5px 6px 5px;
+	height: 15px;
+	float: none;
+	width:145px;
+	background: none;
+	font:10px;
+	font-family: 'Carrois Gothic', sans-serif;
+
+}
+
+
+.home{
+	border-top:2px solid #9fafab;
+}
+
+.home:hover{
+	border-top:2px solid #000;
+}
+
+
+.listing{
+	border-top:none;
+}
+
+.subs{
+	font-size:12px;
+	text-transform:none;
+}
