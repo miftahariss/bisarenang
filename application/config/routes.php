@@ -39,10 +39,11 @@
 */
 
 $route['default_controller'] = "frontend";
-$route['404_override'] = '';
+$route['404_override'] = 'frontend/pagenotfound';
 
 $route['backend'] = "backend/cmsauth";
 $route['blog'] = "frontend/blog";
+$route['blog/(:num)'] = "frontend/blog";
 $route['blog/(:any)'] = "frontend/blogdetail";
 $route['safetyswim'] = "frontend/safetyswim";
 $route['program'] = "frontend/program";
