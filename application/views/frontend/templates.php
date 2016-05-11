@@ -19,7 +19,7 @@
             <div class="container">
                 <nav>
                     <div class="nav-wrapper">
-                        <a href="#" class="brand-logo"><img src="images/logo.png" alt="Logo"></a>
+                        <a href="#" class="brand-logo"><img src="<?php echo base_url(); ?>assets/images/logo.png" alt="Logo"></a>
                         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                         <ul id="nav-mobile" class="right hide-on-med-and-down">
                             <li><a href="<?php echo base_url(); ?>" <?php if($base=='Home') echo 'class="selected"'; ?>>Home</a></li>
@@ -65,15 +65,17 @@
         </footer>
         <!--Import jQuery before materialize.js-->
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script type="text/javascript" src="js/materialize.min.js"></script>
-        <script src="js/wow.min.js"></script>
-        <script type="text/javascript" src="js/slick.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/materialize.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/js/wow.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/slick.min.js"></script>
         
+        <?php if($base == 'Home'): ?>
         <script type="text/javascript">
             function isMobile() {
                return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
             }
         </script>
+        <?php endif; ?>
         
         <script type="text/javascript">
             $(document).ready(function(){
@@ -82,12 +84,18 @@
             });
         </script>
         
+        <?php if($base == 'Home'): ?>
         <script>
             if (!isMobile()) {
                 new WOW().init();
                // do the animation
             }
         </script>
+        <?php else: ?>
+        <script>
+            new WOW().init();
+        </script>
+        <?php endif; ?>
         
         <script type="text/javascript">
             $(document).ready(function(){
