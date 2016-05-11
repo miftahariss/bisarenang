@@ -64,77 +64,25 @@
         </div>
         
         <div class="section-blog">
-            <div class="blog-box wow fadeInLeftBig" data-wow-delay="200ms">
-                <div class="blog-box-img" style="background-image: url('<?php echo base_url(); ?>assets/images/article_img-1.jpg');">
-                	<!-- AMBIL IMAGE DARI BACKGROUND -->
-                </div>
-                
-                <div class="blog-box-content">
-                	<a href="blog-detail.html" class="blog-box-title">
-                    	We combine the science of behavior
-                    </a>
+            <?php foreach($content_blog as $data): ?>
+                <div class="blog-box wow fadeInLeftBig" data-wow-delay="200ms">
+                    <div class="blog-box-img" style="background-image: url('<?php echo base_url() ?>asset_admin/assets/uploads/cover/original/<?php echo $data->filename; ?>');">
+                    	<!-- AMBIL IMAGE DARI BACKGROUND -->
+                    </div>
                     
-                    <div class="blog-box-line"></div>
-                    
-                    <p class="blog-box-text">
-                    	We combine the science of behavior change with unwavering personal support, so you can make changes that actually stick. Itâ€™s an approach shown to reduce risk factors for type 2 diabetes and heart disease. Whatâ€™s more, the average participant loses over 10 pounds along the way.
-                    </p>
-                </div>
-            </div> <!-- BLOG BOX -->
-            
-            <div class="blog-box wow fadeInRightBig" data-wow-delay="200ms">
-                <div class="blog-box-img" style="background-image: url('<?php echo base_url(); ?>assets/images/article_img-2.jpg');">
-                	<!-- AMBIL IMAGE DARI BACKGROUND -->
-                </div>
-                
-                <div class="blog-box-content">
-                	<a href="blog-detail.html" class="blog-box-title">
-                    	We combine the science of behavior
-                    </a>
-                    
-                    <div class="blog-box-line"></div>
-                    
-                    <p class="blog-box-text">
-                    	We combine the science of behavior change with unwavering personal support, so you can make changes that actually stick. Itâ€™s an approach shown to reduce risk factors for type 2 diabetes and heart disease. Whatâ€™s more, the average participant loses over 10 pounds along the way.
-                    </p>
-                </div>
-            </div> <!-- BLOG BOX -->
-            
-            <div class="blog-box wow fadeInLeftBig" data-wow-delay="200ms">
-                <div class="blog-box-img" style="background-image: url('<?php echo base_url(); ?>assets/images/article_img-3.jpg');">
-                	<!-- AMBIL IMAGE DARI BACKGROUND -->
-                </div>
-                
-                <div class="blog-box-content">
-                	<a href="blog-detail.html" class="blog-box-title">
-                    	We combine the science of behavior
-                    </a>
-                    
-                    <div class="blog-box-line"></div>
-                    
-                    <p class="blog-box-text">
-                    	We combine the science of behavior change with unwavering personal support, so you can make changes that actually stick. Itâ€™s an approach shown to reduce risk factors for type 2 diabetes and heart disease. Whatâ€™s more, the average participant loses over 10 pounds along the way.
-                    </p>
-                </div>
-            </div> <!-- BLOG BOX -->
-            
-            <div class="blog-box wow fadeInRightBig" data-wow-delay="200ms">
-                <div class="blog-box-img" style="background-image: url('<?php echo base_url(); ?>assets/images/article_img-4.jpg');">
-                	<!-- AMBIL IMAGE DARI BACKGROUND -->
-                </div>
-                
-                <div class="blog-box-content">
-                	<a href="blog-detail.html" class="blog-box-title">
-                    	We combine the science of behavior
-                    </a>
-                    
-                    <div class="blog-box-line"></div>
-                    
-                    <p class="blog-box-text">
-                    	We combine the science of behavior change with unwavering personal support, so you can make changes that actually stick. Itâ€™s an approach shown to reduce risk factors for type 2 diabetes and heart disease. What's more, the average participant loses over 10 pounds along the way.
-                    </p>
-                </div>
-            </div> <!-- BLOG BOX -->
+                    <div class="blog-box-content">
+                    	<a href="<?php echo base_url(); ?>blog/<?php echo $data->permalink; ?>" class="blog-box-title">
+                        	<?php echo $data->title; ?>
+                        </a>
+                        
+                        <div class="blog-box-line"></div>
+                        
+                        <p class="blog-box-text">
+                        	<?php echo $data->short_desc; ?>
+                        </p>
+                    </div>
+                </div> <!-- BLOG BOX -->
+            <?php endforeach; ?>
         </div> <!-- SECTION BLOG -->
     </div> <!-- CONTAINER -->
 </div> <!-- SECTION -->
