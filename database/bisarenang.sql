@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 11 Mei 2016 pada 13.34
+-- Generation Time: 16 Mei 2016 pada 05.52
 -- Versi Server: 10.1.10-MariaDB
 -- PHP Version: 5.5.33
 
@@ -49,8 +49,8 @@ CREATE TABLE `blog` (
 --
 
 INSERT INTO `blog` (`id`, `id_account`, `title`, `short_desc`, `body`, `filename`, `headline`, `permalink`, `meta_keywords`, `meta_description`, `created_date`, `modified_date`, `created_by`, `modified_by`, `status`) VALUES
-(1, 1, 'judul', 'short desc', '<p>isi</p>\n', '1462963112.jpg', 1, 'judul', 'meta keywords', 'keta description', 1462954408, 1462963113, 1, 1, 1),
-(2, 1, 'judul 2', 'short desc 2', '<p>isi</p>\n', '1462966260.jpg', 1, 'judul-2', 'meta keywords', 'meta description', 1462966260, NULL, 1, NULL, 1);
+(1, 1, 'judul', 'short desc', '<p>isi</p>\n', '1462963112.jpg', 1, 'judul.html', 'meta keywords', 'keta description', 1462954408, 1463125141, 1, 1, 1),
+(2, 1, 'judul 2', 'short desc 2', '<p>isi</p>\n', '1462966260.jpg', 0, 'judul-2.html', 'meta keywords', 'meta description', 1462966260, 1463125098, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -63,6 +63,34 @@ CREATE TABLE `blog_counter` (
   `counter_count` int(11) NOT NULL,
   `counter_count_date` date NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data untuk tabel `blog_counter`
+--
+
+INSERT INTO `blog_counter` (`counter_blog_id`, `counter_count`, `counter_count_date`) VALUES
+(2, 6, '2016-05-13'),
+(1, 1, '2016-05-13');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `program`
+--
+
+CREATE TABLE `program` (
+  `id` int(11) NOT NULL,
+  `id_account` int(11) NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `short_desc` tinytext NOT NULL,
+  `filename` varchar(125) NOT NULL,
+  `permalink` varchar(120) NOT NULL,
+  `created_date` int(11) NOT NULL,
+  `modified_date` int(11) DEFAULT NULL,
+  `created_by` tinyint(2) DEFAULT NULL,
+  `modified_by` tinyint(2) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT '1' COMMENT '0=inactive; 1=active; 2=draft; default=1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -105,6 +133,12 @@ ALTER TABLE `blog_counter`
   ADD PRIMARY KEY (`counter_blog_id`);
 
 --
+-- Indexes for table `program`
+--
+ALTER TABLE `program`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -119,6 +153,11 @@ ALTER TABLE `user`
 --
 ALTER TABLE `blog`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `program`
+--
+ALTER TABLE `program`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `user`
 --
