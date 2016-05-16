@@ -14,7 +14,7 @@
         <?php endif ?>
         <!-- Only Administrator -->
 
-        <span class="pull-right">&copy Autobacs <?php echo date('Y') ?></span>
+        <span class="pull-right">&copy bisarenang <?php echo date('Y') ?></span>
     </div>
     <hr/>
 </div>
