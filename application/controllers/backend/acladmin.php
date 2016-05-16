@@ -456,6 +456,51 @@ class Acladmin extends CI_Controller {
         $this->load->view('acladmin/main', $data);
     }
 
+    public function add_program(){
+        $permalink = url_title($this->input->post('title'), 'dash', true);
+        if ($this->input->post('submit')) {
+            // validation
+            $valid = $this->form_validation;
+            $valid->set_rules('title', 'Judul', 'required');
+            $valid->set_rules('short_desc', 'Short Desc', 'required');
+            if (isset($_FILES['userfile']['name']) && $_FILES['userfile']['name'] == "") {
+                $valid->set_rules('userfile', 'Foto', 'required');
+            }
+
+            if ($valid->run() == false) {
+                // run
+            } else {
+
+                $format_upload = $this->upload();
+                //$video_id = $this->get_youtube_id_from_url($this->input->post('video_id'));
+                $data = array(
+                    'id_account' => 1,
+                    'title' => $this->input->post('title'),
+                    'short_desc' => $this->input->post('short_desc'),
+                    'filename' => $format_upload,
+                    'permalink' => $permalink.'.html',
+                    'created_date' => time(),
+                    'modified_date' => null,
+                    'created_by' => $this->sess_id,
+                    'modified_by' => null,
+                    'status' => 1,
+                );
+
+                $id = $this->acladminmodel->addProgram($data);
+                // if ($id) {
+                //     $gallery = $this->upload_gallery();
+                //     $this->acladminmodel->addGalleryArticle($gallery, $id);
+                // }
+                redirect('backend/acladmin/view_program');
+            }
+        }
+        $data['page'] = 'add_blog';
+        $data['title'] = 'Tambah Blog Baru';
+
+        $data['content'] = $this->load->view('acladmin/module/add_blog', $data, true);
+        $this->load->view('acladmin/main', $data);
+    }
+
     public function add_slider() {
         $permalink = url_title($this->input->post('title'), 'dash', true);
         if ($this->input->post('submit')) {
