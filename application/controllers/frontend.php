@@ -87,7 +87,6 @@ class Frontend extends CI_Controller {
 
         $data['content_detail'] = $this->m_frontend->getDetailBlog($title);
         $content_detail = $data['content_detail'];
-        //var_dump($content_detail);exit;
 
         if ($content_detail == FALSE) {
             redirect('pagenotfound');
@@ -98,8 +97,6 @@ class Frontend extends CI_Controller {
         $this->breadcrumbs->push($content_detail[0]->title, $content_detail[0]->permalink);
 
         $this->updateCount($content_detail[0]->id);
-
-        //var_dump($data['content_detail']);exit;
 
         $data['mainpage'] = 'frontend/blogdetail';
         $this->load->view('frontend/templates', $data);
