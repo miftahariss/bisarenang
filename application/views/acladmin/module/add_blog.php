@@ -39,23 +39,9 @@
             </td>
         </tr>
         <tr>
-            <td>Meta Keywords</td>
-            <td>
-                <input type="text" name="meta_keywords" value="<?php echo set_value('meta_keywords')?>" class="input input-block-level" />
-                <span class="alert-error"><?php echo form_error('meta_keywords')?></span>
-            </td>
-        </tr>
-        <tr>
-            <td>Meta Description</td>
-            <td>
-                <input type="text" name="meta_description" value="<?php echo set_value('meta_description')?>" class="input input-block-level" />
-                <span class="alert-error"><?php echo form_error('meta_description')?></span>
-            </td>
-        </tr>
-        <tr>
             <td>Foto Utama<code>Maksimal 2MB</code></td>
             <td>
-                <input type="file" name="userfile" required="required" /><code>minimum file dimension 980 x 600 pixel</code>
+                <input type="file" name="userfile" required="required" />
                 <span class="alert-error"><?php echo form_error('userfile'); ?></span>
             </td>
         </tr>
