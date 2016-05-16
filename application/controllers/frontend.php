@@ -87,6 +87,7 @@ class Frontend extends CI_Controller {
 
         $data['content_detail'] = $this->m_frontend->getDetailBlog($title);
         $content_detail = $data['content_detail'];
+        //var_dump($content_detail);exit;
 
         if ($content_detail == FALSE) {
             redirect('pagenotfound');
@@ -95,6 +96,8 @@ class Frontend extends CI_Controller {
         $this->breadcrumbs->push('Home', '/');
         $this->breadcrumbs->push('Blog', '/blog');
         $this->breadcrumbs->push($content_detail[0]->title, $content_detail[0]->permalink);
+
+        $this->updateCount($content_detail[0]->id);
 
         //var_dump($data['content_detail']);exit;
 
@@ -147,5 +150,26 @@ class Frontend extends CI_Controller {
     function pagenotfound(){
         $this->output->set_status_header('404'); // setting header to 404
         $this->load->view('frontend/pagenotfound');//loading view
+    }
+
+    function updateCount($id) {
+        $query = $this->m_frontend->get_count($id);
+
+        if (count($query) > 0) {
+            $counter = array(
+                'counter_count' => $query[0]['counter_count'] + 1,
+                'counter_count_date' => date('Y-m-d H:i:s')
+            );
+
+            $this->m_frontend->count_view($counter, $id);
+        } else {
+            $counter = array(
+                'counter_blog_id' => $id,
+                'counter_count' => 1,
+                'counter_count_date' => date('Y-m-d H:i:s')
+            );
+
+            $this->m_frontend->save_count_view($counter);
+        }
     }
 }
