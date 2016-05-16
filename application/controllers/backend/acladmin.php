@@ -232,6 +232,255 @@ class Acladmin extends CI_Controller {
         return $format_upload;
     }
 
+    private function upload_beginner() {
+        $this->load->library('image_lib');
+        $format_upload = '';
+        $rename = url_title('beginner_'.time());
+        if (isset($_FILES['userfile_beginner']['name']) && $_FILES['userfile_beginner']['name'] != "") {
+
+            $base_path = APPPATH . '../asset_admin/assets/uploads/cover/';
+            chmod($base_path, 0777);
+            $ori_path = $base_path . 'original/';
+
+            $size = array(
+                array('width' => '150', 'height' => '150', 'type' => 'small'),
+                array('width' => '300', 'height' => '300', 'type' => 'medium'),
+                array('width' => '650', 'height' => '650', 'type' => 'large'),
+            );
+
+            //UPLOAD ORG IMAGE
+            $config = array(
+                'upload_path' => $ori_path,
+                'allowed_types' => 'gif|jpg|jpeg|png',
+                'max_size' => '2048'
+            );
+            $this->load->library('upload', $config);
+            $this->upload->do_upload('userfile_beginner');
+
+            foreach ($size as $value) {
+
+                $image_data = $this->upload->data();
+
+                //RESIZE IMAGE
+                $config_thumb = array(
+                    'image_library' => 'gd2',
+                    'source_image' => $image_data['full_path'],
+                    'new_image' => $base_path . $value["type"],
+                    'create_thumb' => false,
+                    'maintain_ratio' => true,
+                    'width' => $value['width'],
+                    'height' => $value['width']
+                );
+
+                $this->image_lib->initialize($config_thumb);
+                if (!$this->image_lib->resize()) {
+                    echo $this->image_lib->display_errors();
+                }
+
+                //CROPING
+                switch ($value['type']) {
+                    case 'small':
+                        $meta_image['small'] = $base_path . 'small' . '/' . $rename . $image_data['file_ext'];
+                        break;
+                    case 'medium':
+                        $meta_image['medium'] = $base_path . 'medium' . '/' . $rename . $image_data['file_ext'];
+                        break;
+                    case 'large':
+                        $meta_image['large'] = $base_path . 'large' . '/' . $rename . $image_data['file_ext'];
+                        break;
+                }
+
+                $config_crop = array(
+                    'image_library' => 'gd2',
+                    'source_image' => $base_path . $value["type"] . '/' . $image_data['raw_name'] . $image_data['file_ext'],
+                    'new_image' => $base_path . $value["type"] . '/' . $rename . $image_data['file_ext'],
+                    'create_thumb' => false,
+                    'maintain_ratio' => true,
+                );
+
+                $this->image_lib->initialize($config_crop);
+                if (!$this->image_lib->crop()) {
+                    echo $this->image_lib->display_errors();
+                }
+
+                //DELETE RESIZE IMAGE
+                unlink($base_path . $value["type"] . '/' . $image_data['raw_name'] . $image_data['file_ext']);
+                $this->image_lib->clear();
+            }
+
+            rename($image_data['full_path'], $ori_path . $rename . $image_data['file_ext']);
+            $format_upload = $rename . $image_data['file_ext'];
+        }
+
+        return $format_upload;
+    }
+
+    private function upload_intermediate() {
+        $this->load->library('image_lib');
+        $format_upload = '';
+        $rename = url_title('intermediate_'.time());
+        if (isset($_FILES['userfile_intermediate']['name']) && $_FILES['userfile_intermediate']['name'] != "") {
+
+            $base_path = APPPATH . '../asset_admin/assets/uploads/cover/';
+            chmod($base_path, 0777);
+            $ori_path = $base_path . 'original/';
+
+            $size = array(
+                array('width' => '150', 'height' => '150', 'type' => 'small'),
+                array('width' => '300', 'height' => '300', 'type' => 'medium'),
+                array('width' => '650', 'height' => '650', 'type' => 'large'),
+            );
+
+            //UPLOAD ORG IMAGE
+            $config = array(
+                'upload_path' => $ori_path,
+                'allowed_types' => 'gif|jpg|jpeg|png',
+                'max_size' => '2048'
+            );
+            $this->load->library('upload', $config);
+            $this->upload->do_upload('userfile_intermediate');
+
+            foreach ($size as $value) {
+
+                $image_data = $this->upload->data();
+
+                //RESIZE IMAGE
+                $config_thumb = array(
+                    'image_library' => 'gd2',
+                    'source_image' => $image_data['full_path'],
+                    'new_image' => $base_path . $value["type"],
+                    'create_thumb' => false,
+                    'maintain_ratio' => true,
+                    'width' => $value['width'],
+                    'height' => $value['width']
+                );
+
+                $this->image_lib->initialize($config_thumb);
+                if (!$this->image_lib->resize()) {
+                    echo $this->image_lib->display_errors();
+                }
+
+                //CROPING
+                switch ($value['type']) {
+                    case 'small':
+                        $meta_image['small'] = $base_path . 'small' . '/' . $rename . $image_data['file_ext'];
+                        break;
+                    case 'medium':
+                        $meta_image['medium'] = $base_path . 'medium' . '/' . $rename . $image_data['file_ext'];
+                        break;
+                    case 'large':
+                        $meta_image['large'] = $base_path . 'large' . '/' . $rename . $image_data['file_ext'];
+                        break;
+                }
+
+                $config_crop = array(
+                    'image_library' => 'gd2',
+                    'source_image' => $base_path . $value["type"] . '/' . $image_data['raw_name'] . $image_data['file_ext'],
+                    'new_image' => $base_path . $value["type"] . '/' . $rename . $image_data['file_ext'],
+                    'create_thumb' => false,
+                    'maintain_ratio' => true,
+                );
+
+                $this->image_lib->initialize($config_crop);
+                if (!$this->image_lib->crop()) {
+                    echo $this->image_lib->display_errors();
+                }
+
+                //DELETE RESIZE IMAGE
+                unlink($base_path . $value["type"] . '/' . $image_data['raw_name'] . $image_data['file_ext']);
+                $this->image_lib->clear();
+            }
+
+            rename($image_data['full_path'], $ori_path . $rename . $image_data['file_ext']);
+            $format_upload = $rename . $image_data['file_ext'];
+        }
+
+        return $format_upload;
+    }
+
+    private function upload_advanced() {
+        $this->load->library('image_lib');
+        $format_upload = '';
+        $rename = url_title('advanced_'.time());
+        if (isset($_FILES['userfile_advanced']['name']) && $_FILES['userfile_advanced']['name'] != "") {
+
+            $base_path = APPPATH . '../asset_admin/assets/uploads/cover/';
+            chmod($base_path, 0777);
+            $ori_path = $base_path . 'original/';
+
+            $size = array(
+                array('width' => '150', 'height' => '150', 'type' => 'small'),
+                array('width' => '300', 'height' => '300', 'type' => 'medium'),
+                array('width' => '650', 'height' => '650', 'type' => 'large'),
+            );
+
+            //UPLOAD ORG IMAGE
+            $config = array(
+                'upload_path' => $ori_path,
+                'allowed_types' => 'gif|jpg|jpeg|png',
+                'max_size' => '2048'
+            );
+            $this->load->library('upload', $config);
+            $this->upload->do_upload('userfile_advanced');
+
+            foreach ($size as $value) {
+
+                $image_data = $this->upload->data();
+
+                //RESIZE IMAGE
+                $config_thumb = array(
+                    'image_library' => 'gd2',
+                    'source_image' => $image_data['full_path'],
+                    'new_image' => $base_path . $value["type"],
+                    'create_thumb' => false,
+                    'maintain_ratio' => true,
+                    'width' => $value['width'],
+                    'height' => $value['width']
+                );
+
+                $this->image_lib->initialize($config_thumb);
+                if (!$this->image_lib->resize()) {
+                    echo $this->image_lib->display_errors();
+                }
+
+                //CROPING
+                switch ($value['type']) {
+                    case 'small':
+                        $meta_image['small'] = $base_path . 'small' . '/' . $rename . $image_data['file_ext'];
+                        break;
+                    case 'medium':
+                        $meta_image['medium'] = $base_path . 'medium' . '/' . $rename . $image_data['file_ext'];
+                        break;
+                    case 'large':
+                        $meta_image['large'] = $base_path . 'large' . '/' . $rename . $image_data['file_ext'];
+                        break;
+                }
+
+                $config_crop = array(
+                    'image_library' => 'gd2',
+                    'source_image' => $base_path . $value["type"] . '/' . $image_data['raw_name'] . $image_data['file_ext'],
+                    'new_image' => $base_path . $value["type"] . '/' . $rename . $image_data['file_ext'],
+                    'create_thumb' => false,
+                    'maintain_ratio' => true,
+                );
+
+                $this->image_lib->initialize($config_crop);
+                if (!$this->image_lib->crop()) {
+                    echo $this->image_lib->display_errors();
+                }
+
+                //DELETE RESIZE IMAGE
+                unlink($base_path . $value["type"] . '/' . $image_data['raw_name'] . $image_data['file_ext']);
+                $this->image_lib->clear();
+            }
+
+            rename($image_data['full_path'], $ori_path . $rename . $image_data['file_ext']);
+            $format_upload = $rename . $image_data['file_ext'];
+        }
+
+        return $format_upload;
+    }
+
     private function upload_foto() {
         $this->load->library('image_lib');
         $format_upload = '';
@@ -315,97 +564,6 @@ class Acladmin extends CI_Controller {
         return $format_upload;
     }
 
-    public function add_product() {
-        $permalink = url_title($this->input->post('title'), 'dash', true);
-        if ($this->input->post('submit')) {
-            // validation
-            $valid = $this->form_validation;
-            $valid->set_rules('title', 'Judul', 'required');
-            $valid->set_rules('short_desc', 'Short Desc', 'required');
-            $valid->set_rules('id_sub', 'Sub Product', 'required');
-            $valid->set_rules('id_kategori', 'Kategori Product', 'required');
-            //$valid->set_rules('body', 'Isi', 'required');
-            if (isset($_FILES['userfile']['name']) && $_FILES['userfile']['name'] == "") {
-                $valid->set_rules('userfile', 'Foto', 'required');
-            }
-
-            if ($valid->run() == false) {
-                // run
-            } else {
-
-                $format_upload = $this->upload();
-                $video_id = $this->get_youtube_id_from_url($this->input->post('video_id'));
-                $data = array(
-                    'id_account' => 1,
-                    'id_sub' => $this->input->post('id_sub'),
-                    'id_kategori' => $this->input->post('id_kategori'),
-                    'title' => $this->input->post('title'),
-                    'short_desc' => $this->input->post('short_desc'),
-                    'video_id' => $video_id,
-                    'body' => $this->input->post('body'),
-                    'filename' => $format_upload,
-                    //'headline'         => $this->input->post('headline') ? 1 : 0,
-                    'permalink' => $permalink,
-                    'meta_keywords' => $this->input->post('meta_keywords'),
-                    'meta_description' => $this->input->post('meta_description'),
-                    'created_date' => time(),
-                    'modified_date' => null,
-                    'created_by' => $this->sess_id,
-                    'modified_by' => null,
-                    'status' => 1,
-                );
-
-                $id = $this->acladminmodel->addProduct($data);
-                if ($id) {
-                    $gallery = $this->upload_gallery();
-                    $this->acladminmodel->addGalleryProduct($gallery, $id);
-                }
-                redirect('backend/acladmin/view_product');
-            }
-        }
-        $data['page'] = 'add_product';
-        $data['title'] = 'Tambah Product Baru';
-
-        $data['content'] = $this->load->view('acladmin/module/add_product', $data, true);
-        $this->load->view('acladmin/main', $data);
-    }
-
-    public function add_kategori() {
-        $permalink = url_title($this->input->post('title'), 'dash', true);
-        if ($this->input->post('submit')) {
-            // validation
-            $valid = $this->form_validation;
-            $valid->set_rules('title', 'Judul', 'required');
-            $valid->set_rules('short_desc', 'Short Desc', 'required');
-
-            if ($valid->run() == false) {
-                // run
-            } else {
-                $data = array(
-                    'id_account' => 1,
-                    'title' => $this->input->post('title'),
-                    'short_desc' => $this->input->post('short_desc'),
-                    //'headline'         => $this->input->post('headline') ? 1 : 0,
-                    'permalink' => $permalink,
-                    'created_date' => time(),
-                    'modified_date' => null,
-                    'created_by' => $this->sess_id,
-                    'modified_by' => null,
-                    'status' => 1,
-                );
-
-                $id = $this->acladminmodel->addKategori($data);
-
-                redirect('backend/acladmin/view_kategori');
-            }
-        }
-        $data['page'] = 'add_kategori';
-        $data['title'] = 'Tambah Kategori Baru';
-
-        $data['content'] = $this->load->view('acladmin/module/add_kategori', $data, true);
-        $this->load->view('acladmin/main', $data);
-    }
-
     public function add_blog() {
         $permalink = url_title($this->input->post('title'), 'dash', true);
         if ($this->input->post('submit')) {
@@ -432,8 +590,6 @@ class Acladmin extends CI_Controller {
                     'filename' => $format_upload,
                     'headline' => $this->input->post('headline') ? 1 : 0,
                     'permalink' => $permalink.'.html',
-                    'meta_keywords' => $this->input->post('meta_keywords'),
-                    'meta_description' => $this->input->post('meta_description'),
                     'created_date' => time(),
                     'modified_date' => null,
                     'created_by' => $this->sess_id,
@@ -458,11 +614,23 @@ class Acladmin extends CI_Controller {
 
     public function add_program(){
         $permalink = url_title($this->input->post('title'), 'dash', true);
+        $permalink_beginner = url_title($this->input->post('title_beginner'), 'dash', true);
+        $permalink_intermediate = url_title($this->input->post('title_intermediate'), 'dash', true);
+        $permalink_advanced = url_title($this->input->post('title_advanced'), 'dash', true);
         if ($this->input->post('submit')) {
             // validation
             $valid = $this->form_validation;
             $valid->set_rules('title', 'Judul', 'required');
             $valid->set_rules('short_desc', 'Short Desc', 'required');
+            $valid->set_rules('title_beginner', 'Judul', 'required');
+            $valid->set_rules('short_desc_beginner', 'Short Desc', 'required');
+            $valid->set_rules('body_beginner', 'Isi', 'required');
+            $valid->set_rules('title_intermediate', 'Judul', 'required');
+            $valid->set_rules('short_desc_intermediate', 'Short Desc', 'required');
+            $valid->set_rules('body_intermediate', 'Isi', 'required');
+            $valid->set_rules('title_advanced', 'Judul', 'required');
+            $valid->set_rules('short_desc_advanced', 'Short Desc', 'required');
+            $valid->set_rules('body_advanced', 'Isi', 'required');
             if (isset($_FILES['userfile']['name']) && $_FILES['userfile']['name'] == "") {
                 $valid->set_rules('userfile', 'Foto', 'required');
             }
@@ -472,6 +640,9 @@ class Acladmin extends CI_Controller {
             } else {
 
                 $format_upload = $this->upload();
+                $format_upload_beginner = $this->upload_beginner();
+                $format_upload_intermediate = $this->upload_intermediate();
+                $format_upload_advanced = $this->upload_advanced();
                 //$video_id = $this->get_youtube_id_from_url($this->input->post('video_id'));
                 $data = array(
                     'id_account' => 1,
@@ -487,6 +658,56 @@ class Acladmin extends CI_Controller {
                 );
 
                 $id = $this->acladminmodel->addProgram($data);
+
+                $data_beginner = array(
+                    'id_program' => $id,
+                    'level' => 1,
+                    'id_account' => 1,
+                    'title' => $this->input->post('title_beginner'),
+                    'short_desc' => $this->input->post('short_desc_beginner'),
+                    'body' => $this->input->post('body_beginner'),
+                    'filename' => $format_upload_beginner,
+                    'permalink' => $permalink_beginner.'.html',
+                    'created_date' => time(),
+                    'modified_date' => null,
+                    'created_by' => $this->sess_id,
+                    'modified_by' => null,
+                    'status' => 1,
+                );
+
+                $data_intermediate = array(
+                    'id_program' => $id,
+                    'level' => 2,
+                    'id_account' => 1,
+                    'title' => $this->input->post('title_intermediate'),
+                    'short_desc' => $this->input->post('short_desc_intermediate'),
+                    'body' => $this->input->post('body_intermediate'),
+                    'filename' => $format_upload_intermediate,
+                    'permalink' => $permalink_intermediate.'.html',
+                    'created_date' => time(),
+                    'modified_date' => null,
+                    'created_by' => $this->sess_id,
+                    'modified_by' => null,
+                    'status' => 1,
+                );
+
+                $data_advanced = array(
+                    'id_program' => $id,
+                    'level' => 3,
+                    'id_account' => 1,
+                    'title' => $this->input->post('title_advanced'),
+                    'short_desc' => $this->input->post('short_desc_advanced'),
+                    'body' => $this->input->post('body_advanced'),
+                    'filename' => $format_upload_advanced,
+                    'permalink' => $permalink_advanced.'.html',
+                    'created_date' => time(),
+                    'modified_date' => null,
+                    'created_by' => $this->sess_id,
+                    'modified_by' => null,
+                    'status' => 1,
+                );
+
+                $this->acladminmodel->addProgramLevel($data_beginner, $data_intermediate, $data_advanced);
                 // if ($id) {
                 //     $gallery = $this->upload_gallery();
                 //     $this->acladminmodel->addGalleryArticle($gallery, $id);
@@ -494,10 +715,10 @@ class Acladmin extends CI_Controller {
                 redirect('backend/acladmin/view_program');
             }
         }
-        $data['page'] = 'add_blog';
-        $data['title'] = 'Tambah Blog Baru';
+        $data['page'] = 'add_program';
+        $data['title'] = 'Tambah Program Baru';
 
-        $data['content'] = $this->load->view('acladmin/module/add_blog', $data, true);
+        $data['content'] = $this->load->view('acladmin/module/add_program', $data, true);
         $this->load->view('acladmin/main', $data);
     }
 
@@ -544,46 +765,6 @@ class Acladmin extends CI_Controller {
         $this->load->view('acladmin/main', $data);
     }
 
-    public function view_product() {
-        $data['headline'] = $this->input->get('filter') ? $this->input->get('filter') : '1';
-        $this->load->library('pagination');
-        $config['base_url'] = site_url('backend/acladmin/view_product');
-        $config['per_page'] = $this->limit;
-        $config['total_rows'] = $this->acladminmodel->countProduct(1);
-        $config['uri_segment'] = 4;
-        $config['first_url'] = $config['base_url'] . '?' . http_build_query($_GET);
-        $this->pagination->initialize($config);
-
-        $page = ($this->uri->segment(4) ? $this->uri->segment(4) : '');
-        $data['media'] = $this->acladminmodel->fetchProduct($config['per_page'], $page);
-        $data['links'] = $this->pagination->create_links();
-        $data['total_rows'] = $config['total_rows'];
-        $data['page'] = 'view_product';
-        $data['title'] = 'Product';
-        $data['content'] = $this->load->view('acladmin/module/view_product', $data, true);
-        $this->load->view('acladmin/main', $data);
-    }
-
-    public function view_kategori() {
-        $data['headline'] = $this->input->get('filter') ? $this->input->get('filter') : '1';
-        $this->load->library('pagination');
-        $config['base_url'] = site_url('backend/acladmin/view_kategori');
-        $config['per_page'] = $this->limit;
-        $config['total_rows'] = $this->acladminmodel->countKategori(1);
-        $config['uri_segment'] = 4;
-        $config['first_url'] = $config['base_url'] . '?' . http_build_query($_GET);
-        $this->pagination->initialize($config);
-
-        $page = ($this->uri->segment(4) ? $this->uri->segment(4) : '');
-        $data['media'] = $this->acladminmodel->fetchKategori($config['per_page'], $page);
-        $data['links'] = $this->pagination->create_links();
-        $data['total_rows'] = $config['total_rows'];
-        $data['page'] = 'view_product';
-        $data['title'] = 'Kategori';
-        $data['content'] = $this->load->view('acladmin/module/view_kategori', $data, true);
-        $this->load->view('acladmin/main', $data);
-    }
-
     public function view_blog() {
         $data['headline'] = $this->input->get('filter') ? $this->input->get('filter') : '1';
         $this->load->library('pagination');
@@ -604,21 +785,32 @@ class Acladmin extends CI_Controller {
         $this->load->view('acladmin/main', $data);
     }
 
+    public function view_program() {
+        $data['headline'] = $this->input->get('filter') ? $this->input->get('filter') : '1';
+        $this->load->library('pagination');
+        $config['base_url'] = site_url('backend/acladmin/view_program');
+        $config['per_page'] = $this->limit;
+        $config['total_rows'] = $this->acladminmodel->countProgram(1);
+        $config['uri_segment'] = 4;
+        $config['first_url'] = $config['base_url'] . '?' . http_build_query($_GET);
+        $this->pagination->initialize($config);
+
+        $page = ($this->uri->segment(4) ? $this->uri->segment(4) : '');
+        $data['media'] = $this->acladminmodel->fetchProgram($config['per_page'], $page);
+        $data['links'] = $this->pagination->create_links();
+        $data['total_rows'] = $config['total_rows'];
+        $data['page'] = 'view_program';
+        $data['title'] = 'Blog';
+        $data['content'] = $this->load->view('acladmin/module/view_program', $data, true);
+        $this->load->view('acladmin/main', $data);
+    }
+
     public function view_slider() {
         $data['headline'] = $this->input->get('filter') ? $this->input->get('filter') : '1';
         $data['banner'] = $this->acladminmodel->fetchSlider();
         $data['page'] = 'view_slider';
         $data['title'] = 'Slider';
         $data['content'] = $this->load->view('acladmin/module/view_slider', $data, true);
-        $this->load->view('acladmin/main', $data);
-    }
-
-    public function view_store() {
-        $data['headline'] = $this->input->get('filter') ? $this->input->get('filter') : '1';
-        $data['banner'] = $this->acladminmodel->fetchStore();
-        $data['page'] = 'view_store';
-        $data['title'] = 'Store';
-        $data['content'] = $this->load->view('acladmin/module/view_store', $data, true);
         $this->load->view('acladmin/main', $data);
     }
 
@@ -629,118 +821,6 @@ class Acladmin extends CI_Controller {
         $data['title'] = 'Store';
         $data['content'] = $this->load->view('acladmin/module/view_about', $data, true);
         $this->load->view('acladmin/main', $data);
-    }
-
-    public function edit_product() {
-        $id = $this->uri->segment(4);
-        if ($id) {
-            $permalink = url_title($this->input->post('title'), 'dash', true);
-            if ($this->input->post('submit')) {
-                $valid = $this->form_validation;
-                $valid->set_rules('title', 'Judul', 'required');
-                $valid->set_rules('short_desc', 'Short Desc', 'required');
-                //$valid->set_rules('body', 'Isi', 'required');
-                $valid->set_rules('id_sub', 'Sub Product', 'required');
-                $valid->set_rules('id_kategori', 'Kategori Product', 'required');
-
-                if ($valid->run() == false) {
-                    // show error in view
-                } else {
-                    $format_upload = $this->upload();
-                    $video_id = $this->get_youtube_id_from_url($this->input->post('video_id'));
-                    if ($format_upload != "") {
-                        $data = array(
-                            'id' => $id,
-                            'id_sub' => $this->input->post('id_sub'),
-                            'id_kategori' => $this->input->post('id_kategori'),
-                            'title' => $this->input->post('title'),
-                            'short_desc' => $this->input->post('short_desc'),
-                            'video_id' => $video_id,
-                            'body' => $this->input->post('body'),
-                            'filename' => $format_upload,
-                            //'headline'         => $this->input->post('headline') ? 1 : 0,
-                            'permalink' => $permalink,
-                            'meta_keywords' => $this->input->post('meta_keywords'),
-                            'meta_description' => $this->input->post('meta_description'),
-                            'modified_date' => time(),
-                            'modified_by' => $this->sess_id,
-                            'status' => 1
-                        );
-                        $this->acladminmodel->updateProduct($data, $id);
-                    } else {
-                        $data = array(
-                            'id' => $id,
-                            'id_sub' => $this->input->post('id_sub'),
-                            'id_kategori' => $this->input->post('id_kategori'),
-                            'title' => $this->input->post('title'),
-                            'short_desc' => $this->input->post('short_desc'),
-                            'video_id' => $video_id,
-                            'body' => $this->input->post('body'),
-                            //'headline'         => $this->input->post('headline'),
-                            'permalink' => $permalink,
-                            'meta_keywords' => $this->input->post('meta_keywords'),
-                            'meta_description' => $this->input->post('meta_description'),
-                            'modified_date' => time(),
-                            'modified_by' => $this->sess_id,
-                            'status' => 1
-                        );
-                        $this->acladminmodel->updateProduct($data, $id);
-                    }
-
-                    $gallery = $this->upload_gallery();
-                    $this->acladminmodel->addGalleryProduct($gallery, $id);
-
-                    redirect('backend/acladmin/view_product');
-                }
-            }
-            $data['page'] = 'edit_product';
-            $data['title'] = 'Edit Product';
-            $data['article'] = $this->acladminmodel->getIdProduct($id);
-            $data['photos']  = $this->acladminmodel->getIdGalleryProduct($id);
-            
-            $data['content'] = $this->load->view('acladmin/module/edit_product', $data, true);
-            $this->load->view('acladmin/main', $data);
-        } else {
-            redirect('backend/acladmin/view_product');
-        }
-    }
-
-    public function edit_kategori() {
-        $id = $this->uri->segment(4);
-        if ($id) {
-            $permalink = url_title($this->input->post('title'), 'dash', true);
-            if ($this->input->post('submit')) {
-                $valid = $this->form_validation;
-                $valid->set_rules('title', 'Judul', 'required');
-                $valid->set_rules('short_desc', 'Short Desc', 'required');
-
-                if ($valid->run() == false) {
-                    // show error in view
-                } else {
-                    $data = array(
-                            'id' => $id,
-                            'title' => $this->input->post('title'),
-                            'short_desc' => $this->input->post('short_desc'),
-                            //'headline'         => $this->input->post('headline') ? 1 : 0,
-                            'permalink' => $permalink,
-                            'modified_date' => time(),
-                            'modified_by' => $this->sess_id,
-                            'status' => 1
-                    );
-                    $this->acladminmodel->updateKategori($data, $id);
-
-                    redirect('backend/acladmin/view_kategori');
-                }
-            }
-            $data['page'] = 'edit_kategori';
-            $data['title'] = 'Edit Kategori';
-            $data['article'] = $this->acladminmodel->getIdKategori($id);
-            
-            $data['content'] = $this->load->view('acladmin/module/edit_kategori', $data, true);
-            $this->load->view('acladmin/main', $data);
-        } else {
-            redirect('backend/acladmin/view_kategori');
-        }
     }
 
     public function edit_blog() {
@@ -767,8 +847,6 @@ class Acladmin extends CI_Controller {
                             'filename' => $format_upload,
                             'headline'         => $this->input->post('headline') ? 1 : 0,
                             'permalink' => $permalink.'.html',
-                            'meta_keywords' => $this->input->post('meta_keywords'),
-                            'meta_description' => $this->input->post('meta_description'),
                             'modified_date' => time(),
                             'modified_by' => $this->sess_id,
                             'status' => 1
@@ -807,102 +885,6 @@ class Acladmin extends CI_Controller {
         } else {
             redirect('backend/acladmin/view_blog');
         }
-    }
-
-    public function edit_product_gallery_foto() {
-        $id3 = $this->uri->segment(4);
-        $id4 = $this->uri->segment(5);
-        if ($id3 && $id4) {
-            if ($this->input->post('submit')) {
-                $valid = $this->form_validation;
-                $valid->set_rules("title", "Judul Foto", "required");
-                $valid->set_rules("body", "Deskripsi Foto", "required");
-
-                if ($valid->run() == false) {
-                    // view
-                } else {
-                    $format_upload = $this->upload();
-                    if ($format_upload != '') {
-                        $data = array(
-                            'title' => $this->input->post('title'),
-                            'body' => $this->input->post('body'),
-                            'filename' => $format_upload,
-                            'status' => 1
-                        );
-                        //var_dump($data);exit;
-                        $this->acladminmodel->updateProductGalleryFoto($data, $id4);
-//                        redirect(getenv('HTTP_REFERER'));
-                        redirect('backend/acladmin/edit_product/' . $id3);
-                    } else {
-                        $data = array(
-                            'title' => $this->input->post('title'),
-                            'body' => $this->input->post('body'),
-                            'status' => 1
-                        );
-                        $this->acladminmodel->updateProductGalleryFoto($data, $id4);
-//                        redirect(getenv('HTTP_REFERER'));
-                        redirect('backend/acladmin/edit_product/' . $id3);
-                    }
-                }
-            }
-        } else {
-            redirect('backend/acladmin/view_product');
-        }
-
-        $data['title'] = 'Edit Galeri Foto';
-//        $data['albums']  = $this->acladminmodel->getIdGalleryAlbum($id3);
-        $data['photos'] = $this->acladminmodel->getIdProductGalleryFoto($id4);
-        $data['page'] = 'edit_product_gallery_foto';
-        $data['content'] = $this->load->view('acladmin/module/edit_product_gallery_foto', $data, true);
-        $this->load->view('acladmin/main', $data);
-    }
-
-    public function edit_article_gallery_foto() {
-        $id3 = $this->uri->segment(4);
-        $id4 = $this->uri->segment(5);
-        if ($id3 && $id4) {
-            if ($this->input->post('submit')) {
-                $valid = $this->form_validation;
-                $valid->set_rules("title", "Judul Foto", "required");
-                $valid->set_rules("body", "Deskripsi Foto", "required");
-
-                if ($valid->run() == false) {
-                    // view
-                } else {
-                    $format_upload = $this->upload();
-                    if ($format_upload != '') {
-                        $data = array(
-                            'title' => $this->input->post('title'),
-                            'body' => $this->input->post('body'),
-                            'filename' => $format_upload,
-                            'status' => 1
-                        );
-                        //var_dump($data);exit;
-                        $this->acladminmodel->updateArticleGalleryFoto($data, $id4);
-//                        redirect(getenv('HTTP_REFERER'));
-                        redirect('backend/acladmin/edit_article/' . $id3);
-                    } else {
-                        $data = array(
-                            'title' => $this->input->post('title'),
-                            'body' => $this->input->post('body'),
-                            'status' => 1
-                        );
-                        $this->acladminmodel->updateArticleGalleryFoto($data, $id4);
-//                        redirect(getenv('HTTP_REFERER'));
-                        redirect('backend/acladmin/edit_article/' . $id3);
-                    }
-                }
-            }
-        } else {
-            redirect('backend/acladmin/view_article');
-        }
-
-        $data['title'] = 'Edit Galeri Foto';
-//        $data['albums']  = $this->acladminmodel->getIdGalleryAlbum($id3);
-        $data['photos'] = $this->acladminmodel->getIdArticleGalleryFoto($id4);
-        $data['page'] = 'edit_article_gallery_foto';
-        $data['content'] = $this->load->view('acladmin/module/edit_article_gallery_foto', $data, true);
-        $this->load->view('acladmin/main', $data);
     }
 
     public function edit_slider() {
@@ -960,43 +942,6 @@ class Acladmin extends CI_Controller {
         }
     }
 
-    public function edit_store() {
-        $id = $this->uri->segment(4);
-        if ($id) {
-            if ($this->input->post('submit')) {
-                $valid = $this->form_validation;
-                $valid->set_rules('body', 'Isi', 'required');
-
-                if ($valid->run() == false) {
-                    // show error in view
-                } else {
-                        $data = array(
-                                'id' => $id,
-                                'body' => $this->input->post('body'),
-                                'modified_date' => time(),
-                                'modified_by' => $this->sess_id,
-                                'status' => 1
-                            );
-                        $this->acladminmodel->updateStore($data, $id);
-
-//                    $gallery = $this->upload_gallery();
-//                    $this->acladminmodel->addGalleryArticle($gallery, $id);
-
-                    redirect('backend/acladmin/view_store');
-                }
-            }
-            $data['page'] = 'edit_store';
-            $data['title'] = 'Edit Store';
-            $data['article'] = $this->acladminmodel->getIdStore($id);
-            //$data['photos']  = $this->acladminmodel->getIdGalleryArticle($id);
-
-            $data['content'] = $this->load->view('acladmin/module/edit_store', $data, true);
-            $this->load->view('acladmin/main', $data);
-        } else {
-            redirect('backend/acladmin/view_store');
-        }
-    }
-
     public function edit_about() {
         $id = $this->uri->segment(4);
         if ($id) {
@@ -1038,28 +983,6 @@ class Acladmin extends CI_Controller {
         }
     }
 
-    public function delete_product() {
-        if ($this->uri->segment(4)) {
-            $data = array('status' => 0);
-            $id = $this->uri->segment(4);
-            $this->acladminmodel->deleteProduct($data, $id);
-            redirect('backend/acladmin/view_product');
-        } else {
-            redirect('backend/acladmin/view_product');
-        }
-    }
-
-    public function delete_kategori() {
-        if ($this->uri->segment(4)) {
-            $data = array('status' => 0);
-            $id = $this->uri->segment(4);
-            $this->acladminmodel->deleteKategori($data, $id);
-            redirect('backend/acladmin/view_kategori');
-        } else {
-            redirect('backend/acladmin/view_kategori');
-        }
-    }
-
     public function delete_blog() {
         if ($this->uri->segment(4)) {
             $data = array('status' => 0);
@@ -1069,24 +992,6 @@ class Acladmin extends CI_Controller {
         } else {
             redirect('backend/acladmin/view_blog');
         }
-    }
-
-    public function delete_product_gallery_foto() {
-        $idarticle = $this->uri->segment(4);
-        $idphoto = $this->uri->segment(5);
-        $data = array('status' => 0);
-        $this->acladminmodel->deleteProductGalleryFoto($idphoto, $data);
-
-        redirect('backend/acladmin/edit_product/' . $idarticle);
-    }
-
-    public function delete_article_gallery_foto() {
-        $idarticle = $this->uri->segment(4);
-        $idphoto = $this->uri->segment(5);
-        $data = array('status' => 0);
-        $this->acladminmodel->deleteArticleGalleryFoto($idphoto, $data);
-
-        redirect('backend/acladmin/edit_article/' . $idarticle);
     }
 
     public function delete_slider() {
@@ -1099,21 +1004,6 @@ class Acladmin extends CI_Controller {
             redirect('backend/acladmin/view_slider');
         }
     }
-
-    public function search_product() {
-        $search = $this->input->post('search');
-        $submit = $this->input->post('submit');
-        if ($search && $submit) {
-            $data['media'] = $this->acladminmodel->search_product($search);
-        } else {
-            redirect(getenv('HTTP_REFERER'));
-        }
-        $data['page'] = 'search_product';
-        $data['title'] = 'Search Results';
-        $data['content'] = $this->load->view('acladmin/module/search_product', $data, true);
-        $this->load->view('acladmin/main', $data);
-    }
-
     
     public function add_user() {
         $this->onlyAdmin();
