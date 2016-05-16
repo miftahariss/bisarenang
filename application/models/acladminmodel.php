@@ -14,6 +14,8 @@ class Acladminmodel extends CI_Model {
         'product_kategori' => 'product_kategori',
         'product_gallery_foto' => 'product_gallery_foto',
         'blog' => 'blog',
+        'program' => 'program',
+        'program_level' => 'program_level',
         'article_gallery_foto' => 'article_gallery_foto',
         'slider' => 'slider',
         'store' => 'store',
@@ -67,6 +69,16 @@ class Acladminmodel extends CI_Model {
     public function countBlog($status) {
         $this->db->select('id');
         $this->db->from($this->table['blog']);
+        $this->db->where('status', $status);
+
+        $count = $this->db->count_all_results();
+
+        return $count;
+    }
+
+    public function countProgram($status) {
+        $this->db->select('id');
+        $this->db->from($this->table['program']);
         $this->db->where('status', $status);
 
         $count = $this->db->count_all_results();
@@ -162,6 +174,18 @@ class Acladminmodel extends CI_Model {
     public function fetchBlog($limit, $start) {
         $this->db->select('*');
         $this->db->from($this->table['blog']);
+        $this->db->where('status', 1);
+
+        $this->db->limit($limit, $start);
+        $this->db->order_by('id', 'desc');
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+
+    public function fetchProgram($limit, $start) {
+        $this->db->select('*');
+        $this->db->from($this->table['program']);
         $this->db->where('status', 1);
 
         $this->db->limit($limit, $start);
@@ -299,6 +323,20 @@ class Acladminmodel extends CI_Model {
         $this->db->insert($this->table['blog'], $data);
 
         return $this->db->insert_id();
+    }
+
+    public function addProgram($data) {
+        $this->db->insert($this->table['program'], $data);
+
+        return $this->db->insert_id();
+    }
+
+    public function addProgramLevel($data1, $data2, $data3) {
+        $this->db->insert($this->table['program_level'], $data1);
+        $this->db->insert($this->table['program_level'], $data2);
+        $this->db->insert($this->table['program_level'], $data3);
+
+        return TRUE;
     }
 
     public function addGalleryProduct($format_upload, $id_product) {
