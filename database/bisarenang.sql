@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 16 Mei 2016 pada 05.52
+-- Generation Time: 16 Mei 2016 pada 12.27
 -- Versi Server: 10.1.10-MariaDB
 -- PHP Version: 5.5.33
 
@@ -95,6 +95,31 @@ CREATE TABLE `program` (
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `program_level`
+--
+
+CREATE TABLE `program_level` (
+  `id` int(11) NOT NULL,
+  `id_program` int(11) NOT NULL,
+  `level` int(11) NOT NULL,
+  `id_account` int(11) NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `short_desc` tinytext NOT NULL,
+  `body` text,
+  `filename` varchar(125) NOT NULL,
+  `permalink` varchar(120) NOT NULL,
+  `meta_keywords` varchar(255) NOT NULL,
+  `meta_description` varchar(255) NOT NULL,
+  `created_date` int(11) NOT NULL,
+  `modified_date` int(11) DEFAULT NULL,
+  `created_by` tinyint(2) DEFAULT NULL,
+  `modified_by` tinyint(2) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT '1' COMMENT '0=inactive; 1=active; 2=draft; default=1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `user`
 --
 
@@ -139,6 +164,12 @@ ALTER TABLE `program`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `program_level`
+--
+ALTER TABLE `program_level`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -157,6 +188,11 @@ ALTER TABLE `blog`
 -- AUTO_INCREMENT for table `program`
 --
 ALTER TABLE `program`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `program_level`
+--
+ALTER TABLE `program_level`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `user`
