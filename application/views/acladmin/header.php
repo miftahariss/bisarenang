@@ -18,17 +18,17 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Product <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Safety Swim <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="<?php echo base_url()?>backend/acladmin/add_product"><span class="icon-plus-sign"></span> Add Product</a></li>
-                        <li><a href="<?php echo base_url()?>backend/acladmin/view_product"><span class="icon-list"></span> View Product</a></li>
-                        <li><a href="<?php echo base_url()?>backend/acladmin/view_kategori"><span class="icon-list"></span> View Kategori</a></li>
+                        <li><a href="#"><span class="icon-plus-sign"></span> Add Safety Swim</a></li>
+                        <li><a href="#"><span class="icon-list"></span> View Safety Swim</a></li>
                     </ul>
                 </li>
-                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Store <b class="caret"></b></a>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Program <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="<?php echo base_url()?>backend/acladmin/view_store"><span class="icon-list"></span> View Store</a></li>
+                        <li><a href="<?php echo base_url()?>backend/acladmin/add_program"><span class="icon-plus-sign"></span> Add Program</a></li>
+                        <li><a href="<?php echo base_url()?>backend/acladmin/view_program"><span class="icon-list"></span> View Program</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
