@@ -36,4 +36,21 @@ class M_frontend extends CI_Model {
 
     	return $query->result();
     }
+
+    /* COUNT BLOG MEDIA */
+    function get_count($id) {
+        $this->db->where('counter_blog_id', $id);
+        $query = $this->db->get('blog_counter');
+        return $query->result_array();
+    }
+
+    function count_view($data, $id) {
+        $this->db->where('counter_blog_id', $id);
+        $this->db->update('blog_counter', $data);
+    }
+
+    function save_count_view($data) {
+        $this->db->insert('blog_counter', $data);
+    }
+    /* END OF COUNT BLOG MEDIA */
 }
