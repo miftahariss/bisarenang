@@ -42,20 +42,6 @@ function editPhoto() {
             </td>
         </tr>
         <tr>
-            <td>Meta Keywords</td>
-            <td>
-                <input type="text" name="meta_keywords" value="<?php echo $article->meta_keywords ?>" class="input input-block-level" />
-                <span class="alert-error"><?php echo form_error('meta_keywords')?></span>
-            </td>
-        </tr>
-        <tr>
-            <td>Meta Description</td>
-            <td>
-                <input type="text" name="meta_description" value="<?php echo $article->meta_description ?>" class="input input-block-level" />
-                <span class="alert-error"><?php echo form_error('meta_description')?></span>
-            </td>
-        </tr>
-        <tr>
             <td>Foto <code>Maksimal 2MB</code></td>
             <td>
             	<?php if ($article->filename == 0): ?>
@@ -63,7 +49,7 @@ function editPhoto() {
             	<?php else: ?>
             		<img src="<?php echo base_url()?>asset_admin/assets/uploads/cover/small/<?php echo $article->filename ?>" /><br />
             	<?php endif; ?>
-                <input type="file" name="userfile" /><code>minimum file dimension 980 x 600 pixel</code>
+                <input type="file" name="userfile" />
                 <span class="alert-error"><?php echo form_error('userfile'); ?></span>
             </td>
         </tr>
