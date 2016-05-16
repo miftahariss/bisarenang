@@ -43,9 +43,9 @@
                             <li><a href="<?php echo base_url(); ?>" class="selected">Home</a></li>
                             <li><a href="<?php echo base_url(); ?>blog">Blog</a></li>
                             <li><a href="<?php echo base_url(); ?>safetyswim">Safety Swim</a></li>
-                            <li><a href="program.html">Program</a></li>
-                            <li><a href="contact.html">Contact</a></li>
-                            <li><a href="about.html">About</a></li>
+                            <li><a href="<?php echo base_url(); ?>program">Program</a></li>
+                            <li><a href="<?php echo base_url(); ?>contact">Contact</a></li>
+                            <li><a href="<?php echo base_url(); ?>about">About</a></li>
                         </ul>
                     </div> <!-- NAV WRAPER -->
                 </nav>
