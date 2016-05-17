@@ -887,6 +887,134 @@ class Acladmin extends CI_Controller {
         }
     }
 
+    public function edit_program() {
+        $id = $this->uri->segment(4);
+        if ($id) {
+            $permalink = url_title($this->input->post('title'), 'dash', true);
+            if ($this->input->post('submit')) {
+                $valid = $this->form_validation;
+                $valid->set_rules('title', 'Judul', 'required');
+                $valid->set_rules('short_desc', 'Short Desc', 'required');
+
+                if ($valid->run() == false) {
+                    // show error in view
+                } else {
+                    $format_upload = $this->upload();
+                    //$video_id = $this->get_youtube_id_from_url($this->input->post('video_id'));
+                    if ($format_upload != "") {
+                        $data = array(
+                            'id' => $id,
+                            'title' => $this->input->post('title'),
+                            'short_desc' => $this->input->post('short_desc'),
+                            'filename' => $format_upload,
+                            'permalink' => $permalink.'.html',
+                            'modified_date' => time(),
+                            'modified_by' => $this->sess_id,
+                            'status' => 1
+                        );
+                        $this->acladminmodel->updateProgram($data, $id);
+                    } else {
+                        $data = array(
+                            'id' => $id,
+                            'title' => $this->input->post('title'),
+                            'short_desc' => $this->input->post('short_desc'),
+                            'permalink' => $permalink.'.html',
+                            'modified_date' => time(),
+                            'modified_by' => $this->sess_id,
+                            'status' => 1
+                        );
+                        $this->acladminmodel->updateProgram($data, $id);
+                    }
+
+                    // $gallery = $this->upload_gallery();
+                    // $this->acladminmodel->addGalleryArticle($gallery, $id);
+
+                    redirect('backend/acladmin/view_program');
+                }
+            }
+            $data['page'] = 'edit_program';
+            $data['title'] = 'Edit Program';
+            $data['article'] = $this->acladminmodel->getIdProgram($id);
+            $data['program_beginner'] = $this->acladminmodel->getIdProgramLevel($id, 1);
+            //var_dump($data['program_beginner']);exit;
+            $data['program_intermediate'] = $this->acladminmodel->getIdProgramLevel($id, 2);
+            $data['program_advanced'] = $this->acladminmodel->getIdProgramLevel($id, 3);
+
+            //$data['photos']  = $this->acladminmodel->getIdGalleryArticle($id);
+            
+            $data['content'] = $this->load->view('acladmin/module/edit_program', $data, true);
+            $this->load->view('acladmin/main', $data);
+        } else {
+            redirect('backend/acladmin/view_program');
+        }
+    }
+
+    public function edit_program_level() {
+        $id_program = $this->uri->segment(4);
+        $id_program_level = $this->uri->segment(5);
+        $level = $this->uri->segment(6);
+        if ($id_program) {
+            $permalink = url_title($this->input->post('title'), 'dash', true);
+            if ($this->input->post('submit')) {
+                $valid = $this->form_validation;
+                $valid->set_rules('title', 'Judul', 'required');
+                $valid->set_rules('short_desc', 'Short Desc', 'required');
+                $valid->set_rules('body', 'Isi', 'required');
+
+                if ($valid->run() == false) {
+                    // show error in view
+                } else {
+                    $format_upload = $this->upload();
+                    //$video_id = $this->get_youtube_id_from_url($this->input->post('video_id'));
+                    if ($format_upload != "") {
+                        $data = array(
+                            'id' => $id_program_level,
+                            'id_program' => $id_program,
+                            'title' => $this->input->post('title'),
+                            'short_desc' => $this->input->post('short_desc'),
+                            'body' => $this->input->post('body'),
+                            'filename' => $format_upload,
+                            'permalink' => $permalink.'.html',
+                            'modified_date' => time(),
+                            'modified_by' => $this->sess_id,
+                            'status' => 1
+                        );
+                        $this->acladminmodel->updateProgramLevel($data, $id_program_level);
+                    } else {
+                        $data = array(
+                            'id' => $id_program_level,
+                            'id_program' => $id_program,
+                            'title' => $this->input->post('title'),
+                            'short_desc' => $this->input->post('short_desc'),
+                            'body' => $this->input->post('body'),
+                            'permalink' => $permalink.'.html',
+                            'modified_date' => time(),
+                            'modified_by' => $this->sess_id,
+                            'status' => 1
+                        );
+                        $this->acladminmodel->updateProgramLevel($data, $id_program_level);
+                    }
+
+                    // $gallery = $this->upload_gallery();
+                    // $this->acladminmodel->addGalleryArticle($gallery, $id);
+
+                    redirect('backend/acladmin/edit_program/'.$id_program);
+                }
+            }
+            $data['page'] = 'edit_program_level';
+            $data['title'] = 'Edit Program Level';
+            $data['article'] = $this->acladminmodel->getIdProgramLevel($id_program, $level);
+            //var_dump($data['article']->filename);exit;
+
+            //$data['photos']  = $this->acladminmodel->getIdGalleryArticle($id);
+            
+            $data['content'] = $this->load->view('acladmin/module/edit_program_level', $data, true);
+            $this->load->view('acladmin/main', $data);
+        } else {
+            redirect('backend/acladmin/edit_program/'.$id_program);
+        }
+    }
+
     public function edit_slider() {
         $id = $this->uri->segment(4);
         if ($id) {
