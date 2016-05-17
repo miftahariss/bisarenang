@@ -488,6 +488,16 @@ class Acladminmodel extends CI_Model {
         $this->db->update($this->table['blog'], $data);
     }
 
+    public function updateProgram($data, $id) {
+        $this->db->where('id', $id);
+        $this->db->update($this->table['program'], $data);
+    }
+
+    public function updateProgramLevel($data, $id) {
+        $this->db->where('id', $id);
+        $this->db->update($this->table['program_level'], $data);
+    }
+
     public function updateArticleGalleryFoto($data, $id) {
         $this->db->where('id', $id);
         $this->db->update($this->table['article_gallery_foto'], $data);
@@ -630,6 +640,21 @@ class Acladminmodel extends CI_Model {
     public function getIdBlog($id) {
         $this->db->where('id', $id);
         $query = $this->db->get($this->table['blog']);
+
+        return $query->row();
+    }
+
+    public function getIdProgram($id) {
+        $this->db->where('id', $id);
+        $query = $this->db->get($this->table['program']);
+
+        return $query->row();
+    }
+
+    public function getIdProgramLevel($id, $level) {
+        $this->db->where('id_program', $id);
+        $this->db->where('level', $level);
+        $query = $this->db->get($this->table['program_level']);
 
         return $query->row();
     }
