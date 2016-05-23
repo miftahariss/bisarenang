@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 16 Mei 2016 pada 12.27
+-- Generation Time: 23 Mei 2016 pada 12.56
 -- Versi Server: 10.1.10-MariaDB
 -- PHP Version: 5.5.33
 
@@ -69,8 +69,8 @@ CREATE TABLE `blog_counter` (
 --
 
 INSERT INTO `blog_counter` (`counter_blog_id`, `counter_count`, `counter_count_date`) VALUES
-(2, 6, '2016-05-13'),
-(1, 1, '2016-05-13');
+(2, 7, '2016-05-17'),
+(1, 2, '2016-05-17');
 
 -- --------------------------------------------------------
 
@@ -91,6 +91,14 @@ CREATE TABLE `program` (
   `modified_by` tinyint(2) DEFAULT NULL,
   `status` tinyint(1) DEFAULT '1' COMMENT '0=inactive; 1=active; 2=draft; default=1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `program`
+--
+
+INSERT INTO `program` (`id`, `id_account`, `title`, `short_desc`, `filename`, `permalink`, `created_date`, `modified_date`, `created_by`, `modified_by`, `status`) VALUES
+(4, 1, 'judul program 2', 'short desc 2', '1463395199.jpg', 'judul-program-2.html', 1463395200, NULL, 1, NULL, 1),
+(5, 1, 'judul program', 'short desc program', '1463470391.jpg', 'judul-program.html', 1463470160, 1463474051, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -116,6 +124,47 @@ CREATE TABLE `program_level` (
   `modified_by` tinyint(2) DEFAULT NULL,
   `status` tinyint(1) DEFAULT '1' COMMENT '0=inactive; 1=active; 2=draft; default=1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `program_level`
+--
+
+INSERT INTO `program_level` (`id`, `id_program`, `level`, `id_account`, `title`, `short_desc`, `body`, `filename`, `permalink`, `meta_keywords`, `meta_description`, `created_date`, `modified_date`, `created_by`, `modified_by`, `status`) VALUES
+(7, 4, 1, 1, 'judul beginner', 'hjhjhj', '<p>hjhjhjh</p>\n', 'beginner_1463395199.jpg', 'judul-beginner.html', '', '', 1463395200, NULL, 1, NULL, 1),
+(8, 4, 2, 1, 'judul intermediate', 'hjhjhjhjh', '<p>jhjhjhjhj</p>\n', 'intermediate_1463395199.jpg', 'judul-intermediate.html', '', '', 1463395200, NULL, 1, NULL, 1),
+(9, 4, 3, 1, 'judul advanced', 'khhjhjhj', '<p>jhjhjhjhj</p>\n', 'advanced_1463395199.jpg', 'judul-advanced.html', '', '', 1463395200, NULL, 1, NULL, 1),
+(10, 5, 1, 1, 'judul beginner', 'short desc beginner', '<p>isi beginner</p>\n', '1463473914.jpg', 'judul-beginner.html', '', '', 1463470160, 1463473914, 1, 1, 1),
+(11, 5, 2, 1, 'judul intermediate', 'short desc intermediate', '<p>isi intermediate</p>\n', '1463474027.jpg', 'judul-intermediate.html', '', '', 1463470160, 1463474027, 1, 1, 1),
+(12, 5, 3, 1, 'judul advanced', 'short desc advanced', '<p>isi advanced</p>\n', '1463474048.jpg', 'judul-advanced.html', '', '', 1463470160, 1463474048, 1, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `safety`
+--
+
+CREATE TABLE `safety` (
+  `id` int(11) NOT NULL,
+  `id_account` int(11) NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `short_desc` tinytext NOT NULL,
+  `filename` varchar(125) NOT NULL,
+  `permalink` varchar(120) NOT NULL,
+  `meta_keywords` varchar(255) NOT NULL,
+  `meta_description` varchar(255) NOT NULL,
+  `created_date` int(11) NOT NULL,
+  `modified_date` int(11) DEFAULT NULL,
+  `created_by` tinyint(2) DEFAULT NULL,
+  `modified_by` tinyint(2) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT '1' COMMENT '0=inactive; 1=active; 2=draft; default=1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `safety`
+--
+
+INSERT INTO `safety` (`id`, `id_account`, `title`, `short_desc`, `filename`, `permalink`, `meta_keywords`, `meta_description`, `created_date`, `modified_date`, `created_by`, `modified_by`, `status`) VALUES
+(1, 1, 'safety swim title 2', 'safety swim short desc 2', '1463996172.jpg', 'safety-swim-title-2.html', '', '', 1463995767, 1463996172, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -170,6 +219,12 @@ ALTER TABLE `program_level`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `safety`
+--
+ALTER TABLE `safety`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -188,12 +243,17 @@ ALTER TABLE `blog`
 -- AUTO_INCREMENT for table `program`
 --
 ALTER TABLE `program`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `program_level`
 --
 ALTER TABLE `program_level`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+--
+-- AUTO_INCREMENT for table `safety`
+--
+ALTER TABLE `safety`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `user`
 --
