@@ -16,7 +16,7 @@
         </div>
         
         <div class="blog-img-wrap  valign-wrapper detail-margin">
-            <img class="valign" src="<?php echo base_url() ?>asset_admin/assets/uploads/cover/original/<?php echo $content_detail[0]->filename; ?>" alt="Program-1">
+            <img class="valign" src="<?php echo base_url() ?>asset_admin/assets/uploads/cover/original/<?php echo $content_detail[0]->filename; ?>" alt="<?php echo $content_detail[0]->title; ?>">
         </div> <!-- BLOG WRAP -->
         
         <div class="detail-wrap">
