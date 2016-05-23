@@ -722,6 +722,51 @@ class Acladmin extends CI_Controller {
         $this->load->view('acladmin/main', $data);
     }
 
+    public function add_safety() {
+        $permalink = url_title($this->input->post('title'), 'dash', true);
+        if ($this->input->post('submit')) {
+            // validation
+            $valid = $this->form_validation;
+            $valid->set_rules('title', 'Judul', 'required');
+            $valid->set_rules('short_desc', 'Short Desc', 'required');
+            if (isset($_FILES['userfile']['name']) && $_FILES['userfile']['name'] == "") {
+                $valid->set_rules('userfile', 'Foto', 'required');
+            }
+
+            if ($valid->run() == false) {
+                // run
+            } else {
+
+                $format_upload = $this->upload();
+                //$video_id = $this->get_youtube_id_from_url($this->input->post('video_id'));
+                $data = array(
+                    'id_account' => 1,
+                    'title' => $this->input->post('title'),
+                    'short_desc' => $this->input->post('short_desc'),
+                    'filename' => $format_upload,
+                    'permalink' => $permalink.'.html',
+                    'created_date' => time(),
+                    'modified_date' => null,
+                    'created_by' => $this->sess_id,
+                    'modified_by' => null,
+                    'status' => 1,
+                );
+
+                $id = $this->acladminmodel->addSafety($data);
+                // if ($id) {
+                //     $gallery = $this->upload_gallery();
+                //     $this->acladminmodel->addGalleryArticle($gallery, $id);
+                // }
+                redirect('backend/acladmin/view_safety');
+            }
+        }
+        $data['page'] = 'add_safety';
+        $data['title'] = 'Tambah Safety Swim Baru';
+
+        $data['content'] = $this->load->view('acladmin/module/add_safety', $data, true);
+        $this->load->view('acladmin/main', $data);
+    }
+
     public function add_slider() {
         $permalink = url_title($this->input->post('title'), 'dash', true);
         if ($this->input->post('submit')) {
@@ -782,6 +827,26 @@ class Acladmin extends CI_Controller {
         $data['page'] = 'view_blog';
         $data['title'] = 'Blog';
         $data['content'] = $this->load->view('acladmin/module/view_blog', $data, true);
+        $this->load->view('acladmin/main', $data);
+    }
+
+    public function view_safety() {
+        $data['headline'] = $this->input->get('filter') ? $this->input->get('filter') : '1';
+        $this->load->library('pagination');
+        $config['base_url'] = site_url('backend/acladmin/view_safety');
+        $config['per_page'] = $this->limit;
+        $config['total_rows'] = $this->acladminmodel->countSafety(1);
+        $config['uri_segment'] = 4;
+        $config['first_url'] = $config['base_url'] . '?' . http_build_query($_GET);
+        $this->pagination->initialize($config);
+
+        $page = ($this->uri->segment(4) ? $this->uri->segment(4) : '');
+        $data['media'] = $this->acladminmodel->fetchSafety($config['per_page'], $page);
+        $data['links'] = $this->pagination->create_links();
+        $data['total_rows'] = $config['total_rows'];
+        $data['page'] = 'view_safety';
+        $data['title'] = 'Safety Swim';
+        $data['content'] = $this->load->view('acladmin/module/view_safety', $data, true);
         $this->load->view('acladmin/main', $data);
     }
 
@@ -884,6 +949,65 @@ class Acladmin extends CI_Controller {
             $this->load->view('acladmin/main', $data);
         } else {
             redirect('backend/acladmin/view_blog');
+        }
+    }
+
+    public function edit_safety() {
+        $id = $this->uri->segment(4);
+        if ($id) {
+            $permalink = url_title($this->input->post('title'), 'dash', true);
+            if ($this->input->post('submit')) {
+                $valid = $this->form_validation;
+                $valid->set_rules('title', 'Judul', 'required');
+                $valid->set_rules('short_desc', 'Short Desc', 'required');
+
+                if ($valid->run() == false) {
+                    // show error in view
+                } else {
+                    $format_upload = $this->upload();
+                    //$video_id = $this->get_youtube_id_from_url($this->input->post('video_id'));
+                    if ($format_upload != "") {
+                        $data = array(
+                            'id' => $id,
+                            'title' => $this->input->post('title'),
+                            'short_desc' => $this->input->post('short_desc'),
+                            'filename' => $format_upload,
+                            'permalink' => $permalink.'.html',
+                            'modified_date' => time(),
+                            'modified_by' => $this->sess_id,
+                            'status' => 1
+                        );
+                        $this->acladminmodel->updateSafety($data, $id);
+                    } else {
+                        $data = array(
+                            'id' => $id,
+                            'title' => $this->input->post('title'),
+                            'short_desc' => $this->input->post('short_desc'),
+                            'permalink' => $permalink.'.html',
+                            'meta_keywords' => $this->input->post('meta_keywords'),
+                            'meta_description' => $this->input->post('meta_description'),
+                            'modified_date' => time(),
+                            'modified_by' => $this->sess_id,
+                            'status' => 1
+                        );
+                        $this->acladminmodel->updateSafety($data, $id);
+                    }
+
+                    // $gallery = $this->upload_gallery();
+                    // $this->acladminmodel->addGalleryArticle($gallery, $id);
+
+                    redirect('backend/acladmin/view_safety');
+                }
+            }
+            $data['page'] = 'edit_safety';
+            $data['title'] = 'Edit Safety';
+            $data['article'] = $this->acladminmodel->getIdSafety($id);
+            //$data['photos']  = $this->acladminmodel->getIdGalleryArticle($id);
+            
+            $data['content'] = $this->load->view('acladmin/module/edit_safety', $data, true);
+            $this->load->view('acladmin/main', $data);
+        } else {
+            redirect('backend/acladmin/view_safety');
         }
     }
 
@@ -1119,6 +1243,17 @@ class Acladmin extends CI_Controller {
             redirect('backend/acladmin/view_blog');
         } else {
             redirect('backend/acladmin/view_blog');
+        }
+    }
+
+    public function delete_safety() {
+        if ($this->uri->segment(4)) {
+            $data = array('status' => 0);
+            $id = $this->uri->segment(4);
+            $this->acladminmodel->deleteSafety($data, $id);
+            redirect('backend/acladmin/view_safety');
+        } else {
+            redirect('backend/acladmin/view_safety');
         }
     }
 
