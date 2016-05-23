@@ -19,8 +19,8 @@
                 <?php $i = 1; ?>
                 <?php foreach($content_program as $data): ?>
                     <li class="wow fadeInRight" data-wow-delay="<?php echo $i; ?>s"> <!-- DATA WOW DELAY KELIPATAN TAMBAH 1 -->
-                        <div class="collapsible-header" style="background-image: url(<?php echo base_url(); ?>assets/images/program-menu.jpg);">
-                            <p>Technique</p>
+                        <div class="collapsible-header" style="background-image: url(<?php echo base_url() ?>asset_admin/assets/uploads/cover/original/<?php echo $data->filename; ?>);">
+                            <p><?php echo $data->title; ?></p>
                         </div>
                         
                         <div class="collapsible-body">
