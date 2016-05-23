@@ -127,6 +127,18 @@ class Frontend extends CI_Controller {
         $this->load->view('frontend/templates', $data);
     }
 
+    function programdetail(){
+        $data['base'] = 'Program';
+
+        $title = $this->uri->segment(3);
+
+        $data['content_detail'] = $this->m_frontend->getDetailProgram($title);
+
+        $this->breadcrumbs->push('Home', '/');
+        $this->breadcrumbs->push('Program', '/program');
+
+    }
+
     function basicswim(){
         $data['base'] = 'Program';
 
