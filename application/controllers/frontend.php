@@ -105,12 +105,23 @@ class Frontend extends CI_Controller {
     function safetyswim(){
         $data['base'] = 'Safetyswim';
 
+        $this->breadcrumbs->push('Home', '/');
+        $this->breadcrumbs->push('Safety To Swim', '/safetyswim');
+
+        $data['content_safety'] = $this->m_frontend->getSafety();
+        //var_dump($data['content_safety']);exit;
+
         $data['mainpage'] = 'frontend/safetyswim';
         $this->load->view('frontend/templates', $data);
     }
 
     function program(){
         $data['base'] = 'Program';
+
+        $this->breadcrumbs->push('Home', '/');
+        $this->breadcrumbs->push('Program', '/program');
+
+        $data['content_program'] = $this->m_frontend->getProgram();
 
         $data['mainpage'] = 'frontend/program';
         $this->load->view('frontend/templates', $data);
@@ -133,12 +144,18 @@ class Frontend extends CI_Controller {
     function contact(){
         $data['base'] = 'Contact';
 
+        $this->breadcrumbs->push('Home', '/');
+        $this->breadcrumbs->push('Contact', '/contact');
+
         $data['mainpage'] = 'frontend/contact';
         $this->load->view('frontend/templates', $data);
     }
 
     function about(){
         $data['base'] = 'About';
+
+        $this->breadcrumbs->push('Home', '/');
+        $this->breadcrumbs->push('About', '/about');
 
         $data['mainpage'] = 'frontend/about';
         $this->load->view('frontend/templates', $data);
