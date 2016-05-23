@@ -1,9 +1,10 @@
 <div class="section">
 	<div class="container">
-        <div class="breadcrumb-wrap">
+        <!-- <div class="breadcrumb-wrap">
             <a href="index.html" class="breadcrumb">Home</a>
             <a href="contact.html" class="breadcrumb">Contact</a>
-        </div>
+        </div> -->
+        <?php echo $this->breadcrumbs->show(); ?>
     </div>
 </div> <!-- SECTION -->
 
@@ -13,7 +14,7 @@
         	<h2>Contact</h2>
         </div>
         
-        <form id="contact">
+        <form id="contact" method="POST">
         	<ul>
             	<li>
                 	<label for="name">NAME</label>
