@@ -45,10 +45,30 @@ class M_frontend extends CI_Model {
         return $query->result();
     }
 
-    function getProgram(){
+    function getProgram($id = ''){
+        if($id != ''){
+            $this->db->where('id', $id);
+        }
         $this->db->where('status', 1);
         $this->db->order_by('created_date', 'desc');
         $query = $this->db->get('program');
+
+        return $query->result();
+    }
+
+    function getProgramLevel($id){
+        $this->db->where('id_program', $id);
+        $this->db->where('status', 1);
+        $this->db->order_by('level', 'asc');
+        $query = $this->db->get('program_level');
+
+        return $query->result();
+    }
+
+    function getDetailProgramLevel($title){
+        $this->db->where('permalink', $title);
+        $this->db->where('status', 1);
+        $query = $this->db->get('program_level');
 
         return $query->result();
     }
