@@ -20,8 +20,8 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Safety Swim <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="add_safety"><span class="icon-plus-sign"></span> Add Safety Swim</a></li>
-                        <li><a href="view_safety"><span class="icon-list"></span> View Safety Swim</a></li>
+                        <li><a href="<?php echo base_url()?>backend/acladmin/add_safety"><span class="icon-plus-sign"></span> Add Safety Swim</a></li>
+                        <li><a href="<?php echo base_url()?>backend/acladmin/view_safety"><span class="icon-list"></span> View Safety Swim</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
