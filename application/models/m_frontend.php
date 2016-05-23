@@ -37,6 +37,22 @@ class M_frontend extends CI_Model {
     	return $query->result();
     }
 
+    function getSafety(){
+        $this->db->where('status', 1);
+        $this->db->order_by('created_date', 'desc');
+        $query = $this->db->get('safety');
+
+        return $query->result();
+    }
+
+    function getProgram(){
+        $this->db->where('status', 1);
+        $this->db->order_by('created_date', 'desc');
+        $query = $this->db->get('program');
+
+        return $query->result();
+    }
+
     /* COUNT BLOG MEDIA */
     function get_count($id) {
         $this->db->where('counter_blog_id', $id);
