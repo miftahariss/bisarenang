@@ -23,13 +23,33 @@
                             <p><?php echo $data->title; ?></p>
                         </div>
                         
-                        <div class="collapsible-body">
-                            <ul>
-                                <li><a href="#">Beginner</a></li>
-                                <li><a href="#">Intermediate</a></li>
-                                <li><a href="#">Advance</a></li>
-                            </ul>
-                        </div>
+                        <?php $program_level = $this->m_frontend->getProgramLevel($data->id); ?>
+                        <?php if(count($program_level) > 1): ?>
+                            <div class="collapsible-body">
+                                <ul>
+                                    <?php foreach($program_level as $item): ?>
+                                        <?php if($item->level == 1): ?>
+                                            <?php $v = 'beginner'; ?>
+                                        <?php elseif($item->level == 2): ?>
+                                            <?php $v = 'intermediate'; ?>
+                                        <?php elseif($item->level == 3): ?>
+                                            <?php $v = 'advance'; ?>
+                                        <?php endif; ?>
+                                        <li>
+                                            <a href="<?php echo base_url('program/'.$v.'/'.$item->permalink); ?>">
+                                                <?php if($item->level == 1): ?>
+                                                    Beginner
+                                                <?php elseif($item->level == 2): ?>
+                                                    Intermediate
+                                                <?php elseif($item->level == 3): ?>
+                                                    Advance
+                                                <?php endif; ?>
+                                            </a>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </div>
+                        <?php endif; ?>
                     </li>
                     <?php $i++; ?>
                 <?php endforeach; ?>
