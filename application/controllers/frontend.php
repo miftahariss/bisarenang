@@ -121,7 +121,8 @@ class Frontend extends CI_Controller {
         $this->breadcrumbs->push('Home', '/');
         $this->breadcrumbs->push('Program', '/program');
 
-        $data['content_program'] = $this->m_frontend->getProgram();
+        $data['content_program'] = $this->m_frontend->getProgram('');
+        //var_dump($data['content_program']);exit;
 
         $data['mainpage'] = 'frontend/program';
         $this->load->view('frontend/templates', $data);
@@ -132,25 +133,19 @@ class Frontend extends CI_Controller {
 
         $title = $this->uri->segment(3);
 
-        $data['content_detail'] = $this->m_frontend->getDetailProgram($title);
+        $data['content_detail'] = $this->m_frontend->getDetailProgramLevel($title);
+        if(count($data['content_detail']) < 1 || $title == FALSE){
+            redirect('pagenotfound');
+        }
+        $data['program_title'] = $this->m_frontend->getProgram($data['content_detail'][0]->id_program);
 
         $this->breadcrumbs->push('Home', '/');
         $this->breadcrumbs->push('Program', '/program');
+        $this->breadcrumbs->push($data['content_detail'][0]->title, $data['content_detail'][0]->permalink);
 
-    }
-
-    function basicswim(){
-        $data['base'] = 'Program';
-
-        $data['mainpage'] = 'frontend/basicswim';
+        $data['mainpage'] = 'frontend/programdetail';
         $this->load->view('frontend/templates', $data);
-    }
 
-    function swimmingfit(){
-        $data['base'] = 'Program';
-
-        $data['mainpage'] = 'frontend/swimmingfit';
-        $this->load->view('frontend/templates', $data);
     }
 
     function contact(){
