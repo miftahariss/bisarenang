@@ -1,9 +1,10 @@
 <div class="section">
 	<div class="container">
-        <div class="breadcrumb-wrap">
+        <!-- <div class="breadcrumb-wrap">
             <a href="index.html" class="breadcrumb">Home</a>
             <a href="about.html" class="breadcrumb">About</a>
-        </div>
+        </div> -->
+        <?php echo $this->breadcrumbs->show(); ?>
     </div>
 </div> <!-- SECTION -->
 
