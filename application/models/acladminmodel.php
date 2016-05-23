@@ -14,6 +14,7 @@ class Acladminmodel extends CI_Model {
         'product_kategori' => 'product_kategori',
         'product_gallery_foto' => 'product_gallery_foto',
         'blog' => 'blog',
+        'safety' => 'safety',
         'program' => 'program',
         'program_level' => 'program_level',
         'article_gallery_foto' => 'article_gallery_foto',
@@ -69,6 +70,16 @@ class Acladminmodel extends CI_Model {
     public function countBlog($status) {
         $this->db->select('id');
         $this->db->from($this->table['blog']);
+        $this->db->where('status', $status);
+
+        $count = $this->db->count_all_results();
+
+        return $count;
+    }
+
+    public function countSafety($status) {
+        $this->db->select('id');
+        $this->db->from($this->table['safety']);
         $this->db->where('status', $status);
 
         $count = $this->db->count_all_results();
@@ -174,6 +185,18 @@ class Acladminmodel extends CI_Model {
     public function fetchBlog($limit, $start) {
         $this->db->select('*');
         $this->db->from($this->table['blog']);
+        $this->db->where('status', 1);
+
+        $this->db->limit($limit, $start);
+        $this->db->order_by('id', 'desc');
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+
+    public function fetchSafety($limit, $start) {
+        $this->db->select('*');
+        $this->db->from($this->table['safety']);
         $this->db->where('status', 1);
 
         $this->db->limit($limit, $start);
@@ -321,6 +344,12 @@ class Acladminmodel extends CI_Model {
 
     public function addBlog($data) {
         $this->db->insert($this->table['blog'], $data);
+
+        return $this->db->insert_id();
+    }
+
+    public function addSafety($data) {
+        $this->db->insert($this->table['safety'], $data);
 
         return $this->db->insert_id();
     }
@@ -488,6 +517,11 @@ class Acladminmodel extends CI_Model {
         $this->db->update($this->table['blog'], $data);
     }
 
+    public function updateSafety($data, $id) {
+        $this->db->where('id', $id);
+        $this->db->update($this->table['safety'], $data);
+    }
+
     public function updateProgram($data, $id) {
         $this->db->where('id', $id);
         $this->db->update($this->table['program'], $data);
@@ -569,6 +603,11 @@ class Acladminmodel extends CI_Model {
         $this->db->update($this->table['blog'], $data);
     }
 
+    public function deleteSafety($data, $id) {
+        $this->db->where('id', $id);
+        $this->db->update($this->table['safety'], $data);
+    }
+
     public function deleteProductGalleryFoto($id, $data) {
         $this->db->where('id', $id);
         $this->db->update($this->table['product_gallery_foto'], $data);
@@ -640,6 +679,13 @@ class Acladminmodel extends CI_Model {
     public function getIdBlog($id) {
         $this->db->where('id', $id);
         $query = $this->db->get($this->table['blog']);
+
+        return $query->row();
+    }
+
+    public function getIdSafety($id) {
+        $this->db->where('id', $id);
+        $query = $this->db->get($this->table['safety']);
 
         return $query->row();
     }
