@@ -47,8 +47,7 @@ $route['blog/(:num)'] = "frontend/blog";
 $route['blog/(:any)'] = "frontend/blogdetail";
 $route['safetyswim'] = "frontend/safetyswim";
 $route['program'] = "frontend/program";
-$route['program/basic-to-swim'] = "frontend/basicswim";
-$route['program/swimming-fit'] = "frontend/swimmingfit";
+$route['program/(:any)'] = "frontend/programdetail";
 $route['contact'] = "frontend/contact";
 $route['about'] = "frontend/about";
 
