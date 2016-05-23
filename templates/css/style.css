@@ -350,16 +350,27 @@ nav .button-collapse {
 .bg-basicswim {
 	background: rgba(0, 0, 0, 0) url("../images/bg-basicswim.jpg") no-repeat scroll 0 0;
     height: 640px;
-    padding: 60px 0 25px;
+    padding: 30px 0 25px;
 }
 
 .section-basicswim {
 	clear: both;
     display: block;
     float: left;
-    margin-top: 205px;
+    margin-top: 80px;
     text-align: center;
     width: 100%;
+}
+
+.basicswim-content {
+	clear: both;
+    display: block;
+    margin: 0 auto;
+    width: 85%;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 5px 25px;
+    font-family: "AvantGarde-Md";
+    border-radius: 10px;
 }
 
 .basicswim-box {
@@ -399,9 +410,6 @@ a.step-two {
 }
 a.step-three {
 	color: #03a9f4;
-}
-a.step-four {
-	color: #673ab7;
 }
 
 .basicswim-box a {
@@ -447,39 +455,44 @@ a.step-four {
 	color: #999999;
 }
 
-.program-wrap {
-	clear: both;
+ul.collapsible {
+	border: none;
+    box-shadow: none;
+    clear: both;
     display: block;
     float: left;
-    height: 440px;
-    margin-bottom: 80px;
-    overflow: hidden;
-    position: relative;
+    margin: 0;
     width: 100%;
 }
-
-.program-wrap a {
-	display: block;
+ul.collapsible li {
+	margin-bottom: 30px;
 }
 
-.program-wrap img {
-	display: block;
-	width: 100%;
+ul.collapsible .collapsible-header {
+	background-size: cover;
+	background-position: center;
+	height: 98px;
+    border: none;
+	position: relative;
+	text-align: center;
+    width: 100%;
 }
-
-.program-caption {
-	background-color: rgba(255, 255, 255, 0.5);
-    bottom: 20px;
-    padding: 20px;
-    position: absolute;
-    right: 0;
+ul.collapsible .collapsible-header p {
+	font-family: "AvantGarde-Md";
+    color: #fff;
+    font-size: 36px;
+    margin: 25px 0 0;
+    display: inline-block;
 }
-
-.program-caption h3 {
-	color: #323232;
-    font-family: "AvantGarde-Bold";
-    font-size: 48px;
-    margin: 0;
+ul.collapsible .collapsible-body {
+	text-align: center;
+}
+ul.collapsible .collapsible-body a {
+	display: inline-block;
+	margin: 5px 0;
+	font-family: "AvantGarde-Md";
+	font-size: 30px;
+	color: #0072bc;
 }
 
 .blog-img-wrap {
@@ -550,7 +563,7 @@ a.step-four {
     background-size: cover;
     display: block;
     float: left;
-    height: 280px;
+    height: 380px;
 	position: relative;
     width: 380px;
 }
@@ -670,6 +683,7 @@ ul.pagination li i {
 }
 
 .safetyswim-box {
+	border-bottom: 5px solid #0072bc;
 	clear: both;
     display: block;
     float: left;
@@ -677,48 +691,25 @@ ul.pagination li i {
     width: 100%;
 }
 
-.safetyswim-line {
-	border-bottom: 5px solid #0072bc;
-    clear: both;
-    display: block;
-    margin: 30px 0 0;
-    padding-bottom: 5px;
-    width: 850px;
-}
-
-.safetyswim-box.type-a .safetyswim-line {
-	float: left;
-}
-.safetyswim-box.type-b .safetyswim-line {
-	float: right;
-}
-
 .safetyswim-img {
-	background-position: 50% 50%;
-    background-repeat: no-repeat;
-    background-size: cover;
+	clear: both;
     display: block;
-    height: 300px;
-	margin-right: 20px;
-    width: 500px;
+    float: left;
+    margin: 0 auto;
+    width: 100%;
 }
 
-.safetyswim-box.type-a .safetyswim-img {
-	float:left;
-}
-.safetyswim-box.type-b .safetyswim-img {
-	float: right;
-	margin-right: 0;
-	margin-left: 20px;
+.safetyswim-img img {
+	display: block;
+	margin: 0 auto;
+	max-width: 100%;
 }
 
 .safetyswim-box p {
 	display: block;
-    float: left;
     font-family: "AvantGarde-Md";
-    font-size: 20px;
-    height: 200px;
-    margin: 0;
+    font-size: 18px;
+    margin: 0 auto;
 	padding: 20px;
     overflow: hidden;
     width: 680px;

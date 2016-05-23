@@ -12,6 +12,7 @@
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         
+        <title>Bisarenang</title>
     </head>
     
     <body>
@@ -24,7 +25,7 @@
                         <ul id="nav-mobile" class="right hide-on-med-and-down">
                             <li><a href="index.html">Home</a></li>
                             <li><a href="blog.html">Blog</a></li>
-                            <li><a href="safetyswim.html">Safety Swim</a></li>
+                            <li><a href="safetyswim.html">Safety To Swim</a></li>
                             <li><a href="program.html" class="dropdown-button selected" data-activates="dropdown">Program<i class="material-icons right">arrow_drop_down</i></a></li>
                             <li><a href="contact.html">Contact</a></li>
                             <li><a href="about.html">About</a></li>
@@ -34,7 +35,7 @@
                         <ul id="dropdown" class="dropdown-content">
                         	<li><a href="program.html">Program</a></li>
                             <li class="divider"></li>
-                            <li><a href="program-detail.html">Basic to Swim</a></li>
+                            <li><a href="program-detail.html">Technique</a></li>
                             <li><a href="program-detail.html">Swimming Fit</a></li>
                         </ul>
                         
@@ -42,7 +43,7 @@
                         <ul id="mobile-demo" class="side-nav">
                             <li><a href="index.html" class="selected">Home</a></li>
                             <li><a href="blog.html">Blog</a></li>
-                            <li><a href="safetyswim.html">Safety Swim</a></li>
+                            <li><a href="safetyswim.html">Safety To Swim</a></li>
                             <li><a href="program.html">Program</a></li>
                             <li><a href="contact.html">Contact</a></li>
                             <li><a href="about.html">About</a></li>
@@ -63,29 +64,39 @@
         
         <div class="section">
         	<div class="container">
-            	<div class="section-title">
+            	<div class="section-title wow fadeInDown">
                 	<h2>Program</h2>
                 </div>
                 
-                <div class="program-wrap  valign-wrapper wow fadeInUp" data-wow-duration="1s">
-                    <a href="program-detail.html">
-                        <img class="valign" src="images/program-1.jpg" alt="Program-1">
-                        
-                        <div class="program-caption">
-                            <h3>Basic to Swim</h3>
+                <ul class="collapsible" data-collapsible="accordion">
+                    <li class="wow fadeInRight" data-wow-delay="1s"> <!-- DATA WOW DELAY KELIPATAN TAMBAH 1 -->
+                        <div class="collapsible-header" style="background-image: url(images/program-menu.jpg);">
+                            <p>Technique</p>
                         </div>
-                    </a>
-                </div> <!-- PROGRAM WRAP -->
-                
-                <div class="program-wrap valign-wrapper wow fadeInUp" data-wow-duration="1s">
-                    <a href="program-detail.html">
-                        <img class="valign" src="images/program-2.jpg" alt="Program-2">
                         
-                        <div class="program-caption">
-                            <h3>Swimming Fit</h3>
+                        <div class="collapsible-body">
+                        	<ul>
+                            	<li><a href="#">Beginner</a></li>
+                                <li><a href="#">Intermediate</a></li>
+                                <li><a href="#">Advance</a></li>
+                            </ul>
                         </div>
-                    </a>
-                </div> <!-- PROGRAM WRAP -->
+                    </li>
+                    
+                    <li class="wow fadeInRight" data-wow-delay="2s"> <!-- DATA WOW DELAY KELIPATAN TAMBAH 1 -->
+                        <div class="collapsible-header" style="background-image: url(images/program-menu.jpg);">
+                            <p>Swimming Fit</p>
+                        </div>
+                        
+                        <div class="collapsible-body">
+                        	<ul>
+                            	<li><a href="#">Beginner</a></li>
+                                <li><a href="#">Intermediate</a></li>
+                                <li><a href="#">Advance</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul> <!-- COLLAPSIBLE -->
             </div> <!-- CONTAINER -->
         </div> <!-- SECTION -->
         
@@ -125,6 +136,15 @@
         <script type="text/javascript">
 			$(document).ready(function(){
 				$(".button-collapse").sideNav();
+			});
+		</script>
+        
+        <!-- ACCORDION -->
+        <script type="text/javascript">
+			 $(document).ready(function(){
+				$('.collapsible').collapsible({
+				accordion : true // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+				});
 			});
 		</script>
     </body>
