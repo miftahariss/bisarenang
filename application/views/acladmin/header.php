@@ -4,11 +4,7 @@
             <a href="#" class="brand"><strong>CMS</strong></a>
             <ul class="nav">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class=" icon-home"></span> Home</a>
-                    <ul class="dropdown-menu">
-                        <!-- <li><a href="<?php echo base_url()?>backend/acladmin/add_article"><span class="icon-plus-sign"></span> Add Article</a></li> -->
-                        <li><a href="<?php echo base_url()?>backend/acladmin/view_slider"><span class="icon-list"></span> View Slider</a></li>
-                    </ul>
+                    <a href="<?php echo base_url()?>backend/acladmin" class="dropdown-toggle"><span class=" icon-home"></span> Home</a>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog <b class="caret"></b></a>
