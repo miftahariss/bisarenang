@@ -11,15 +11,23 @@
 
 <div class="section">
 	<div class="container">
-    	<div class="section-title">
+    	<div class="section-title wow fadeInDown">
         	<h2><?php echo $content_detail[0]->title; ?></h2>
         </div>
         
-        <div class="program-wrap  valign-wrapper detail-margin">
+        <div class="blog-img-wrap  valign-wrapper detail-margin">
             <img class="valign" src="<?php echo base_url() ?>asset_admin/assets/uploads/cover/original/<?php echo $content_detail[0]->filename; ?>" alt="<?php echo $content_detail[0]->title; ?>">
             
             <div class="program-caption">
-                <h3><?php echo $program_title[0]->title; ?></h3>
+                <h3><?php echo $program_title[0]->title; ?> - 
+                <?php if($content_detail[0]->level == 1): ?>
+                    Beginner Level
+                <?php elseif($content_detail[0]->level == 2): ?>
+                    Intermediate Level
+                <?php elseif($content_detail[0]->level == 3): ?>
+                    Advance Level
+                <?php endif; ?>
+                </h3>
             </div>
         </div> <!-- PROGRAM WRAP -->
         

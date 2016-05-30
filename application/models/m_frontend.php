@@ -45,9 +45,12 @@ class M_frontend extends CI_Model {
         return $query->result();
     }
 
-    function getProgram($id = ''){
+    function getProgram($id = '', $headline = ''){
         if($id != ''){
             $this->db->where('id', $id);
+        }
+        if($headline != ''){
+            $this->db->where('headline', $headline);
         }
         $this->db->where('status', 1);
         $this->db->order_by('created_date', 'desc');
@@ -71,6 +74,13 @@ class M_frontend extends CI_Model {
         $query = $this->db->get('program_level');
 
         return $query->result();
+    }
+
+    function getAbout(){
+      $this->db->where('status', 1);
+      $query = $this->db->get('about');
+
+      return $query->result();
     }
 
     /* COUNT BLOG MEDIA */

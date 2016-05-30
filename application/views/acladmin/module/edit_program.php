@@ -30,6 +30,13 @@ function editPhoto() {
             <td></td>
         </tr>
         <tr>
+            <td>Headline</td>
+            <td>
+                <input type="checkbox" name="headline" value="1" <?php if($article->headline == 1){echo 'checked="checked"';} ?>>
+                <span class="alert-error"><?php echo form_error('headline')?></span>
+            </td>
+        </tr>
+        <tr>
             <td>Foto <code>Maksimal 2MB</code></td>
             <td>
             	<?php if ($article->filename == 0): ?>

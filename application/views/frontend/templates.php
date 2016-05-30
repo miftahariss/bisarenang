@@ -32,10 +32,39 @@
                         
                         <!-- DROPDOWN PROGRAM DESKTOP -->
                         <ul id="dropdown" class="dropdown-content">
-                        	<li><a href="<?php echo base_url(); ?>program">Program</a></li>
+                            <li><a href="<?php echo base_url(); ?>program">Program</a></li>
                             <li class="divider"></li>
-                            <li><a href="<?php echo base_url(); ?>program/basic-to-swim">Basic to Swim</a></li>
-                            <li><a href="<?php echo base_url(); ?>program/swimming-fit">Swimming Fit</a></li>
+                            <?php
+                            $program = $this->m_frontend->getProgram('');
+                            ?>
+                            <?php if (count($program) > 0) : ?>
+                                <?php foreach($program as $data): ?>
+                                    <li><a href="#!"><?php echo $data->title; ?></a></li>
+                                    <?php $program_level = $this->m_frontend->getProgramLevel($data->id); ?>
+                                    <?php if(count($program_level) > 0): ?>
+                                        <?php foreach($program_level as $item): ?>
+                                            <?php if($item->level == 1): ?>
+                                                <?php $v = 'beginner'; ?>
+                                            <?php elseif($item->level == 2): ?>
+                                                <?php $v = 'intermediate'; ?>
+                                            <?php elseif($item->level == 3): ?>
+                                                <?php $v = 'advance'; ?>
+                                            <?php endif; ?>
+                                            <li class="sub-program">
+                                                <a href="<?php echo base_url('program/'.$v.'/'.$item->permalink); ?>">
+                                                    <?php if($item->level == 1): ?>
+                                                        Beginner
+                                                    <?php elseif($item->level == 2): ?>
+                                                        Intermediate
+                                                    <?php elseif($item->level == 3): ?>
+                                                        Advance
+                                                    <?php endif; ?>
+                                                </a>
+                                            </li>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
                         </ul>
                         
                         <!-- MOBILE MENU -->

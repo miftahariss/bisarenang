@@ -1,4 +1,5 @@
 <div class="slider-wrap">
+    <?php if(count($content_headline) > 0): ?>
 	<div class="slider">
         <?php foreach($content_headline as $data): ?>
             <div class="slide">
@@ -16,6 +17,7 @@
             </div> <!-- SLIDE -->
         <?php endforeach; ?>
     </div> <!-- SLIDER -->
+    <?php endif; ?>
     
     <div class="content-panel-wrap">
     	<div class="content-panel content-about wow fadeInUp" data-wow-delay="200ms">
@@ -63,6 +65,7 @@
             <p>Way to get newest info.</p>
         </div>
         
+        <?php if(count($content_blog) > 0): ?>
         <div class="section-blog">
             <?php foreach($content_blog as $data): ?>
                 <div class="blog-box wow fadeInLeftBig" data-wow-delay="200ms">
@@ -84,87 +87,60 @@
                 </div> <!-- BLOG BOX -->
             <?php endforeach; ?>
         </div> <!-- SECTION BLOG -->
+        <?php endif; ?>
     </div> <!-- CONTAINER -->
 </div> <!-- SECTION -->
 
+<?php if(count($program_headline) > 0): ?>
 <div class="section bg-basicswim">
 	<div class="container">
-    	<div class="section-title"  style="color: #fff;">
-        	<h2>Basic Swim</h2>
+    	<div class="section-title wow fadeInDown"  style="color: #fff;">
+        	<h2><?php echo $program_headline[0]->title; ?></h2>
+        </div>
+
+        <div class="basicswim-content">
+            <p>
+                <?php echo $program_headline[0]->short_desc; ?>
+            </p>
         </div>
         
-        <div class="section-basicswim">
-        	<div class="basicswim-box wow flipInY">
-            	<a href="#" class="basicswim-step step-one">
-                	step one
-                </a>
-                
-                <div class="basicswim-line"></div>
-                
-                <a href="#" class="basicswim-title step-one">
-                	Learn swim from teacher
-                </a>
-                
-                <div class="basicswim-line"></div>
-                
-                <p class="basicswim-text">
-                	Lorem ipsum dolor astime mume masd lorem ipsum dolor astime mume masd lorem ipsum dolor astime mume masd lorem ipsum dolor astime mume masd lorem ipsum dolor astime mume masd lorem ipsum dolor astime mume masd.
-                </p>
-            </div> <!-- BASIC SWIM BOX -->
-            
-            <div class="basicswim-box wow flipInY" data-wow-delay="200ms">
-            	<a href="#" class="basicswim-step step-two">
-                	step two
-                </a>
-                
-                <div class="basicswim-line"></div>
-                
-                <a href="#" class="basicswim-title step-two">
-                	Know your Swim Style
-                </a>
-                
-                <div class="basicswim-line"></div>
-                
-                <p class="basicswim-text">
-                	Lorem ipsum dolor astime mume masd lorem ipsum dolor astime mume masd lorem ipsum dolor astime mume masd lorem ipsum dolor astime mume masd lorem ipsum dolor astime mume masd lorem ipsum dolor astime mume masd.
-                </p>
-            </div> <!-- BASIC SWIM BOX -->
-            
-            <div class="basicswim-box wow flipInY" data-wow-delay="400ms">
-            	<a href="#" class="basicswim-step step-three">
-                	step three
-                </a>
-                
-                <div class="basicswim-line"></div>
-                
-                <a href="#" class="basicswim-title step-three">
-                	Learn Basic Swim from athelete
-                </a>
-                
-                <div class="basicswim-line"></div>
-                
-                <p class="basicswim-text">
-                	Lorem ipsum dolor astime mume masd lorem ipsum dolor astime mume masd lorem ipsum dolor astime mume masd lorem ipsum dolor astime mume masd lorem ipsum dolor astime mume masd lorem ipsum dolor astime mume masd.
-                </p>
-            </div> <!-- BASIC SWIM BOX -->
-            
-            <div class="basicswim-box wow flipInY" data-wow-delay="600ms">
-            	<a href="#" class="basicswim-step step-four">
-                	step four
-                </a>
-                
-                <div class="basicswim-line"></div>
-                
-                <a href="#" class="basicswim-title step-four">
-                	Get routine care to care
-                </a>
-                
-                <div class="basicswim-line"></div>
-                
-                <p class="basicswim-text">
-                	Lorem ipsum dolor astime mume masd lorem ipsum dolor astime mume masd lorem ipsum dolor astime mume masd lorem ipsum dolor astime mume masd lorem ipsum dolor astime mume masd lorem ipsum dolor astime mume masd.
-                </p>
-            </div> <!-- BASIC SWIM BOX -->
-        </div> <!-- SECTION BASIC SWIM -->
+        <?php $program_level = $this->m_frontend->getProgramLevel($program_headline[0]->id); ?>
+        <?php if(count($program_level) > 0): ?>
+            <div class="section-basicswim">
+                <?php foreach($program_level as $item): ?>
+                    <?php if($item->level == 1): ?>
+                        <?php $v = 'beginner'; ?>
+                    <?php elseif($item->level == 2): ?>
+                        <?php $v = 'intermediate'; ?>
+                    <?php elseif($item->level == 3): ?>
+                        <?php $v = 'advance'; ?>
+                    <?php endif; ?>
+                	<div class="basicswim-box wow flipInY">
+                        <a href="<?php echo base_url('program/'.$v.'/'.$item->permalink); ?>" class="basicswim-step step-one">
+                            <?php if($item->level == 1): ?>
+                                Beginner
+                            <?php elseif($item->level == 2): ?>
+                                Intermediate
+                            <?php elseif($item->level == 3): ?>
+                                Advance
+                            <?php endif; ?>
+                        </a>
+                        
+                        <div class="basicswim-line"></div>
+                        
+                        <a href="<?php echo base_url('program/'.$v.'/'.$item->permalink); ?>" class="basicswim-title step-one">
+                            <?php echo $item->title; ?>
+                        </a>
+                        
+                        <div class="basicswim-line"></div>
+                        
+                        <p class="basicswim-text">
+                            <?php echo $item->short_desc; ?>
+                        </p>
+                    </div> <!-- BASIC SWIM BOX -->
+                <?php endforeach; ?>
+            </div> <!-- SECTION BASIC SWIM -->
+        <?php endif; ?>
     </div> <!-- CONTAINER -->
 </div> <!-- SECTION -->
+<?php endif; ?>

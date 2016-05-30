@@ -64,19 +64,25 @@ i.right {
 }
 
 .dropdown-content {
-	min-width: 120px;
+	min-width: 175px;
+	position: relative;
 }
 
 .dropdown-content li {
 	background-color: #0072bc;
 }
-.dropdown-content li:hover, .dropdown-content li.active, .dropdown-content li.selected {
+.dropdown-content li.sub-program {
+	
+}
+.dropdown-content li:hover {
+	background-color: #0072bc;
+}
+.dropdown-content li.sub-program:hover {
 	background-color: #0072bc;
 }
 
 .dropdown-content li > a, .dropdown-content li > span {
-	background-color: #0072bc;
-    border-left: 5px solid #0072bc;
+    border-left: 5px solid transparent;
     color: #fff;
     margin: 14px 0;
     padding: 0 16px;
@@ -85,6 +91,11 @@ i.right {
 .dropdown-content li > a:hover {
 	border-bottom: none;
 	border-left: 5px solid #fff;
+}
+
+.dropdown-content li.sub-program a {
+	text-indent: 28px;
+	font-size: 14px;
 }
 
 .dropdown-content li.divider {
@@ -465,7 +476,7 @@ ul.collapsible {
     width: 100%;
 }
 ul.collapsible li {
-	margin-bottom: 30px;
+	margin: 10px 0;
 }
 
 ul.collapsible .collapsible-header {
@@ -506,6 +517,7 @@ ul.collapsible .collapsible-body a {
 .blog-img-wrap img {
 	display: block;
 	margin: 0 auto;
+	max-width: 100%;
 }
 
 .detail-margin {
@@ -622,7 +634,7 @@ ul.pagination li {
     display: inline-block;
     font-size: 14px;
     line-height: 20px;
-    padding: 0 5px;
+    padding: 3px 5px 0px;
     text-align: center;
     vertical-align: middle;
 }
@@ -802,6 +814,21 @@ form#contact .submit button:hover {
 	background-color: #fff;
 	color: #0066b2;
 }
+
+.program-caption {
+	clear: both;
+	display: block;
+	float: left;
+	margin-top: 30px;
+	text-align: center;
+	width: 100%;
+}
+.program-caption h3 {
+	margin: 0;
+	font-family: "AvantGarde-Md";
+	font-size: 34px;
+}
+
 /* END CONTENT STYLE */
 
 /* FOOTER STYLE */

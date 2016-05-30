@@ -28,6 +28,10 @@
             </td>
         </tr>
         <tr>
+            <td>Headline</td>
+            <td><input type="checkbox" name="headline" value="1"></td>
+        </tr>
+        <tr>
             <td>Foto Utama<code>Maksimal 2MB</code></td>
             <td>
                 <input type="file" name="userfile" required="required" />

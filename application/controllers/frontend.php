@@ -14,7 +14,9 @@ class Frontend extends CI_Controller {
     	$data['base'] = 'Home';
 
         $data['content_headline'] = $this->m_frontend->headline(3);
+        $data['program_headline'] = $this->m_frontend->getProgram('', 1);
         
+        $headline_id = '';
         foreach($data['content_headline'] as $i){
             $headline_id[] = $i->id;
         }
@@ -121,7 +123,7 @@ class Frontend extends CI_Controller {
         $this->breadcrumbs->push('Home', '/');
         $this->breadcrumbs->push('Program', '/program');
 
-        $data['content_program'] = $this->m_frontend->getProgram('');
+        $data['content_program'] = $this->m_frontend->getProgram('', '');
         //var_dump($data['content_program']);exit;
 
         $data['mainpage'] = 'frontend/program';
@@ -137,7 +139,8 @@ class Frontend extends CI_Controller {
         if(count($data['content_detail']) < 1 || $title == FALSE){
             redirect('pagenotfound');
         }
-        $data['program_title'] = $this->m_frontend->getProgram($data['content_detail'][0]->id_program);
+        $data['program_title'] = $this->m_frontend->getProgram($data['content_detail'][0]->id_program,
+            '');
 
         $this->breadcrumbs->push('Home', '/');
         $this->breadcrumbs->push('Program', '/program');
@@ -154,6 +157,81 @@ class Frontend extends CI_Controller {
         $this->breadcrumbs->push('Home', '/');
         $this->breadcrumbs->push('Contact', '/contact');
 
+        require_once APPPATH."/third_party/recaptchalib.php";
+
+        $data['siteKey'] = "6LefQSETAAAAAF8zYXNeFwEV7bVQWg1v6-NCzbO_";
+        $secret = "6LefQSETAAAAAD1NlnboPgbhT6W3Kg8enggbfGcZ";
+        // reCAPTCHA supported 40+ languages listed here: https://developers.google.com/recaptcha/docs/language
+        $data['lang'] = "en";
+        // The response from reCAPTCHA
+        $resp = null;
+        // The error code from reCAPTCHA, if any
+        $error = null;
+        $reCaptcha = new ReCaptcha($secret);
+        // Was there a reCAPTCHA response?
+        if ($this->input->post('g-recaptcha-response')) {
+            $resp = $reCaptcha->verifyResponse(
+                    $_SERVER["REMOTE_ADDR"], $this->input->post('g-recaptcha-response')
+            );
+        }
+
+        if ($this->input->post('submit')) {
+            //validation
+            $valid = $this->form_validation;
+            $valid->set_rules('name', 'name', 'required');
+            $valid->set_rules('email', 'Email', 'strtolower|required|valid_email');
+            $valid->set_rules('message', 'Message', 'required|min_length[3]');
+
+            if ($valid->run() == false) {
+                
+            } else {
+                if ($resp != null && $resp->success) {
+                    // $config = array(
+                    //     'protocol' => 'smtp',
+                    //     'smtp_host' => 'smtp.mailgun.org',
+                    //     'smtp_port' => 587,
+                    //     'smtp_user' => 'postmaster@gramediamajalah.com',
+                    //     'smtp_pass' => '7df21f61bff564ffd1eef1ca8f991ff7',
+                    //     'mailtype' => 'text',
+                    //     'charset' => 'utf-8',
+                    //     'wordwrap' => true
+                    // );
+
+                    $config = array(
+                        'protocol' => 'smtp',
+                        'smtp_host' => 'ssl://smtp.gmail.com',
+                        'smtp_port' => 465,
+                        'smtp_user' => 'miftahariss15@gmail.com',
+                        'smtp_pass' => 'apaajaboleh0804',
+                        'mailtype' => 'text',
+                        'charset' => 'utf-8',
+                        'wordwrap' => true
+                    );
+
+                    $this->load->library('email');
+
+                    $this->email->initialize($config);
+
+                    $this->email->set_newline("\r\n");
+                    $this->email->from($this->input->post('email'), $this->input->post('name'));
+                    $this->email->to('af.yorihehanussa@gmail.com');
+                    //$this->email->to('miftahariss15@gmail.com');
+                    $this->email->subject($this->input->post('name'));
+
+                    $isi = "Name: ".$this->input->post('name')."\n"."Email: ".$this->input->post('email')."\n"."\n\n"."Message: \n".$this->input->post('message');
+                    $this->email->message($isi);
+                    if ($this->email->send()) {
+                        $this->session->set_flashdata('success', 'Email Sent');
+                        redirect(current_url());
+                    } else {
+                        show_error($this->email->print_debugger());
+                    }
+                } else {
+                    echo "<script>alert('Wrong captcha, please try again.');</script>";
+                }
+            }
+        }
+
         $data['mainpage'] = 'frontend/contact';
         $this->load->view('frontend/templates', $data);
     }
@@ -163,6 +241,8 @@ class Frontend extends CI_Controller {
 
         $this->breadcrumbs->push('Home', '/');
         $this->breadcrumbs->push('About', '/about');
+
+        $data['content_about'] = $this->m_frontend->getAbout();
 
         $data['mainpage'] = 'frontend/about';
         $this->load->view('frontend/templates', $data);

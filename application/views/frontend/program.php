@@ -15,7 +15,7 @@
         </div>
         
         <ul class="collapsible" data-collapsible="accordion">
-            <?php if (count($content_program) > 0) :?>
+            <?php if (count($content_program) > 0) : ?>
                 <?php $i = 1; ?>
                 <?php foreach($content_program as $data): ?>
                     <li class="wow fadeInRight" data-wow-delay="<?php echo $i; ?>s"> <!-- DATA WOW DELAY KELIPATAN TAMBAH 1 -->
@@ -24,7 +24,7 @@
                         </div>
                         
                         <?php $program_level = $this->m_frontend->getProgramLevel($data->id); ?>
-                        <?php if(count($program_level) > 1): ?>
+                        <?php if(count($program_level) > 0): ?>
                             <div class="collapsible-body">
                                 <ul>
                                     <?php foreach($program_level as $item): ?>
@@ -46,6 +46,9 @@
                                                 <?php endif; ?>
                                             </a>
                                         </li>
+                                        <?php if($item->level == 1 || $item->level == 2): ?>
+                                            <li class="divider"></li>
+                                        <?php endif; ?>
                                     <?php endforeach; ?>
                                 </ul>
                             </div>
