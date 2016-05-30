@@ -17,7 +17,7 @@
 if($_SERVER['HTTP_HOST'] == "localhost") {
 	$config['base_url']	= 'http://localhost/bisarenang/';
 } else {
-	$config['base_url']	= 'http://202.43.165.139/staging/microsite-motorfreakz/accura/';
+	$config['base_url']	= 'http://bisarenang.com/';
 }
 
 /*
