@@ -58,8 +58,8 @@
                     <?php endif; ?>
                 </td>
                 <td>
-                    <?php echo anchor('/backend/acladmin/edit_gallery_photo/' . $article->id . '/' . $photo->id, "<span class='icon-edit'></span> Edit",array('class'=>'btn','onclick'=>"return confirm('yakin mau edit photo ini?')"));?>
-                    <?php echo anchor('/backend/acladmin/articlegaleridelete/' . $article->id . '/' . $photo->id, "<span class='icon-remove-sign'></span> Delete",array('class'=>'btn','onclick'=>"return confirm('yakin mau delete photo ini?')"));?>
+                    <?php echo anchor('/admin/acladmin/edit_gallery_photo/' . $article->id . '/' . $photo->id, "<span class='icon-edit'></span> Edit",array('class'=>'btn','onclick'=>"return confirm('yakin mau edit photo ini?')"));?>
+                    <?php echo anchor('/admin/acladmin/articlegaleridelete/' . $article->id . '/' . $photo->id, "<span class='icon-remove-sign'></span> Delete",array('class'=>'btn','onclick'=>"return confirm('yakin mau delete photo ini?')"));?>
                 </td>
             </tr>
             <input type="hidden" name="id_photo" value="<?php echo $photo->id ?>" />

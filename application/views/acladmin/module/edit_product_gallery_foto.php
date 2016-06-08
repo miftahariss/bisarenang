@@ -1,5 +1,5 @@
 <h3 class="alert alert-info"><?php echo $title; ?></h3>
-<a class="btn" href="<?php echo base_url()?>backend/acladmin/edit_project/<?=$this->uri->segment(4)?>"><span class="icon-arrow-left"></span> Gallery Album</a><hr />
+<a class="btn" href="<?php echo base_url()?>admin/acladmin/edit_project/<?=$this->uri->segment(4)?>"><span class="icon-arrow-left"></span> Gallery Album</a><hr />
 <?php foreach ($photos as $result) : ?>
 <form action="" method="post" enctype="multipart/form-data">
     <table class="table table-striped">

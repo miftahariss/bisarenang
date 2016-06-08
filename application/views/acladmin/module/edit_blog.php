@@ -84,8 +84,8 @@ function editPhoto() {
                     <?php endif; ?>
                 </td>
                 <td>
-                    <?php echo anchor('/backend/acladmin/edit_article_gallery_foto/' . $article->id . '/' . $photo->id, "<span class='icon-edit'></span> Edit",array('class'=>'btn','onclick'=>"return confirm('yakin mau edit photo ini?')"));?>
-                    <?php echo anchor('/backend/acladmin/delete_article_gallery_foto/' . $article->id . '/' . $photo->id, "<span class='icon-remove-sign'></span> Delete",array('class'=>'btn','onclick'=>"return confirm('yakin mau delete photo ini?')"));?>
+                    <?php echo anchor('/admin/acladmin/edit_article_gallery_foto/' . $article->id . '/' . $photo->id, "<span class='icon-edit'></span> Edit",array('class'=>'btn','onclick'=>"return confirm('yakin mau edit photo ini?')"));?>
+                    <?php echo anchor('/admin/acladmin/delete_article_gallery_foto/' . $article->id . '/' . $photo->id, "<span class='icon-remove-sign'></span> Delete",array('class'=>'btn','onclick'=>"return confirm('yakin mau delete photo ini?')"));?>
                 </td>
             </tr>
             <input type="hidden" name="id_photo" value="<?php echo $photo->id ?>" />

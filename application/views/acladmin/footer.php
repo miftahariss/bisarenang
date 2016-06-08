@@ -1,7 +1,7 @@
 <div class="container">
     <div class="breadcrumb">
         <a href="<?php echo base_url() ?>" target="_blank">Home Page</a>
-        <a href="<?php echo base_url()?>backend/cmsauth/logout"><span class="icon-lock"></span> Logout</a>
+        <a href="<?php echo base_url()?>admin/cmsauth/logout"><span class="icon-lock"></span> Logout</a>
 <!--        <a href="<?php echo base_url() ?>acladmin/view_news">Article</a> /
         <a href="<?php echo base_url() ?>acladmin/view_event">Event</a> /-->
 

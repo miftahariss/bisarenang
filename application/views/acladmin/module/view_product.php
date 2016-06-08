@@ -4,9 +4,9 @@
 <table class="table table-hover table-condensed">
     <tbody class="alert alert-info">
     	<tr>
-	        <a href="<?php echo base_url()?>backend/acladmin/add_product/" class="btn tambah_artikel"><span class="icon-plus-sign"></span> Tambah Product</a>
+	        <a href="<?php echo base_url()?>admin/acladmin/add_product/" class="btn tambah_artikel"><span class="icon-plus-sign"></span> Tambah Product</a>
 	        <?php $attributes = array('class'=>'navbar-form pull-left'); ?>
-	        <?php /* echo form_open('backend/acladmin/search_media', $attributes); ?>
+	        <?php /* echo form_open('admin/acladmin/search_media', $attributes); ?>
 	            <span class="pull-right"><input type="submit" class="btn btn-primary" name="submit" value="Search" /></span>
 	            <span class="pull-right"><input type="text" class="input-xlarge" name="search" placeholder="Search by title" /></span>
 	        <?php echo form_close(); */ ?>
@@ -53,8 +53,8 @@
                     <button class="btn dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
                     <ul class="dropdown-menu">
 <!--                        <li><a href="#<?php //echo base_url()?>" target="_blank"><span class="icon-list-alt"></span> Detail</a></li>-->
-                        <li><a href="<?php echo base_url()?>backend/acladmin/edit_product/<?php echo $r->id ?>"><span class="icon-edit"></span> Edit</a></li>
-                        <li><a href="<?php echo base_url()?>backend/acladmin/delete_product/<?php echo $r->id ?>" onclick="return confirm('Yakin data ini ingin dihapus?')"><span class="icon-remove-sign"></span> Delete</a></li>
+                        <li><a href="<?php echo base_url()?>admin/acladmin/edit_product/<?php echo $r->id ?>"><span class="icon-edit"></span> Edit</a></li>
+                        <li><a href="<?php echo base_url()?>admin/acladmin/delete_product/<?php echo $r->id ?>" onclick="return confirm('Yakin data ini ingin dihapus?')"><span class="icon-remove-sign"></span> Delete</a></li>
                     </ul>
                 </div>
             </td>

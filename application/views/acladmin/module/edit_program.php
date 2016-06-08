@@ -62,7 +62,7 @@ function editPhoto() {
             <td><?php echo $program_beginner->title; ?></td>
             <td><img src="<?php echo base_url()?>asset_admin/assets/uploads/cover/small/<?php echo $program_beginner->filename ?>" /></td>
             <td>
-                <?php echo anchor('/backend/acladmin/edit_program_level/' . $article->id . '/' . $program_beginner->id.'/1', "<span class='icon-edit'></span> Edit",array('class'=>'btn','onclick'=>"return confirm('yakin mau edit program ini?')"));?>
+                <?php echo anchor('/admin/acladmin/edit_program_level/' . $article->id . '/' . $program_beginner->id.'/1', "<span class='icon-edit'></span> Edit",array('class'=>'btn','onclick'=>"return confirm('yakin mau edit program ini?')"));?>
             </td>
         </tr>
         <tr>
@@ -77,7 +77,7 @@ function editPhoto() {
             <td><?php echo $program_intermediate->title; ?></td>
             <td><img src="<?php echo base_url()?>asset_admin/assets/uploads/cover/small/<?php echo $program_intermediate->filename ?>" /></td>
             <td>
-                <?php echo anchor('/backend/acladmin/edit_program_level/' . $article->id . '/' . $program_intermediate->id.'/2', "<span class='icon-edit'></span> Edit",array('class'=>'btn','onclick'=>"return confirm('yakin mau edit program ini?')"));?>
+                <?php echo anchor('/admin/acladmin/edit_program_level/' . $article->id . '/' . $program_intermediate->id.'/2', "<span class='icon-edit'></span> Edit",array('class'=>'btn','onclick'=>"return confirm('yakin mau edit program ini?')"));?>
             </td>
         </tr>
         <tr>
@@ -92,7 +92,7 @@ function editPhoto() {
             <td><?php echo $program_advanced->title; ?></td>
             <td><img src="<?php echo base_url()?>asset_admin/assets/uploads/cover/small/<?php echo $program_advanced->filename ?>" /></td>
             <td>
-                <?php echo anchor('/backend/acladmin/edit_program_level/' . $article->id . '/' . $program_advanced->id.'/3', "<span class='icon-edit'></span> Edit",array('class'=>'btn','onclick'=>"return confirm('yakin mau edit program ini?')"));?>
+                <?php echo anchor('/admin/acladmin/edit_program_level/' . $article->id . '/' . $program_advanced->id.'/3', "<span class='icon-edit'></span> Edit",array('class'=>'btn','onclick'=>"return confirm('yakin mau edit program ini?')"));?>
             </td>
         </tr>
     </table>
@@ -125,8 +125,8 @@ function editPhoto() {
                     <?php endif; ?>
                 </td>
                 <td>
-                    <?php echo anchor('/backend/acladmin/edit_article_gallery_foto/' . $article->id . '/' . $photo->id, "<span class='icon-edit'></span> Edit",array('class'=>'btn','onclick'=>"return confirm('yakin mau edit photo ini?')"));?>
-                    <?php echo anchor('/backend/acladmin/delete_article_gallery_foto/' . $article->id . '/' . $photo->id, "<span class='icon-remove-sign'></span> Delete",array('class'=>'btn','onclick'=>"return confirm('yakin mau delete photo ini?')"));?>
+                    <?php echo anchor('/admin/acladmin/edit_article_gallery_foto/' . $article->id . '/' . $photo->id, "<span class='icon-edit'></span> Edit",array('class'=>'btn','onclick'=>"return confirm('yakin mau edit photo ini?')"));?>
+                    <?php echo anchor('/admin/acladmin/delete_article_gallery_foto/' . $article->id . '/' . $photo->id, "<span class='icon-remove-sign'></span> Delete",array('class'=>'btn','onclick'=>"return confirm('yakin mau delete photo ini?')"));?>
                 </td>
             </tr>
             <input type="hidden" name="id_photo" value="<?php echo $photo->id ?>" />

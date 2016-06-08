@@ -13,7 +13,7 @@
 </head>
 <body>
     <div class="container">
-        <form action="<?php echo base_url()?>backend/cmsauth/check" method="post" class="form-signin">
+        <form action="<?php echo base_url()?>admin/cmsauth/check" method="post" class="form-signin">
             <?php if ($this->session->flashdata('error')) : ?>
             <div class="alert alert-error alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span

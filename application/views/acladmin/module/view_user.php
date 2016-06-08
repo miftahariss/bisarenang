@@ -1,5 +1,5 @@
 <h3 class="alert alert-info"><?php echo $title; ?></h3>
-<a href="<?php echo base_url()?>backend/acladmin/add_user" class="btn"><span class="icon-plus-sign"></span> Tambah User Baru</a>
+<a href="<?php echo base_url()?>admin/acladmin/add_user" class="btn"><span class="icon-plus-sign"></span> Tambah User Baru</a>
 <hr />
 <table class="table table-hover table-condensed">
     <tr class="alert alert-info">
@@ -44,8 +44,8 @@
                     <div class="btn-group">
                         <button class="btn btn-mini dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
                         <ul class="dropdown-menu">
-                            <li><a href="<?php echo base_url()?>backend/acladmin/edit_user/<?php echo $user->id; ?>"><span class="icon-edit"></span> Edit</a></li>
-                            <li><a href="<?php echo base_url()?>backend/acladmin/delete_user/<?php echo $user->id; ?>" onclick="return confirm('Yakin data ini ingin dihapus?')"><span class="icon-remove-sign"></span> Delete</a></li>
+                            <li><a href="<?php echo base_url()?>admin/acladmin/edit_user/<?php echo $user->id; ?>"><span class="icon-edit"></span> Edit</a></li>
+                            <li><a href="<?php echo base_url()?>admin/acladmin/delete_user/<?php echo $user->id; ?>" onclick="return confirm('Yakin data ini ingin dihapus?')"><span class="icon-remove-sign"></span> Delete</a></li>
                         </ul>
                     </div>
                 </td>
