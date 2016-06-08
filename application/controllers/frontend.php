@@ -214,8 +214,8 @@ class Frontend extends CI_Controller {
 
                     $this->email->set_newline("\r\n");
                     $this->email->from($this->input->post('email'), $this->input->post('name'));
-                    $this->email->to('af.yorihehanussa@gmail.com');
-                    //$this->email->to('miftahariss15@gmail.com');
+                    $this->email->to('info@bisarenang.com');
+                    $this->email->cc('bisarenang.id@gmail.com');
                     $this->email->subject($this->input->post('name'));
 
                     $isi = "Name: ".$this->input->post('name')."\n"."Email: ".$this->input->post('email')."\n"."\n\n"."Message: \n".$this->input->post('message');
