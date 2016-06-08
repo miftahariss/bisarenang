@@ -33,10 +33,10 @@ class Cmsauth extends CI_Controller {
             @$_SESSION['ses_kcfinder']['uploadURL'] = URL_EDITOR;
             @$_SESSION['ses_kcfinder']['uploadDir'] = DIR_EDITOR;
 
-            redirect('backend/acladmin');
+            redirect('admin/acladmin');
         }
         $this->session->set_flashdata('error', 'User dan Password Salah');
-        redirect('backend/cmsauth');
+        redirect('admin/cmsauth');
     }
 
     function logout() {
@@ -49,6 +49,6 @@ class Cmsauth extends CI_Controller {
         session_start();
         unset($_SESSION['ses_kcfinder']);
 
-        redirect('backend/cmsauth');
+        redirect('admin/cmsauth');
     }
 }

@@ -15,7 +15,7 @@ class Acladmin extends CI_Controller {
         //$this->load->helper('video');
 
         if (!$this->session->userdata('login')) {
-            redirect('backend/cmsauth');
+            redirect('admin/cmsauth');
         }
         $this->sess_id = $this->session->userdata('user_id');
 
@@ -41,7 +41,7 @@ class Acladmin extends CI_Controller {
 
     private function onlyAdmin() {
         if ($this->session->userdata('role') != 1) {
-            redirect('backend/acladmin');
+            redirect('admin/acladmin');
         }
     }
 
@@ -602,7 +602,7 @@ class Acladmin extends CI_Controller {
                 //     $gallery = $this->upload_gallery();
                 //     $this->acladminmodel->addGalleryArticle($gallery, $id);
                 // }
-                redirect('backend/acladmin/view_blog');
+                redirect('admin/acladmin/view_blog');
             }
         }
         $data['page'] = 'add_blog';
@@ -713,7 +713,7 @@ class Acladmin extends CI_Controller {
                 //     $gallery = $this->upload_gallery();
                 //     $this->acladminmodel->addGalleryArticle($gallery, $id);
                 // }
-                redirect('backend/acladmin/view_program');
+                redirect('admin/acladmin/view_program');
             }
         }
         $data['page'] = 'add_program';
@@ -758,7 +758,7 @@ class Acladmin extends CI_Controller {
                 //     $gallery = $this->upload_gallery();
                 //     $this->acladminmodel->addGalleryArticle($gallery, $id);
                 // }
-                redirect('backend/acladmin/view_safety');
+                redirect('admin/acladmin/view_safety');
             }
         }
         $data['page'] = 'add_safety';
@@ -801,7 +801,7 @@ class Acladmin extends CI_Controller {
 //                    $gallery = $this->upload_gallery();
 //                    $this->acladminmodel->addGalleryArticle($gallery, $id);
 //                }
-                redirect('backend/acladmin/view_slider');
+                redirect('admin/acladmin/view_slider');
             }
         }
         $data['page'] = 'add_slider';
@@ -814,7 +814,7 @@ class Acladmin extends CI_Controller {
     public function view_blog() {
         $data['headline'] = $this->input->get('filter') ? $this->input->get('filter') : '1';
         $this->load->library('pagination');
-        $config['base_url'] = site_url('backend/acladmin/view_blog');
+        $config['base_url'] = site_url('admin/acladmin/view_blog');
         $config['per_page'] = $this->limit;
         $config['total_rows'] = $this->acladminmodel->countBlog(1);
         $config['uri_segment'] = 4;
@@ -834,7 +834,7 @@ class Acladmin extends CI_Controller {
     public function view_safety() {
         $data['headline'] = $this->input->get('filter') ? $this->input->get('filter') : '1';
         $this->load->library('pagination');
-        $config['base_url'] = site_url('backend/acladmin/view_safety');
+        $config['base_url'] = site_url('admin/acladmin/view_safety');
         $config['per_page'] = $this->limit;
         $config['total_rows'] = $this->acladminmodel->countSafety(1);
         $config['uri_segment'] = 4;
@@ -854,7 +854,7 @@ class Acladmin extends CI_Controller {
     public function view_program() {
         $data['headline'] = $this->input->get('filter') ? $this->input->get('filter') : '1';
         $this->load->library('pagination');
-        $config['base_url'] = site_url('backend/acladmin/view_program');
+        $config['base_url'] = site_url('admin/acladmin/view_program');
         $config['per_page'] = $this->limit;
         $config['total_rows'] = $this->acladminmodel->countProgram(1);
         $config['uri_segment'] = 4;
@@ -938,7 +938,7 @@ class Acladmin extends CI_Controller {
                     // $gallery = $this->upload_gallery();
                     // $this->acladminmodel->addGalleryArticle($gallery, $id);
 
-                    redirect('backend/acladmin/view_blog');
+                    redirect('admin/acladmin/view_blog');
                 }
             }
             $data['page'] = 'edit_blog';
@@ -949,7 +949,7 @@ class Acladmin extends CI_Controller {
             $data['content'] = $this->load->view('acladmin/module/edit_blog', $data, true);
             $this->load->view('acladmin/main', $data);
         } else {
-            redirect('backend/acladmin/view_blog');
+            redirect('admin/acladmin/view_blog');
         }
     }
 
@@ -997,7 +997,7 @@ class Acladmin extends CI_Controller {
                     // $gallery = $this->upload_gallery();
                     // $this->acladminmodel->addGalleryArticle($gallery, $id);
 
-                    redirect('backend/acladmin/view_safety');
+                    redirect('admin/acladmin/view_safety');
                 }
             }
             $data['page'] = 'edit_safety';
@@ -1008,7 +1008,7 @@ class Acladmin extends CI_Controller {
             $data['content'] = $this->load->view('acladmin/module/edit_safety', $data, true);
             $this->load->view('acladmin/main', $data);
         } else {
-            redirect('backend/acladmin/view_safety');
+            redirect('admin/acladmin/view_safety');
         }
     }
 
@@ -1056,7 +1056,7 @@ class Acladmin extends CI_Controller {
                     // $gallery = $this->upload_gallery();
                     // $this->acladminmodel->addGalleryArticle($gallery, $id);
 
-                    redirect('backend/acladmin/view_program');
+                    redirect('admin/acladmin/view_program');
                 }
             }
             $data['page'] = 'edit_program';
@@ -1072,7 +1072,7 @@ class Acladmin extends CI_Controller {
             $data['content'] = $this->load->view('acladmin/module/edit_program', $data, true);
             $this->load->view('acladmin/main', $data);
         } else {
-            redirect('backend/acladmin/view_program');
+            redirect('admin/acladmin/view_program');
         }
     }
 
@@ -1125,7 +1125,7 @@ class Acladmin extends CI_Controller {
                     // $gallery = $this->upload_gallery();
                     // $this->acladminmodel->addGalleryArticle($gallery, $id);
 
-                    redirect('backend/acladmin/edit_program/'.$id_program);
+                    redirect('admin/acladmin/edit_program/'.$id_program);
                 }
             }
             $data['page'] = 'edit_program_level';
@@ -1138,7 +1138,7 @@ class Acladmin extends CI_Controller {
             $data['content'] = $this->load->view('acladmin/module/edit_program_level', $data, true);
             $this->load->view('acladmin/main', $data);
         } else {
-            redirect('backend/acladmin/edit_program/'.$id_program);
+            redirect('admin/acladmin/edit_program/'.$id_program);
         }
     }
 
@@ -1182,7 +1182,7 @@ class Acladmin extends CI_Controller {
 //                    $gallery = $this->upload_gallery();
 //                    $this->acladminmodel->addGalleryArticle($gallery, $id);
 
-                    redirect('backend/acladmin/view_slider');
+                    redirect('admin/acladmin/view_slider');
                 }
             }
             $data['page'] = 'edit_slider';
@@ -1193,7 +1193,7 @@ class Acladmin extends CI_Controller {
             $data['content'] = $this->load->view('acladmin/module/edit_slider', $data, true);
             $this->load->view('acladmin/main', $data);
         } else {
-            redirect('backend/acladmin/view_slider');
+            redirect('admin/acladmin/view_slider');
         }
     }
 
@@ -1223,7 +1223,7 @@ class Acladmin extends CI_Controller {
 //                    $gallery = $this->upload_gallery();
 //                    $this->acladminmodel->addGalleryArticle($gallery, $id);
 
-                    redirect('backend/acladmin/view_about');
+                    redirect('admin/acladmin/view_about');
                 }
             }
             $data['page'] = 'edit_about';
@@ -1234,7 +1234,7 @@ class Acladmin extends CI_Controller {
             $data['content'] = $this->load->view('acladmin/module/edit_about', $data, true);
             $this->load->view('acladmin/main', $data);
         } else {
-            redirect('backend/acladmin/view_about');
+            redirect('admin/acladmin/view_about');
         }
     }
 
@@ -1243,9 +1243,9 @@ class Acladmin extends CI_Controller {
             $data = array('status' => 0);
             $id = $this->uri->segment(4);
             $this->acladminmodel->deleteBlog($data, $id);
-            redirect('backend/acladmin/view_blog');
+            redirect('admin/acladmin/view_blog');
         } else {
-            redirect('backend/acladmin/view_blog');
+            redirect('admin/acladmin/view_blog');
         }
     }
 
@@ -1254,9 +1254,9 @@ class Acladmin extends CI_Controller {
             $data = array('status' => 0);
             $id = $this->uri->segment(4);
             $this->acladminmodel->deleteSafety($data, $id);
-            redirect('backend/acladmin/view_safety');
+            redirect('admin/acladmin/view_safety');
         } else {
-            redirect('backend/acladmin/view_safety');
+            redirect('admin/acladmin/view_safety');
         }
     }
 
@@ -1265,9 +1265,9 @@ class Acladmin extends CI_Controller {
             $data = array('status' => 0);
             $id = $this->uri->segment(4);
             $this->acladminmodel->deleteSlider($data, $id);
-            redirect('backend/acladmin/view_slider');
+            redirect('admin/acladmin/view_slider');
         } else {
-            redirect('backend/acladmin/view_slider');
+            redirect('admin/acladmin/view_slider');
         }
     }
     
@@ -1304,7 +1304,7 @@ class Acladmin extends CI_Controller {
                     );
 
                     $this->acladminmodel->addUser($data);
-                    redirect('backend/acladmin/view_user');
+                    redirect('admin/acladmin/view_user');
                 }
             }
         }
@@ -1345,7 +1345,7 @@ class Acladmin extends CI_Controller {
         $this->onlyAdmin();
 
         $this->load->library('pagination');
-        $config['base_url'] = site_url('backend/acladmin/view_user');
+        $config['base_url'] = site_url('admin/acladmin/view_user');
         $config['per_page'] = $this->limit;
         $config['total_rows'] = $this->acladminmodel->countUser(1);
         $config['uri_segment'] = 4;
@@ -1403,7 +1403,7 @@ class Acladmin extends CI_Controller {
                             $data['password'] = sha1(md5($password));
 
                         $this->acladminmodel->updateUser($data, $id);
-                        redirect('backend/acladmin/view_user');
+                        redirect('admin/acladmin/view_user');
                     }
                 }
             }
@@ -1413,7 +1413,7 @@ class Acladmin extends CI_Controller {
             $data['title'] = 'Edit User';
             $data['content'] = $this->load->view('acladmin/module/add_user', $data, true);
         } else {
-            redirect('backend/acladmin/view_user');
+            redirect('admin/acladmin/view_user');
         }
         $this->load->view('acladmin/main', $data);
     }
@@ -1466,7 +1466,7 @@ class Acladmin extends CI_Controller {
             $id = $this->uri->segment(4);
             $this->acladminmodel->deleteUser($data, $id);
         }
-        redirect('backend/acladmin/view_user');
+        redirect('admin/acladmin/view_user');
     }
 
     /**
@@ -1476,7 +1476,7 @@ class Acladmin extends CI_Controller {
         $this->onlyAdmin();
 
         $this->load->library('pagination');
-        $config['base_url'] = site_url('backend/acladmin/archive_user');
+        $config['base_url'] = site_url('admin/acladmin/archive_user');
         $config['per_page'] = $this->limit;
         $config['total_rows'] = $this->acladminmodel->countUser(0);
         $config['uri_segment'] = 4;
@@ -1500,7 +1500,7 @@ class Acladmin extends CI_Controller {
             $data = array('status' => 1);
             $this->acladminmodel->activeUser($data, $id);
         }
-        redirect('backend/acladmin/view_user');
+        redirect('admin/acladmin/view_user');
     }
 
     /*     * ***************** END OFF USER ***************** */
