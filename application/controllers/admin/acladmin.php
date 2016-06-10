@@ -581,13 +581,14 @@ class Acladmin extends CI_Controller {
             } else {
 
                 $format_upload = $this->upload();
-                //$video_id = $this->get_youtube_id_from_url($this->input->post('video_id'));
+                $video_id = $this->get_youtube_id_from_url($this->input->post('video_id'));
                 $data = array(
                     'id_account' => 1,
                     'title' => $this->input->post('title'),
                     'short_desc' => $this->input->post('short_desc'),
                     'body' => $this->input->post('body'),
                     'filename' => $format_upload,
+                    'video_id' => $video_id,
                     'headline' => $this->input->post('headline') ? 1 : 0,
                     'permalink' => $permalink.'.html',
                     'created_date' => time(),
@@ -903,7 +904,7 @@ class Acladmin extends CI_Controller {
                     // show error in view
                 } else {
                     $format_upload = $this->upload();
-                    //$video_id = $this->get_youtube_id_from_url($this->input->post('video_id'));
+                    $video_id = $this->get_youtube_id_from_url($this->input->post('video_id'));
                     if ($format_upload != "") {
                         $data = array(
                             'id' => $id,
@@ -911,6 +912,7 @@ class Acladmin extends CI_Controller {
                             'short_desc' => $this->input->post('short_desc'),
                             'body' => $this->input->post('body'),
                             'filename' => $format_upload,
+                            'video_id' => '',
                             'headline'         => $this->input->post('headline') ? 1 : 0,
                             'permalink' => $permalink.'.html',
                             'modified_date' => time(),
@@ -924,6 +926,8 @@ class Acladmin extends CI_Controller {
                             'title' => $this->input->post('title'),
                             'short_desc' => $this->input->post('short_desc'),
                             'body' => $this->input->post('body'),
+                            'filename' => '',
+                            'video_id' => $video_id,
                             'headline'         => $this->input->post('headline') ? 1 : 0,
                             'permalink' => $permalink.'.html',
                             'meta_keywords' => $this->input->post('meta_keywords'),

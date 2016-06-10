@@ -49,49 +49,19 @@ function editPhoto() {
             	<?php else: ?>
             		<img src="<?php echo base_url()?>asset_admin/assets/uploads/cover/small/<?php echo $article->filename ?>" /><br />
             	<?php endif; ?>
-                <input type="file" name="userfile" />
-                <span class="alert-error"><?php echo form_error('userfile'); ?></span>
+                <input type="file" name="userfile" id="userfile" />
+                <span class="alert-error"><?php //echo form_error('userfile'); ?></span>
+            </td>
+        </tr>
+        <tr>
+            <td>Youtube URL</td>
+            <td>
+                <input type="text" name="video_id" id="video_id" value="<?php echo $article->video_id; ?>" class="input input-block-level" />
+                <span class="alert-error"><?php //echo form_error('title')?></span>
             </td>
         </tr>
         <input type="hidden" name="id_account" value="<?php echo $article->id_account; ?>" />
     </table>
-
-    <!-- <table class="table table-striped" id="editPhoto">
-        <tr>
-            <th colspan="5">Gallery <a class="btn" onclick="editPhoto()"><span class="icon icon-plus-sign"></span> Add Photo</a></th>
-        </tr>
-        <tr>
-
-            <td><u><b>Judul Foto</b></u></td>
-            <td><u><b>Deskripsi Foto</b></u></td>
-            <td><u><b>Foto</b></u><code>Maksimal 2MB</code> | <code>minimum file dimension 980 x 600 pixel</code></td>
-            <td><u><b>Aksi</b></u></td>
-        </tr>
-        <?php foreach ($photos as $photo): ?>
-            <tr>
-
-                <td>
-                    <?php echo $photo->title?>
-                </td>
-                <td>
-                    <?php echo $photo->body?>
-                </td>
-                <td>
-                    <?php if ($photo->filename == 0): ?>
-                        <span class="label label-important">Foto tidak ditemukan!</span>
-                    <?php else: ?>
-                        <img class="thumbnail" src="<?php echo base_url()?>asset_admin/assets/uploads/cover/small/<?php echo $photo->filename?>" width="100" /><br />
-                    <?php endif; ?>
-                </td>
-                <td>
-                    <?php echo anchor('/admin/acladmin/edit_article_gallery_foto/' . $article->id . '/' . $photo->id, "<span class='icon-edit'></span> Edit",array('class'=>'btn','onclick'=>"return confirm('yakin mau edit photo ini?')"));?>
-                    <?php echo anchor('/admin/acladmin/delete_article_gallery_foto/' . $article->id . '/' . $photo->id, "<span class='icon-remove-sign'></span> Delete",array('class'=>'btn','onclick'=>"return confirm('yakin mau delete photo ini?')"));?>
-                </td>
-            </tr>
-            <input type="hidden" name="id_photo" value="<?php echo $photo->id ?>" />
-        <?php endforeach; ?>
-
-    </table> -->
 
     <table class="table table-striped">
         <tr>
@@ -101,3 +71,19 @@ function editPhoto() {
 </form>
 <script type="text/javascript" src="<?php echo base_url();?>asset_admin/assets/js/ckeditor/ckeditor.js"></script>
 <script type="text/javascript">CKEDITOR.replace ('body', {toolbar : 'Basic'})</script>
+<script type="text/javascript">
+  $("input[name='video_id']").change(function(){
+    if($(this).val() == ''){
+      document.getElementById("userfile").disabled = false;
+    } else {
+      document.getElementById("userfile").disabled = true;
+    }
+  });
+  $("input[name='userfile']").change(function(){
+    if($(this).val() == ''){
+      document.getElementById("video_id").disabled = false;
+    } else {
+      document.getElementById("video_id").disabled = true;
+    }
+  });
+</script>

@@ -13,7 +13,7 @@
     	</tr>
         <th>ID</th>
         <th>Title</th>
-        <th>Photo</th>
+        <th>Media</th>
         <th>Created Date</th>
         <th>Modified Date</th>
         <th>Action</th>
@@ -25,7 +25,7 @@
             <td><?php echo $r->title; ?></td>
             <td>
             	<?php if ($r->filename == 0): ?>
-            		<span class="label label-important">Foto tidak ditemukan!</span>
+            		<img class="thumbnail" src="http://img.youtube.com/vi/<?php echo $r->video_id; ?>/2.jpg" width="70">
             	<?php else: ?>
             		<img class="thumbnail" src="<?php echo base_url()?>asset_admin/assets/uploads/cover/small/<?php echo $r->filename?>" width="70" />
             	<?php endif; ?>

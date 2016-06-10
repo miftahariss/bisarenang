@@ -16,7 +16,11 @@
         </div>
         
         <div class="blog-img-wrap  valign-wrapper detail-margin">
-            <img class="valign" src="<?php echo base_url() ?>asset_admin/assets/uploads/cover/original/<?php echo $content_detail[0]->filename; ?>" alt="<?php echo $content_detail[0]->title; ?>">
+            <?php if($content_detail[0]->filename != ""): ?>
+                <img class="valign" src="<?php echo base_url() ?>asset_admin/assets/uploads/cover/original/<?php echo $content_detail[0]->filename; ?>" alt="<?php echo $content_detail[0]->title; ?>">
+            <?php else: ?>
+                <iframe src="//www.youtube.com/embed/<?php echo $content_detail[0]->video_id; ?>" width="1200" height="775"></iframe>
+            <?php endif; ?>
         </div> <!-- BLOG WRAP -->
         
         <div class="detail-wrap">

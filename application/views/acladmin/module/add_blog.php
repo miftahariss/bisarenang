@@ -41,23 +41,18 @@
         <tr>
             <td>Foto Utama<code>Maksimal 2MB</code></td>
             <td>
-                <input type="file" name="userfile" required="required" />
-                <span class="alert-error"><?php echo form_error('userfile'); ?></span>
+                <input type="file" name="userfile" id="userfile" />
+                <span class="alert-error"><?php //echo form_error('userfile'); ?></span>
+            </td>
+        </tr>
+        <tr>
+            <td>Youtube URL</td>
+            <td>
+                <input type="text" name="video_id" id="video_id" value="<?php echo set_value('video_id')?>" class="input input-block-level" />
+                <span class="alert-error"><?php //echo form_error('video_id')?></span>
             </td>
         </tr>
     </table>
-    <!-- <table class="table table-striped" id="photo">
-        <tr>
-            <th colspan="5">Gallery <a class="btn" onclick="addPhoto()"><span class="icon icon-plus-sign"></span> Add Photo</a></th>
-        </tr>
-        <tr>
-            <td></td>
-            <td>Judul Foto</td>
-            <td>Deskripsi Foto</td>
-            <td>Upload Foto <code>Maksimal 2MB</code> | <code>minimum file dimension 980 x 600 pixel</code></td>
-            <td>Aksi</td>
-        </tr>
-    </table> -->
     <table class="table table-striped">
         <tr>
             <td><input type="submit" class="btn btn-large btn-primary" name="submit" value="Save" onclick="javascript:checkInput()"/></td>
@@ -67,3 +62,19 @@
 </form>
 <script type="text/javascript" src="<?php echo base_url();?>asset_admin/assets/js/ckeditor/ckeditor.js"></script>
 <script type="text/javascript">CKEDITOR.replace ('body', {toolbar : 'Basic'})</script>
+<script type="text/javascript">
+  $("input[name='video_id']").change(function(){
+    if($(this).val() == ''){
+      document.getElementById("userfile").disabled = false;
+    } else {
+      document.getElementById("userfile").disabled = true;
+    }
+  });
+  $("input[name='userfile']").change(function(){
+    if($(this).val() == ''){
+      document.getElementById("video_id").disabled = false;
+    } else {
+      document.getElementById("video_id").disabled = true;
+    }
+  });
+</script>

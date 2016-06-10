@@ -18,9 +18,15 @@
             <?php if ($blog > 0) :?>
                 <?php foreach($blog as $item): ?>
                 	<div class="article-box wow bounceInRight">
-                    	<div class="article-img" style="background-image: url('<?php echo base_url() ?>asset_admin/assets/uploads/cover/original/<?php echo $item['filename']; ?>');">
-                        	<!-- IMAGE AMBIL DARI BACKGROUND -->
-                        </div>
+                        <?php if($item['filename'] != ""): ?>
+                        	<div class="article-img" style="background-image: url('<?php echo base_url() ?>asset_admin/assets/uploads/cover/original/<?php echo $item['filename']; ?>');">
+                            	<!-- IMAGE AMBIL DARI BACKGROUND -->
+                            </div>
+                        <?php else: ?>
+                            <div class="article-img" style="background-image: url('http://img.youtube.com/vi/<?php echo $item['video_id']; ?>/0.jpg');">
+                                <!-- IMAGE AMBIL DARI BACKGROUND -->
+                            </div>
+                        <?php endif; ?>
                         
                         <a href="<?php echo base_url(); ?>blog/<?php echo $item['permalink']; ?>" class="article-title">
                         	<?php echo $item['title']; ?>
