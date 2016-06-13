@@ -14,6 +14,14 @@ function editPhoto() {
     <?php //print_r($content) ?>
     <table class="table table-striped">
         <tr>
+            <a href="<?php echo base_url()?>admin/acladmin/add_program_artikel/<?php echo $article->id; ?>" class="btn tambah_artikel"><span class="icon-plus-sign"></span> Tambah Artikel</a>
+            <?php $attributes = array('class'=>'navbar-form pull-left'); ?>
+            <?php /* echo form_open('admin/acladmin/search_media', $attributes); ?>
+                <span class="pull-right"><input type="submit" class="btn btn-primary" name="submit" value="Search" /></span>
+                <span class="pull-right"><input type="text" class="input-xlarge" name="search" placeholder="Search by title" /></span>
+            <?php echo form_close(); */ ?>
+        </tr>
+        <tr>
             <td>Judul</td>
             <td>
                 <input type="text" name="title" value="<?php echo $article->title; ?>" class="input input-block-level" />
@@ -50,89 +58,7 @@ function editPhoto() {
             <td></td>
         </tr>
         <input type="hidden" name="id_account" value="<?php echo $article->id_account; ?>" />
-        <tr>
-            <td><h4>BEGINNER</h4></td><td></td><td></td>
-        </tr>
-        <tr>
-            <td>Judul</td>
-            <td>Foto Utama</td>
-            <td>Aksi</td>
-        </tr>
-        <tr>
-            <td><?php echo $program_beginner->title; ?></td>
-            <td><img src="<?php echo base_url()?>asset_admin/assets/uploads/cover/small/<?php echo $program_beginner->filename ?>" /></td>
-            <td>
-                <?php echo anchor('/admin/acladmin/edit_program_level/' . $article->id . '/' . $program_beginner->id.'/1', "<span class='icon-edit'></span> Edit",array('class'=>'btn','onclick'=>"return confirm('yakin mau edit program ini?')"));?>
-            </td>
-        </tr>
-        <tr>
-            <td><h4>INTERMEDIATE</h4></td><td></td><td></td>
-        </tr>
-        <tr>
-            <td>Judul</td>
-            <td>Foto Utama</td>
-            <td>Aksi</td>
-        </tr>
-        <tr>
-            <td><?php echo $program_intermediate->title; ?></td>
-            <td><img src="<?php echo base_url()?>asset_admin/assets/uploads/cover/small/<?php echo $program_intermediate->filename ?>" /></td>
-            <td>
-                <?php echo anchor('/admin/acladmin/edit_program_level/' . $article->id . '/' . $program_intermediate->id.'/2', "<span class='icon-edit'></span> Edit",array('class'=>'btn','onclick'=>"return confirm('yakin mau edit program ini?')"));?>
-            </td>
-        </tr>
-        <tr>
-            <td><h4>ADVANCED</h4></td><td></td><td></td>
-        </tr>
-        <tr>
-            <td>Judul</td>
-            <td>Foto Utama</td>
-            <td>Aksi</td>
-        </tr>
-        <tr>
-            <td><?php echo $program_advanced->title; ?></td>
-            <td><img src="<?php echo base_url()?>asset_admin/assets/uploads/cover/small/<?php echo $program_advanced->filename ?>" /></td>
-            <td>
-                <?php echo anchor('/admin/acladmin/edit_program_level/' . $article->id . '/' . $program_advanced->id.'/3', "<span class='icon-edit'></span> Edit",array('class'=>'btn','onclick'=>"return confirm('yakin mau edit program ini?')"));?>
-            </td>
-        </tr>
     </table>
-
-    <!-- <table class="table table-striped" id="editPhoto">
-        <tr>
-            <th colspan="5">Gallery <a class="btn" onclick="editPhoto()"><span class="icon icon-plus-sign"></span> Add Photo</a></th>
-        </tr>
-        <tr>
-
-            <td><u><b>Judul Foto</b></u></td>
-            <td><u><b>Deskripsi Foto</b></u></td>
-            <td><u><b>Foto</b></u><code>Maksimal 2MB</code> | <code>minimum file dimension 980 x 600 pixel</code></td>
-            <td><u><b>Aksi</b></u></td>
-        </tr>
-        <?php foreach ($photos as $photo): ?>
-            <tr>
-
-                <td>
-                    <?php echo $photo->title?>
-                </td>
-                <td>
-                    <?php echo $photo->body?>
-                </td>
-                <td>
-                    <?php if ($photo->filename == 0): ?>
-                        <span class="label label-important">Foto tidak ditemukan!</span>
-                    <?php else: ?>
-                        <img class="thumbnail" src="<?php echo base_url()?>asset_admin/assets/uploads/cover/small/<?php echo $photo->filename?>" width="100" /><br />
-                    <?php endif; ?>
-                </td>
-                <td>
-                    <?php echo anchor('/admin/acladmin/edit_article_gallery_foto/' . $article->id . '/' . $photo->id, "<span class='icon-edit'></span> Edit",array('class'=>'btn','onclick'=>"return confirm('yakin mau edit photo ini?')"));?>
-                    <?php echo anchor('/admin/acladmin/delete_article_gallery_foto/' . $article->id . '/' . $photo->id, "<span class='icon-remove-sign'></span> Delete",array('class'=>'btn','onclick'=>"return confirm('yakin mau delete photo ini?')"));?>
-                </td>
-            </tr>
-            <input type="hidden" name="id_photo" value="<?php echo $photo->id ?>" />
-        <?php endforeach; ?>
-
-    </table> -->
 
     <table class="table table-striped">
         <tr>
@@ -140,5 +66,68 @@ function editPhoto() {
         </tr>
     </table>
 </form>
+<table class="table table-hover table-condensed">
+    <tbody class="alert alert-info">
+        <th>ID</th>
+        <th>Title</th>
+        <th>Foto</th>
+        <th>Level</th>
+        <th>Created Date</th>
+        <th>Modified Date</th>
+        <th>Action</th>
+    </tbody>
+    <?php if (is_array($artikel_program)) : ?>
+        <?php foreach ($artikel_program as $r) : ?>
+        <tr>
+            <td><?php echo $r->id; ?></td>
+            <td><?php echo $r->title; ?></td>
+            <td>
+                <?php if ($r->filename == 0): ?>
+                    <img class="thumbnail" src="http://img.youtube.com/vi/<?php echo $r->video_id; ?>/2.jpg" width="70">
+                <?php else: ?>
+                    <img class="thumbnail" src="<?php echo base_url()?>asset_admin/assets/uploads/cover/small/<?php echo $r->filename?>" width="70" />
+                <?php endif; ?>
+            </td>
+            <td>
+                <?php if($r->level == 1): ?>
+                    Beginner
+                <?php elseif($r->level == 2): ?>
+                    Intermediate
+                <?php elseif($r->level == 3): ?>
+                    Advance
+                <?php endif; ?>
+            </td>
+            <td><small>
+            <?php 
+                if ($r->created_date > date('Y')) {
+                    echo date('l, d M Y', $r->created_date); 
+                } else {
+                    echo '-';
+                }
+            ?></small>
+            </td>
+            <td><small>
+            <?php 
+                if ($r->modified_date > $r->created_date ) {
+                    echo date('l, d M Y', $r->modified_date); 
+                } else {
+                    echo '-';
+                }
+            ?></small>
+            </td>
+            <td>
+                <div class="btn-group">
+                    <button class="btn dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+<!--                        <li><a href="#<?php //echo base_url()?>" target="_blank"><span class="icon-list-alt"></span> Detail</a></li>-->
+                        <li><a href="<?php echo base_url()?>admin/acladmin/edit_program_artikel/<?php echo $r->id ?>/<?php echo $r->id_program; ?>"><span class="icon-edit"></span> Edit</a></li>
+                        <li><a href="<?php echo base_url()?>admin/acladmin/delete_program_artikel/<?php echo $r->id ?>/<?php echo $r->id_program; ?>" onclick="return confirm('Yakin data ini ingin dihapus?')"><span class="icon-remove-sign"></span> Delete</a></li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+    <?php endif; ?>
+</table>
 <script type="text/javascript" src="<?php echo base_url();?>asset_admin/assets/js/ckeditor/ckeditor.js"></script>
 <script type="text/javascript">CKEDITOR.replace ('body', {toolbar : 'Basic'})</script>

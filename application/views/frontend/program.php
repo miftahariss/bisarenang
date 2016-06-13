@@ -18,6 +18,10 @@
             <?php if (count($content_program) > 0) : ?>
                 <?php $i = 1; ?>
                 <?php foreach($content_program as $data): ?>
+                <?php
+                    $cek_program = $this->m_frontend->cekProgram($data->id);
+                    if(count($cek_program) > 0):
+                ?>
                     <li class="wow fadeInRight" data-wow-delay="<?php echo $i; ?>s"> <!-- DATA WOW DELAY KELIPATAN TAMBAH 1 -->
                         <div class="collapsible-header" style="background-image: url(<?php echo base_url() ?>asset_admin/assets/uploads/cover/original/<?php echo $data->filename; ?>);">
                             <p><?php echo $data->title; ?></p>
@@ -55,6 +59,7 @@
                         <?php endif; ?>
                     </li>
                     <?php $i++; ?>
+                <?php endif; ?>
                 <?php endforeach; ?>
             <?php endif; ?>
         </ul> <!-- COLLAPSIBLE -->

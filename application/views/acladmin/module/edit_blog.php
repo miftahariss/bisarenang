@@ -56,7 +56,7 @@ function editPhoto() {
         <tr>
             <td>Youtube URL</td>
             <td>
-                <input type="text" name="video_id" id="video_id" value="<?php echo $article->video_id; ?>" class="input input-block-level" />
+                <input type="text" name="video_id" id="video_id" value="https://www.youtube.com/watch?v=<?php echo $article->video_id; ?>" class="input input-block-level" />
                 <span class="alert-error"><?php //echo form_error('title')?></span>
             </td>
         </tr>

@@ -76,6 +76,14 @@ class M_frontend extends CI_Model {
         return $query->result();
     }
 
+    function cekProgram($id){
+        $this->db->where('id_program', $id);
+        $this->db->where('status', 1);
+        $query = $this->db->get('program_level');
+
+        return $query->result();
+    }
+
     function getAbout(){
       $this->db->where('status', 1);
       $query = $this->db->get('about');

@@ -3,7 +3,11 @@
 	<div class="slider">
         <?php foreach($content_headline as $data): ?>
             <div class="slide">
-                <img src="<?php echo base_url() ?>asset_admin/assets/uploads/cover/original/<?php echo $data->filename; ?>" alt="<?php echo $data->title; ?>">
+                <?php if($data->filename != ""): ?>
+                    <img src="<?php echo base_url() ?>asset_admin/assets/uploads/cover/original/<?php echo $data->filename; ?>" alt="<?php echo $data->title; ?>">
+                <?php else: ?>
+                    <img src="http://img.youtube.com/vi/<?php echo $data->video_id; ?>/0.jpg" alt="<?php echo $data->title; ?>">
+                <?php endif; ?>
                 
                 <div class="slider-caption">
                     <h1><?php echo $data->title; ?></h1>
@@ -69,9 +73,15 @@
         <div class="section-blog">
             <?php foreach($content_blog as $data): ?>
                 <div class="blog-box wow fadeInLeftBig" data-wow-delay="200ms">
-                    <div class="blog-box-img" style="background-image: url('<?php echo base_url() ?>asset_admin/assets/uploads/cover/original/<?php echo $data->filename; ?>');">
-                    	<!-- AMBIL IMAGE DARI BACKGROUND -->
-                    </div>
+                    <?php if($data->filename != ""): ?>
+                        <div class="blog-box-img" style="background-image: url('<?php echo base_url() ?>asset_admin/assets/uploads/cover/original/<?php echo $data->filename; ?>');">
+                        	<!-- AMBIL IMAGE DARI BACKGROUND -->
+                        </div>
+                    <?php else: ?>
+                        <div class="blog-box-img" style="background-image: url('http://img.youtube.com/vi/<?php echo $data->video_id; ?>/0.jpg');">
+                            <!-- AMBIL IMAGE DARI BACKGROUND -->
+                        </div>
+                    <?php endif; ?>
                     
                     <div class="blog-box-content">
                     	<a href="<?php echo base_url(); ?>blog/<?php echo $data->permalink; ?>" class="blog-box-title">
@@ -92,6 +102,10 @@
 </div> <!-- SECTION -->
 
 <?php if(count($program_headline) > 0): ?>
+<?php
+    $cek_program = $this->m_frontend->cekProgram($program_headline[0]->id);
+    if(count($cek_program) > 0):
+?>
 <div class="section bg-basicswim">
 	<div class="container">
     	<div class="section-title wow fadeInDown"  style="color: #fff;">
@@ -143,4 +157,5 @@
         <?php endif; ?>
     </div> <!-- CONTAINER -->
 </div> <!-- SECTION -->
+<?php endif; ?>
 <?php endif; ?>

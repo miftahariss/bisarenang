@@ -218,6 +218,17 @@ class Acladminmodel extends CI_Model {
         return $query->result();
     }
 
+    public function fetchProgramArtikel($id) {
+        $this->db->select('*');
+        $this->db->from($this->table['program_level']);
+        $this->db->where('id_program', $id);
+        $this->db->where('status', 1);
+        $this->db->order_by('level', 'asc');
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+
     public function fetchSlider(){
         $this->db->select('*');
         $this->db->from($this->table['slider']);
@@ -356,6 +367,12 @@ class Acladminmodel extends CI_Model {
 
     public function addProgram($data) {
         $this->db->insert($this->table['program'], $data);
+
+        return $this->db->insert_id();
+    }
+
+    public function addProgramArtikel($data) {
+        $this->db->insert($this->table['program_level'], $data);
 
         return $this->db->insert_id();
     }
@@ -527,6 +544,11 @@ class Acladminmodel extends CI_Model {
         $this->db->update($this->table['program'], $data);
     }
 
+    public function updateProgramArtikel($data, $id) {
+        $this->db->where('id', $id);
+        $this->db->update($this->table['program_level'], $data);
+    }
+
     public function updateProgramLevel($data, $id) {
         $this->db->where('id', $id);
         $this->db->update($this->table['program_level'], $data);
@@ -606,6 +628,11 @@ class Acladminmodel extends CI_Model {
     public function deleteSafety($data, $id) {
         $this->db->where('id', $id);
         $this->db->update($this->table['safety'], $data);
+    }
+
+    public function deleteProgramArtikel($data, $id) {
+        $this->db->where('id', $id);
+        $this->db->update($this->table['program_level'], $data);
     }
 
     public function deleteProductGalleryFoto($id, $data) {
@@ -693,6 +720,13 @@ class Acladminmodel extends CI_Model {
     public function getIdProgram($id) {
         $this->db->where('id', $id);
         $query = $this->db->get($this->table['program']);
+
+        return $query->row();
+    }
+
+    public function getIdProgramArtikel($id) {
+        $this->db->where('id', $id);
+        $query = $this->db->get($this->table['program_level']);
 
         return $query->row();
     }

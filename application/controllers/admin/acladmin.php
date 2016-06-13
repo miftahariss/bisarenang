@@ -724,6 +724,65 @@ class Acladmin extends CI_Controller {
         $this->load->view('acladmin/main', $data);
     }
 
+    public function add_program_artikel(){
+        $id_program = $this->uri->segment(4);
+        $permalink = url_title($this->input->post('title'), 'dash', true);
+        if ($this->input->post('submit')) {
+            // validation
+            $valid = $this->form_validation;
+            $valid->set_rules('title', 'Judul', 'required');
+            $valid->set_rules('short_desc', 'Short Desc', 'required');
+            $valid->set_rules('level', 'Level', 'required');
+            $valid->set_rules('body', 'Isi', 'required');
+            if (isset($_FILES['userfile']['name']) && $_FILES['userfile']['name'] == "") {
+                $valid->set_rules('userfile', 'Foto', 'required');
+            }
+
+            if ($valid->run() == false) {
+                // run
+            } else {
+
+                $this->db->where('level', $this->input->post('level'));
+                $this->db->where('id_program', $id_program);
+                $this->db->where('status', 1);
+                $cekartikel = $this->db->get('program_level');
+
+                if ($cekartikel->num_rows() > 0) {
+                    echo "<script>window.alert('Artikel dengan level ini sudah ada')</script>";
+                    echo "<meta http-equiv='refresh' content='0;URL=" . base_url('admin/acladmin/add_program_artikel') . "/".$id_program."' />";
+                    exit;
+                }
+
+                $format_upload = $this->upload();
+                //$video_id = $this->get_youtube_id_from_url($this->input->post('video_id'));
+                $data = array(
+                    'id_account' => 1,
+                    'id_program' => $id_program,
+                    'level' => $this->input->post('level'),
+                    'title' => $this->input->post('title'),
+                    'short_desc' => $this->input->post('short_desc'),
+                    'body' => $this->input->post('body'),
+                    'filename' => $format_upload,
+                    'permalink' => $permalink.'.html',
+                    'created_date' => time(),
+                    'modified_date' => null,
+                    'created_by' => $this->sess_id,
+                    'modified_by' => null,
+                    'status' => 1,
+                );
+
+                $id = $this->acladminmodel->addProgramArtikel($data);
+
+                redirect('admin/acladmin/edit_program/'.$id_program);
+            }
+        }
+        $data['page'] = 'add_program_artikel';
+        $data['title'] = 'Tambah Artikel Program Baru';
+
+        $data['content'] = $this->load->view('acladmin/module/add_program_artikel', $data, true);
+        $this->load->view('acladmin/main', $data);
+    }
+
     public function add_safety() {
         $permalink = url_title($this->input->post('title'), 'dash', true);
         if ($this->input->post('submit')) {
@@ -1066,10 +1125,11 @@ class Acladmin extends CI_Controller {
             $data['page'] = 'edit_program';
             $data['title'] = 'Edit Program';
             $data['article'] = $this->acladminmodel->getIdProgram($id);
-            $data['program_beginner'] = $this->acladminmodel->getIdProgramLevel($id, 1);
-            //var_dump($data['program_beginner']);exit;
-            $data['program_intermediate'] = $this->acladminmodel->getIdProgramLevel($id, 2);
-            $data['program_advanced'] = $this->acladminmodel->getIdProgramLevel($id, 3);
+            $data['artikel_program'] = $this->acladminmodel->fetchProgramArtikel($id);
+            // $data['program_beginner'] = $this->acladminmodel->getIdProgramLevel($id, 1);
+            // //var_dump($data['program_beginner']);exit;
+            // $data['program_intermediate'] = $this->acladminmodel->getIdProgramLevel($id, 2);
+            // $data['program_advanced'] = $this->acladminmodel->getIdProgramLevel($id, 3);
 
             //$data['photos']  = $this->acladminmodel->getIdGalleryArticle($id);
             
@@ -1077,6 +1137,66 @@ class Acladmin extends CI_Controller {
             $this->load->view('acladmin/main', $data);
         } else {
             redirect('admin/acladmin/view_program');
+        }
+    }
+
+    public function edit_program_artikel() {
+        $id = $this->uri->segment(4);
+        $id_program = $this->uri->segment(5);
+        if ($id) {
+            $permalink = url_title($this->input->post('title'), 'dash', true);
+            if ($this->input->post('submit')) {
+                $valid = $this->form_validation;
+                $valid->set_rules('title', 'Judul', 'required');
+                $valid->set_rules('short_desc', 'Short Desc', 'required');
+                $valid->set_rules('level', 'Level', 'required');
+                $valid->set_rules('body', 'Isi', 'required');
+
+                if ($valid->run() == false) {
+                    // show error in view
+                } else {
+                    $format_upload = $this->upload();
+                    //$video_id = $this->get_youtube_id_from_url($this->input->post('video_id'));
+                    if ($format_upload != "") {
+                        $data = array(
+                            'id' => $id,
+                            'title' => $this->input->post('title'),
+                            'short_desc' => $this->input->post('short_desc'),
+                            'level' => $this->input->post('level'),
+                            'body' => $this->input->post('body'),
+                            'filename' => $format_upload,
+                            'permalink' => $permalink.'.html',
+                            'modified_date' => time(),
+                            'modified_by' => $this->sess_id,
+                            'status' => 1
+                        );
+                        $this->acladminmodel->updateProgramArtikel($data, $id);
+                    } else {
+                        $data = array(
+                            'id' => $id,
+                            'title' => $this->input->post('title'),
+                            'short_desc' => $this->input->post('short_desc'),
+                            'level' => $this->input->post('level'),
+                            'body' => $this->input->post('body'),
+                            'permalink' => $permalink.'.html',
+                            'modified_date' => time(),
+                            'modified_by' => $this->sess_id,
+                            'status' => 1
+                        );
+                        $this->acladminmodel->updateProgramArtikel($data, $id);
+                    }
+
+                    redirect('admin/acladmin/edit_program/'.$id_program);
+                }
+            }
+            $data['page'] = 'edit_program_artikel';
+            $data['title'] = 'Edit Program Artikel';
+            $data['article'] = $this->acladminmodel->getIdProgramArtikel($id);
+            
+            $data['content'] = $this->load->view('acladmin/module/edit_program_artikel', $data, true);
+            $this->load->view('acladmin/main', $data);
+        } else {
+            redirect('admin/acladmin/edit_program/'.$id_program);
         }
     }
 
@@ -1261,6 +1381,18 @@ class Acladmin extends CI_Controller {
             redirect('admin/acladmin/view_safety');
         } else {
             redirect('admin/acladmin/view_safety');
+        }
+    }
+
+    public function delete_program_artikel() {
+        if ($this->uri->segment(4)) {
+            $data = array('status' => 0);
+            $id = $this->uri->segment(4);
+            $id_program = $this->uri->segment(5);
+            $this->acladminmodel->deleteProgramArtikel($data, $id);
+            redirect('admin/acladmin/edit_program/'.$id_program);
+        } else {
+            redirect('admin/acladmin/view_blog/'.$id_program);
         }
     }
 

@@ -23,7 +23,6 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Program <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="<?php echo base_url()?>admin/acladmin/add_program"><span class="icon-plus-sign"></span> Add Program</a></li>
                         <li><a href="<?php echo base_url()?>admin/acladmin/view_program"><span class="icon-list"></span> View Program</a></li>
                     </ul>
                 </li>

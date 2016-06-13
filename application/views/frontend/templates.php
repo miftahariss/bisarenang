@@ -51,6 +51,10 @@
                             ?>
                             <?php if (count($program) > 0) : ?>
                                 <?php foreach($program as $data): ?>
+                                <?php
+                                    $cek_program = $this->m_frontend->cekProgram($data->id);
+                                    if(count($cek_program) > 0):
+                                ?>
                                     <li><a href="#!"><?php echo $data->title; ?></a></li>
                                     <?php $program_level = $this->m_frontend->getProgramLevel($data->id); ?>
                                     <?php if(count($program_level) > 0): ?>
@@ -75,6 +79,7 @@
                                             </li>
                                         <?php endforeach; ?>
                                     <?php endif; ?>
+                                <?php endif; ?>
                                 <?php endforeach; ?>
                             <?php endif; ?>
                         </ul>
@@ -98,7 +103,7 @@
         <footer class="page-footer">            
             <div class="footer-copyright">
                 <div class="container">
-                    <p>Copyright &copy; 2016 Bisarenang.com. All Rights Reserved</p>|
+                    <p>Copyright &copy; <?php echo date('Y'); ?> Bisarenang.com. All Rights Reserved</p>|
                     <a href="#!">Terms of Use</a>|
                     <a href="#!">Privacy Policy</a>
                 </div>
