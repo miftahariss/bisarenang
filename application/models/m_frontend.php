@@ -123,4 +123,21 @@ class M_frontend extends CI_Model {
         $this->db->insert('blog_counter', $data);
     }
     /* END OF COUNT BLOG MEDIA */
+
+    /* COUNT BLOG BASIC */
+    function get_count_basic($id) {
+        $this->db->where('counter_basic_id', $id);
+        $query = $this->db->get('basic_counter');
+        return $query->result_array();
+    }
+
+    function count_view_basic($data, $id) {
+        $this->db->where('counter_basic_id', $id);
+        $this->db->update('basic_counter', $data);
+    }
+
+    function save_count_view_basic($data) {
+        $this->db->insert('basic_counter', $data);
+    }
+    /* END OF COUNT BASIC MEDIA */
 }

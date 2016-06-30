@@ -152,7 +152,7 @@ class Frontend extends CI_Controller {
         $this->breadcrumbs->push('Basic to Swim', '/basicswim');
         $this->breadcrumbs->push($content_detail[0]->title, $content_detail[0]->permalink);
 
-        $this->updateCount($content_detail[0]->id);
+        $this->updateCountBasic($content_detail[0]->id);
 
         $data['mainpage'] = 'frontend/basicswimdetail';
         $this->load->view('frontend/templates', $data);
@@ -312,6 +312,27 @@ class Frontend extends CI_Controller {
             );
 
             $this->m_frontend->save_count_view($counter);
+        }
+    }
+
+    function updateCountBasic($id) {
+        $query = $this->m_frontend->get_count_basic($id);
+
+        if (count($query) > 0) {
+            $counter = array(
+                'counter_count' => $query[0]['counter_count'] + 1,
+                'counter_count_date' => date('Y-m-d H:i:s')
+            );
+
+            $this->m_frontend->count_view_basic($counter, $id);
+        } else {
+            $counter = array(
+                'counter_basic_id' => $id,
+                'counter_count' => 1,
+                'counter_count_date' => date('Y-m-d H:i:s')
+            );
+
+            $this->m_frontend->save_count_view_basic($counter);
         }
     }
 }
