@@ -37,7 +37,7 @@
                             <li><a href="<?php echo base_url(); ?>" <?php if($base=='Home') echo 'class="selected"'; ?>>Home</a></li>
                             <li><a href="<?php echo base_url(); ?>blog" <?php if($base=='Blog') echo 'class="selected"'; ?>>Blog</a></li>
                             <li><a href="<?php echo base_url(); ?>safetyswim" <?php if($base=='Safetyswim') echo 'class="selected"'; ?>>Safety To Swim</a></li>
-                            <li><a href="<?php echo base_url(); ?>program" class="dropdown-button <?php if($base=='Program') echo 'selected'; ?>" data-activates="dropdown">Program<i class="material-icons right">arrow_drop_down</i></a></li>
+                            <li><a href="<?php echo base_url(); ?>basicswim" <?php if($base=='Blog') echo 'class="selected"'; ?>>Basic to Swim</a></li>
                             <li><a href="<?php echo base_url(); ?>contact" <?php if($base=='Contact') echo 'class="selected"'; ?>>Contact</a></li>
                             <li><a href="<?php echo base_url(); ?>about" <?php if($base=='About') echo 'class="selected"'; ?>>About</a></li>
                         </ul>

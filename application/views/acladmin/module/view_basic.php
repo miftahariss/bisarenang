@@ -4,7 +4,7 @@
 <table class="table table-hover table-condensed">
     <tbody class="alert alert-info">
     	<tr>
-	        <a href="<?php echo base_url()?>admin/acladmin/add_safety/" class="btn tambah_artikel"><span class="icon-plus-sign"></span> Tambah Safety Swim</a>
+	        <a href="<?php echo base_url()?>admin/acladmin/add_basic/" class="btn tambah_artikel"><span class="icon-plus-sign"></span> Tambah Basic</a>
 	        <?php $attributes = array('class'=>'navbar-form pull-left'); ?>
 	        <?php /* echo form_open('admin/acladmin/search_media', $attributes); ?>
 	            <span class="pull-right"><input type="submit" class="btn btn-primary" name="submit" value="Search" /></span>
@@ -13,7 +13,7 @@
     	</tr>
         <th>ID</th>
         <th>Title</th>
-        <th>Photo</th>
+        <th>Media</th>
         <th>Created Date</th>
         <th>Modified Date</th>
         <th>Action</th>
@@ -25,7 +25,7 @@
             <td><?php echo $r->title; ?></td>
             <td>
             	<?php if ($r->filename == 0): ?>
-            		<span class="label label-important">Foto tidak ditemukan!</span>
+            		<img class="thumbnail" src="http://img.youtube.com/vi/<?php echo $r->video_id; ?>/2.jpg" width="70">
             	<?php else: ?>
             		<img class="thumbnail" src="<?php echo base_url()?>asset_admin/assets/uploads/cover/small/<?php echo $r->filename?>" width="70" />
             	<?php endif; ?>
@@ -53,8 +53,8 @@
                     <button class="btn dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
                     <ul class="dropdown-menu">
 <!--                        <li><a href="#<?php //echo base_url()?>" target="_blank"><span class="icon-list-alt"></span> Detail</a></li>-->
-                        <li><a href="<?php echo base_url()?>admin/acladmin/edit_safety/<?php echo $r->id ?>"><span class="icon-edit"></span> Edit</a></li>
-                        <li><a href="<?php echo base_url()?>admin/acladmin/delete_safety/<?php echo $r->id ?>" onclick="return confirm('Yakin data ini ingin dihapus?')"><span class="icon-remove-sign"></span> Delete</a></li>
+                        <li><a href="<?php echo base_url()?>admin/acladmin/edit_basic/<?php echo $r->id ?>"><span class="icon-edit"></span> Edit</a></li>
+                        <li><a href="<?php echo base_url()?>admin/acladmin/delete_basic/<?php echo $r->id ?>" onclick="return confirm('Yakin data ini ingin dihapus?')"><span class="icon-remove-sign"></span> Delete</a></li>
                     </ul>
                 </div>
             </td>

@@ -11,7 +11,7 @@
 <div class="section">
     <div class="container">
         <div class="section-title wow fadeInDown">
-            <h2>Safety Swim</h2>
+            <h2>Safety to Swim</h2>
         </div>
 
         <?php if (count($content_safety) > 0) :?>

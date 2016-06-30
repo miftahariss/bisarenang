@@ -101,42 +101,61 @@
     </div> <!-- CONTAINER -->
 </div> <!-- SECTION -->
 
+<?php if(count($program_headline) > 0): ?>
+<?php
+    $cek_program = $this->m_frontend->cekProgram($program_headline[0]->id);
+    if(count($cek_program) > 0):
+?>
 <div class="section bg-basicswim">
 	<div class="container">
     	<div class="section-title wow fadeInDown"  style="color: #fff;">
-        	<h2>Basic Swim</h2>
+        	<h2><?php echo $program_headline[0]->title; ?></h2>
         </div>
 
-        <!-- <div class="basicswim-content">
+        <div class="basicswim-content">
             <p>
-                Kata Pengantar
+                <?php echo $program_headline[0]->short_desc; ?>
             </p>
-        </div> -->
-
-        <div class="section-basicswim">
-            <?php if(count($content_basic) > 0): ?>
-                <?php foreach($content_basic as $data): ?>
+        </div>
+        
+        <?php $program_level = $this->m_frontend->getProgramLevel($program_headline[0]->id); ?>
+        <?php if(count($program_level) > 0): ?>
+            <div class="section-basicswim">
+                <?php foreach($program_level as $item): ?>
+                    <?php if($item->level == 1): ?>
+                        <?php $v = 'beginner'; ?>
+                    <?php elseif($item->level == 2): ?>
+                        <?php $v = 'intermediate'; ?>
+                    <?php elseif($item->level == 3): ?>
+                        <?php $v = 'advance'; ?>
+                    <?php endif; ?>
                 	<div class="basicswim-box wow flipInY">
-                        <?php /* ?>
-                        <a href="<?php echo base_url(); ?>basicswim/<?php echo $data->permalink; ?>" class="basicswim-step step-one">
-                            Beginner
+                        <a href="<?php echo base_url('program/'.$v.'/'.$item->permalink); ?>" class="basicswim-step step-one">
+                            <?php if($item->level == 1): ?>
+                                Beginner
+                            <?php elseif($item->level == 2): ?>
+                                Intermediate
+                            <?php elseif($item->level == 3): ?>
+                                Advance
+                            <?php endif; ?>
                         </a>
                         
                         <div class="basicswim-line"></div>
-                        <?php */ ?>
                         
-                        <a href="<?php echo base_url(); ?>basicswim/<?php echo $data->permalink; ?>" class="basicswim-title step-one">
-                            <?php echo $data->title; ?>
+                        <a href="<?php echo base_url('program/'.$v.'/'.$item->permalink); ?>" class="basicswim-title step-one">
+                            <?php echo $item->title; ?>
                         </a>
                         
                         <div class="basicswim-line"></div>
                         
                         <p class="basicswim-text">
-                            <?php echo $data->short_desc; ?>
+                            <?php echo $item->short_desc; ?>
                         </p>
                     </div> <!-- BASIC SWIM BOX -->
                 <?php endforeach; ?>
-            <?php endif; ?>
-        </div> <!-- SECTION BASIC SWIM -->
+            </div> <!-- SECTION BASIC SWIM -->
+        <?php endif; ?>
     </div> <!-- CONTAINER -->
 </div> <!-- SECTION -->
+<?php endif; ?>
+<?php endif; ?>

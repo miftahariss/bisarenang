@@ -613,6 +613,55 @@ class Acladmin extends CI_Controller {
         $this->load->view('acladmin/main', $data);
     }
 
+    public function add_basic() {
+        $permalink = url_title($this->input->post('title'), 'dash', true);
+        if ($this->input->post('submit')) {
+            // validation
+            $valid = $this->form_validation;
+            $valid->set_rules('title', 'Judul', 'required');
+            $valid->set_rules('short_desc', 'Short Desc', 'required');
+            $valid->set_rules('body', 'Isi', 'required');
+            if (isset($_FILES['userfile']['name']) && $_FILES['userfile']['name'] == "") {
+                $valid->set_rules('userfile', 'Foto', 'required');
+            }
+
+            if ($valid->run() == false) {
+                // run
+            } else {
+
+                $format_upload = $this->upload();
+                $video_id = $this->get_youtube_id_from_url($this->input->post('video_id'));
+                $data = array(
+                    'id_account' => 1,
+                    'title' => $this->input->post('title'),
+                    'short_desc' => $this->input->post('short_desc'),
+                    'body' => $this->input->post('body'),
+                    'filename' => $format_upload,
+                    'video_id' => $video_id,
+                    //'headline' => $this->input->post('headline') ? 1 : 0,
+                    'permalink' => $permalink.'.html',
+                    'created_date' => time(),
+                    'modified_date' => null,
+                    'created_by' => $this->sess_id,
+                    'modified_by' => null,
+                    'status' => 1,
+                );
+
+                $id = $this->acladminmodel->addBasic($data);
+                // if ($id) {
+                //     $gallery = $this->upload_gallery();
+                //     $this->acladminmodel->addGalleryArticle($gallery, $id);
+                // }
+                redirect('admin/acladmin/view_basic');
+            }
+        }
+        $data['page'] = 'add_basic';
+        $data['title'] = 'Tambah Basic Baru';
+
+        $data['content'] = $this->load->view('acladmin/module/add_basic', $data, true);
+        $this->load->view('acladmin/main', $data);
+    }
+
     public function add_program(){
         $permalink = url_title($this->input->post('title'), 'dash', true);
         $permalink_beginner = url_title($this->input->post('title_beginner'), 'dash', true);
@@ -911,6 +960,26 @@ class Acladmin extends CI_Controller {
         $this->load->view('acladmin/main', $data);
     }
 
+    public function view_basic() {
+        $data['headline'] = $this->input->get('filter') ? $this->input->get('filter') : '1';
+        $this->load->library('pagination');
+        $config['base_url'] = site_url('admin/acladmin/view_basic');
+        $config['per_page'] = $this->limit;
+        $config['total_rows'] = $this->acladminmodel->countBasic(1);
+        $config['uri_segment'] = 4;
+        $config['first_url'] = $config['base_url'] . '?' . http_build_query($_GET);
+        $this->pagination->initialize($config);
+
+        $page = ($this->uri->segment(4) ? $this->uri->segment(4) : '');
+        $data['media'] = $this->acladminmodel->fetchBasic($config['per_page'], $page);
+        $data['links'] = $this->pagination->create_links();
+        $data['total_rows'] = $config['total_rows'];
+        $data['page'] = 'view_basic';
+        $data['title'] = 'Basic';
+        $data['content'] = $this->load->view('acladmin/module/view_basic', $data, true);
+        $this->load->view('acladmin/main', $data);
+    }
+
     public function view_program() {
         $data['headline'] = $this->input->get('filter') ? $this->input->get('filter') : '1';
         $this->load->library('pagination');
@@ -1072,6 +1141,73 @@ class Acladmin extends CI_Controller {
             $this->load->view('acladmin/main', $data);
         } else {
             redirect('admin/acladmin/view_safety');
+        }
+    }
+
+    public function edit_basic() {
+        $id = $this->uri->segment(4);
+        if ($id) {
+            $permalink = url_title($this->input->post('title'), 'dash', true);
+            if ($this->input->post('submit')) {
+                $valid = $this->form_validation;
+                $valid->set_rules('title', 'Judul', 'required');
+                $valid->set_rules('short_desc', 'Short Desc', 'required');
+                $valid->set_rules('body', 'Isi', 'required');
+
+                if ($valid->run() == false) {
+                    // show error in view
+                } else {
+                    $format_upload = $this->upload();
+                    $video_id = $this->get_youtube_id_from_url($this->input->post('video_id'));
+                    if ($format_upload != "") {
+                        $data = array(
+                            'id' => $id,
+                            'title' => $this->input->post('title'),
+                            'short_desc' => $this->input->post('short_desc'),
+                            'body' => $this->input->post('body'),
+                            'filename' => $format_upload,
+                            'video_id' => '',
+                            //'headline'         => $this->input->post('headline') ? 1 : 0,
+                            'permalink' => $permalink.'.html',
+                            'modified_date' => time(),
+                            'modified_by' => $this->sess_id,
+                            'status' => 1
+                        );
+                        $this->acladminmodel->updateBasic($data, $id);
+                    } else {
+                        $data = array(
+                            'id' => $id,
+                            'title' => $this->input->post('title'),
+                            'short_desc' => $this->input->post('short_desc'),
+                            'body' => $this->input->post('body'),
+                            'filename' => '',
+                            'video_id' => $video_id,
+                            //'headline'         => $this->input->post('headline') ? 1 : 0,
+                            'permalink' => $permalink.'.html',
+                            'meta_keywords' => $this->input->post('meta_keywords'),
+                            'meta_description' => $this->input->post('meta_description'),
+                            'modified_date' => time(),
+                            'modified_by' => $this->sess_id,
+                            'status' => 1
+                        );
+                        $this->acladminmodel->updateBasic($data, $id);
+                    }
+
+                    // $gallery = $this->upload_gallery();
+                    // $this->acladminmodel->addGalleryArticle($gallery, $id);
+
+                    redirect('admin/acladmin/view_basic');
+                }
+            }
+            $data['page'] = 'edit_basic';
+            $data['title'] = 'Edit Basic';
+            $data['article'] = $this->acladminmodel->getIdBasic($id);
+            //$data['photos']  = $this->acladminmodel->getIdGalleryArticle($id);
+            
+            $data['content'] = $this->load->view('acladmin/module/edit_basic', $data, true);
+            $this->load->view('acladmin/main', $data);
+        } else {
+            redirect('admin/acladmin/view_basic');
         }
     }
 

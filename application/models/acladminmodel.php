@@ -15,6 +15,7 @@ class Acladminmodel extends CI_Model {
         'product_gallery_foto' => 'product_gallery_foto',
         'blog' => 'blog',
         'safety' => 'safety',
+        'basic' => 'basic',
         'program' => 'program',
         'program_level' => 'program_level',
         'article_gallery_foto' => 'article_gallery_foto',
@@ -80,6 +81,16 @@ class Acladminmodel extends CI_Model {
     public function countSafety($status) {
         $this->db->select('id');
         $this->db->from($this->table['safety']);
+        $this->db->where('status', $status);
+
+        $count = $this->db->count_all_results();
+
+        return $count;
+    }
+
+    public function countBasic($status) {
+        $this->db->select('id');
+        $this->db->from($this->table['basic']);
         $this->db->where('status', $status);
 
         $count = $this->db->count_all_results();
@@ -197,6 +208,18 @@ class Acladminmodel extends CI_Model {
     public function fetchSafety($limit, $start) {
         $this->db->select('*');
         $this->db->from($this->table['safety']);
+        $this->db->where('status', 1);
+
+        $this->db->limit($limit, $start);
+        $this->db->order_by('id', 'desc');
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+
+    public function fetchBasic($limit, $start) {
+        $this->db->select('*');
+        $this->db->from($this->table['basic']);
         $this->db->where('status', 1);
 
         $this->db->limit($limit, $start);
@@ -361,6 +384,12 @@ class Acladminmodel extends CI_Model {
 
     public function addSafety($data) {
         $this->db->insert($this->table['safety'], $data);
+
+        return $this->db->insert_id();
+    }
+
+    public function addBasic($data) {
+        $this->db->insert($this->table['basic'], $data);
 
         return $this->db->insert_id();
     }
@@ -539,6 +568,11 @@ class Acladminmodel extends CI_Model {
         $this->db->update($this->table['safety'], $data);
     }
 
+    public function updateBasic($data, $id) {
+        $this->db->where('id', $id);
+        $this->db->update($this->table['basic'], $data);
+    }
+
     public function updateProgram($data, $id) {
         $this->db->where('id', $id);
         $this->db->update($this->table['program'], $data);
@@ -713,6 +747,13 @@ class Acladminmodel extends CI_Model {
     public function getIdSafety($id) {
         $this->db->where('id', $id);
         $query = $this->db->get($this->table['safety']);
+
+        return $query->row();
+    }
+
+    public function getIdBasic($id) {
+        $this->db->where('id', $id);
+        $query = $this->db->get($this->table['basic']);
 
         return $query->row();
     }

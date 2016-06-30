@@ -22,6 +22,7 @@ class Frontend extends CI_Controller {
         }
 
         $data['content_blog'] = $this->m_frontend->getBlog(0, 4, $headline_id);
+        $data['content_basic'] = $this->m_frontend->getBasic(0, 4);
 
         //var_dump($data['content_blog']);exit;
 
@@ -114,6 +115,46 @@ class Frontend extends CI_Controller {
         //var_dump($data['content_safety']);exit;
 
         $data['mainpage'] = 'frontend/safetyswim';
+        $this->load->view('frontend/templates', $data);
+    }
+
+    function basicswim(){
+        $data['base'] = 'Program';
+
+        $this->breadcrumbs->push('Home', '/');
+        $this->breadcrumbs->push('Basic to Swim', '/basicswim');
+
+        // unshift crumb
+        //$this->breadcrumbs->unshift('Home', '/');
+
+        $this->db->where_in('status', array('1'));
+        $this->db->order_by("created_date", "desc");
+        $basic_query = $this->db->get('basic');
+        $data['basic'] = $basic_query->result_array();
+
+        $data['mainpage'] = 'frontend/basicswim';
+        $this->load->view('frontend/templates', $data);
+    }
+
+    function basicswimdetail(){
+        $data['base'] = 'Program';
+
+        $title = $this->uri->segment(2);
+
+        $data['content_detail'] = $this->m_frontend->getDetailBasic($title);
+        $content_detail = $data['content_detail'];
+
+        if ($content_detail == FALSE) {
+            redirect('pagenotfound');
+        }
+
+        $this->breadcrumbs->push('Home', '/');
+        $this->breadcrumbs->push('Basic to Swim', '/basicswim');
+        $this->breadcrumbs->push($content_detail[0]->title, $content_detail[0]->permalink);
+
+        $this->updateCount($content_detail[0]->id);
+
+        $data['mainpage'] = 'frontend/basicswimdetail';
         $this->load->view('frontend/templates', $data);
     }
 

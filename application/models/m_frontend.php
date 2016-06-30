@@ -26,6 +26,14 @@ class M_frontend extends CI_Model {
     	return $query->result();
     }
 
+    function getDetailBasic($title){
+        $this->db->where('permalink', $title);
+        $this->db->where('status', 1);
+        $query = $this->db->get('basic');
+
+        return $query->result();
+    }
+
     function getBlog($offset, $limit, $exclude = ''){
     	if(is_array($exclude)){
     		$this->db->where_not_in('id',$exclude);
@@ -41,6 +49,14 @@ class M_frontend extends CI_Model {
         $this->db->where('status', 1);
         $this->db->order_by('created_date', 'desc');
         $query = $this->db->get('safety');
+
+        return $query->result();
+    }
+
+    function getBasic($offset, $limit){
+        $this->db->where('status', 1);
+        $this->db->order_by('created_date', 'desc');
+        $query = $this->db->get('basic',$limit,$offset);
 
         return $query->result();
     }

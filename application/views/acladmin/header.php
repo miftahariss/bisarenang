@@ -14,16 +14,17 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Safety Swim <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Safety to Swim <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="<?php echo base_url()?>admin/acladmin/add_safety"><span class="icon-plus-sign"></span> Add Safety Swim</a></li>
-                        <li><a href="<?php echo base_url()?>admin/acladmin/view_safety"><span class="icon-list"></span> View Safety Swim</a></li>
+                        <li><a href="<?php echo base_url()?>admin/acladmin/add_safety"><span class="icon-plus-sign"></span> Add Safety to Swim</a></li>
+                        <li><a href="<?php echo base_url()?>admin/acladmin/view_safety"><span class="icon-list"></span> View Safety to Swim</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Program <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Basic to Swim <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="<?php echo base_url()?>admin/acladmin/view_program"><span class="icon-list"></span> View Program</a></li>
+                        <li><a href="<?php echo base_url()?>admin/acladmin/add_basic"><span class="icon-plus-sign"></span> Add Basic to Swim</a></li>
+                        <li><a href="<?php echo base_url()?>admin/acladmin/view_basic"><span class="icon-list"></span> View Basic to Swim</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">

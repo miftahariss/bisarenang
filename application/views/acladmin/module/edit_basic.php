@@ -27,13 +27,13 @@ function editPhoto() {
                 <span class="alert-error"><?php echo form_error('short_desc')?></span>
             </td>
         </tr>
-        <tr>
+        <!-- <tr>
             <td>Headline</td>
             <td>
                 <input type="checkbox" name="headline" value="1" <?php if($article->headline == 1){echo 'checked="checked"';} ?>>
                 <span class="alert-error"><?php echo form_error('headline')?></span>
             </td>
-        </tr>
+        </tr> -->
         <tr>
             <td>Isi</td>
             <td>

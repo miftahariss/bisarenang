@@ -18,21 +18,14 @@
         <div class="blog-img-wrap  valign-wrapper detail-margin">
             <img class="valign" src="<?php echo base_url() ?>asset_admin/assets/uploads/cover/original/<?php echo $content_detail[0]->filename; ?>" alt="<?php echo $content_detail[0]->title; ?>">
             
-            <div class="program-caption">
-                <h3><?php echo $program_title[0]->title; ?> - 
-                <?php if($content_detail[0]->level == 1): ?>
-                    Beginner Level
-                <?php elseif($content_detail[0]->level == 2): ?>
-                    Intermediate Level
-                <?php elseif($content_detail[0]->level == 3): ?>
-                    Advance Level
-                <?php endif; ?>
+            <!-- <div class="program-caption">
+                <h3>test
                 </h3>
-            </div>
+            </div> -->
         </div> <!-- PROGRAM WRAP -->
         
         <div class="detail-wrap">
-        	<h5><?php echo $program_title[0]->title; ?></h5>
+        	<h5>Basic to Swim</h5>
             
             <?php echo $content_detail[0]->body; ?>
         </div> <!-- DETAIL WRAP -->
